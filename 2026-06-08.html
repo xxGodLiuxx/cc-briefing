@@ -3,314 +3,283 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>朝刊 No.005 — 2026.06.08 (月) | DAILY INTELLIGENCE BRIEFING</title>
+<title>THE DAILY SIGNAL — 2026.06.08 (月) · No.005</title>
 <meta name="author" content="JaH">
 <style>
-/* === 朝刊 固定スタイルトークン (SF / Detroit: Become Human・CyberLife 調) ===
-   毎日デザインは新しく作るが、この :root トークンだけは必ず使う（書体・サイズ・基調を統一）。 */
 :root{
-  --sans:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",Arial,sans-serif;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
   --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
-  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
-  --fs-body:18px; --fs-small:16px; --fs-h3:22px; --fs-h2:30px; --fs-cover:44px; --lh:1.8;
-  --bg:#06090d; --paper:#0d141b; --paper2:#101922; --ink:#e9f1f6; --soft:#aebecb; --muted:#6e8392; --line:#1d2b38;
-  --ng:#36c9ff;
-  --accent:#36c9ff; --accent2:#7c5cff;
-  --warn:#f5c542;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
 }
-
-/* === 表紙カバーページ (統合: HTML冒頭に表紙、開くと表紙→スクロールで本文の一冊) === */
-.cover-page{
-  height:100vh; min-height:560px; width:100%;
-  background:var(--bg) center/cover no-repeat;
-  display:flex; align-items:flex-end; justify-content:center; position:relative;
-}
-.cover-page::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:190px;
-  background:linear-gradient(transparent, var(--bg)); pointer-events:none;
-}
-.cover-scroll{
-  position:relative; z-index:1; margin-bottom:46px; text-align:center;
-  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.34em;
-  text-transform:uppercase; color:var(--ng); opacity:.92;
-  animation:cvb 1.8s ease-in-out infinite;
-}
-.cover-scroll .arw{display:block; font-size:24px; margin-top:6px;}
-@keyframes cvb{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
-
-/* ====================================================================
-   本号レイアウト = フルブリード・チャプタースナップ型
-   (CyberLife プレゼンテーション・モジュール / 章立てフルスクリーン・スライド)
-   表紙を1枚目に、scroll-snap で各「章=カテゴリ」が全画面で1枚ずつめくれる"一冊"。
-   左に巨大なアウトライン章番号、右に本文。右端に縦プログレス・ドットレール。
-   電子シアン(--ng)はアウトライン番号・章上辺ヘアライン・ドット・キッカー・前号比罫線に限定。
-   過去号(メイソンリー/端末コンソール/DOSSIERサイドレール/見開き誌面/HUDグリッド)とは
-   割付・構成・アクセント運用すべて異なる。書体・サイズは固定トークン厳守。
-   ==================================================================== */
 *{box-sizing:border-box;}
-html{scroll-snap-type:y proximity; scroll-behavior:smooth;}
+html{scroll-behavior:smooth;}
 body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-.cover-page{scroll-snap-align:start;}
+.mono{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
 
-/* 固定マストヘッド (上部・細い) */
-.masthead{
-  position:fixed; top:0; left:0; right:0; z-index:60;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:13px 5vw; gap:14px;
-  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase;
-  color:var(--muted); background:linear-gradient(var(--bg) 30%, transparent); pointer-events:none;
-}
-.masthead .mh-no{color:var(--ng);}
-.masthead .mh-mid{color:var(--soft); letter-spacing:.32em; font-size:var(--fs-small);}
-.masthead .mh-r{color:var(--muted);}
-@media (max-width:680px){ .masthead .mh-mid{display:none;} }
+/* ===== 表紙 ===== */
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
 
-/* 右端 縦プログレス・ドットレール */
-.railnav{
-  position:fixed; top:50%; right:24px; transform:translateY(-50%); z-index:60;
-  display:flex; flex-direction:column; gap:15px; align-items:center;
-}
-.railnav a{
-  width:10px; height:10px; border:1px solid var(--ng); border-radius:50%;
-  opacity:.42; transition:opacity .25s, box-shadow .25s, background .25s; display:block;
-}
-.railnav a:hover{opacity:1; background:var(--ng); box-shadow:0 0 10px rgba(54,201,255,.7);}
-@media (max-width:680px){ .railnav{display:none;} }
+/* ===== ステータスバー（CyberLife OS） ===== */
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw;
+  background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
 
-/* 章セクション = 全画面 */
-.chapter{
-  min-height:100vh; scroll-snap-align:start; position:relative;
-  display:grid; grid-template-columns:minmax(116px,20vw) 1fr; column-gap:5vw;
-  align-items:center; padding:15vh 7vw 11vh; border-top:1px solid var(--line);
-}
-.chapter::before{ /* 上辺の短いシアン・ヘアライン */
-  content:""; position:absolute; top:-1px; left:7vw; width:74px; height:2px;
-  background:var(--ng); box-shadow:0 0 9px rgba(54,201,255,.55);
-}
-.ch-left{ align-self:start; padding-top:2px; }
-.ch-num{
-  font-family:var(--mono); font-weight:700; font-size:clamp(66px,10.5vw,150px); line-height:.86;
-  letter-spacing:-.02em; color:transparent; -webkit-text-stroke:1.5px var(--ng);
-  opacity:.85; user-select:none;
-}
-.ch-cat{
-  margin-top:18px; font-family:var(--mono); font-size:var(--fs-small);
-  letter-spacing:.28em; text-transform:uppercase; color:var(--soft); line-height:1.7;
-}
-.ch-cat b{display:block; color:var(--ng); font-weight:700; letter-spacing:.22em;}
+/* ===== 土台 ===== */
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
 
-.ch-body{max-width:780px;}
-.kicker{
-  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.26em; text-transform:uppercase;
-  color:var(--ng); margin:0 0 14px;
-}
-.kicker .tag{
-  color:var(--warn); border:1px solid var(--warn); border-radius:2px;
-  padding:1px 8px; margin-left:10px; font-size:var(--fs-small); letter-spacing:.18em;
-}
-.ch-body h2{
-  font-size:var(--fs-h2); line-height:1.32; font-weight:700; margin:0 0 18px; color:var(--ink);
-  letter-spacing:.005em;
-}
-.ch-body .lead{
-  font-size:var(--fs-h3); line-height:1.7; color:var(--soft); margin:0 0 18px; font-weight:600;
-}
-.ch-body p{margin:0 0 16px; color:var(--ink);}
-.ch-body p.note{color:var(--muted); font-size:var(--fs-small); line-height:1.7;}
+/* ===== 今日の一本 ===== */
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
 
-/* 前号比ノート (シアン左罫線) */
-.delta{
-  border-left:2px solid var(--ng); padding:6px 0 6px 18px; margin:22px 0 6px;
-  background:linear-gradient(90deg, rgba(54,201,255,.06), transparent);
-}
-.delta .dl-label{
-  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase;
-  color:var(--ng); display:block; margin-bottom:5px;
-}
-.delta p{margin:0; color:var(--soft); font-size:var(--fs-small); line-height:1.8;}
+/* ===== 章 ===== */
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none;
+  box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
 
-/* 出典・脚注行 */
-.src{
-  margin-top:20px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.06em;
-  color:var(--muted); border-top:1px solid var(--line); padding-top:11px;
-}
+/* 記事：写真＋テキストの2カラム */
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
 
-/* FEATURE (00) = 大判ヒーロー (1カラム) */
-.chapter.feature{grid-template-columns:1fr; row-gap:0; padding-top:17vh;}
-.chapter.feature .ch-left{display:flex; align-items:baseline; gap:22px; margin-bottom:26px;}
-.chapter.feature .ch-num{font-size:clamp(58px,8vw,108px);}
-.chapter.feature .ch-cat{margin-top:0;}
-.chapter.feature .ch-body{max-width:920px;}
-.chapter.feature h2{font-size:clamp(30px,4.4vw,52px); line-height:1.2; margin-bottom:22px;}
-.chapter.feature .lead{font-size:clamp(20px,2.2vw,26px);}
+/* 注目ポイント */
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
 
-/* コロフォン (奥付) */
-.colophon{
-  min-height:100vh; scroll-snap-align:start; border-top:1px solid var(--line);
-  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  padding:14vh 7vw; gap:14px;
-}
-.colophon .cph-mark{
-  font-family:var(--mono); font-size:clamp(40px,7vw,86px); font-weight:700; letter-spacing:.05em;
-  color:transparent; -webkit-text-stroke:1.4px var(--ng); opacity:.9;
-}
-.colophon .cph-title{font-size:var(--fs-h3); color:var(--ink); letter-spacing:.04em;}
-.colophon .cph-meta{
-  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase;
-  color:var(--soft); line-height:2;
-}
-.colophon .cph-meta .c{color:var(--ng);}
-.colophon .cph-desc{max-width:640px; color:var(--muted); font-size:var(--fs-small); line-height:1.9;}
+/* むすび・奥付 */
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
 
-@media (max-width:760px){
-  .chapter{grid-template-columns:1fr; row-gap:8px; padding:13vh 7vw 9vh;}
-  .ch-left{display:flex; align-items:baseline; gap:18px;}
-  .ch-num{font-size:64px;}
-  .ch-cat{margin-top:0;}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- 表紙カバーページ -->
-<section class="cover-page" style="background-image:url('https://xxgodliuxx.github.io/cc-briefing/covers/2026-06-08.png');">
-  <div class="cover-scroll">SCROLL TO READ<span class="arw">&#9660;</span></div>
-</section>
-
-<!-- 固定マストヘッド -->
-<header class="masthead">
-  <span class="mh-no">No.005</span>
-  <span class="mh-mid">DAILY&nbsp;INTELLIGENCE&nbsp;BRIEFING</span>
-  <span class="mh-r">2026.06.08 / MON</span>
-</header>
-
-<!-- 右端 縦プログレス・ドットレール -->
-<nav class="railnav" aria-label="章ナビ">
-  <a href="#ch00" title="今日の一本"></a>
-  <a href="#ch01" title="感染症"></a>
-  <a href="#ch02" title="BCI・視線"></a>
-  <a href="#ch03" title="人間のデジタル化"></a>
-  <a href="#ch04" title="SMA治療"></a>
-  <a href="#ch05" title="天文・医学・量子"></a>
-</nav>
-
-<!-- 00 FEATURE — 今日の一本 -->
-<section class="chapter feature" id="ch00">
-  <div class="ch-left">
-    <span class="ch-num">00</span>
-    <span class="ch-cat"><b>FEATURE</b>今日の一本</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">TODAY'S LEAD<span class="tag">注目 / WATCH</span></p>
-    <h2>GLP-1薬で乳がんリスク約30%低下 — 「がん予防」へ概念拡張</h2>
-    <p class="lead">11万人コホートが示した、肥満・糖尿病薬の新しい価値軸。</p>
-    <p>GLP-1受容体作動薬（セマグルチド＝Ozempic 等）を使用した群で、乳がんの発症リスクが約30%低い——11万人規模の観察コホートの結果が ASCO 2026 で発表され、Journal of Clinical Oncology（JCO）に掲載された。代謝改善を主目的としてきた GLP-1 薬が、肥満・糖尿病という枠を越えて「がん予防」という新たな評価軸で語られ始めた。</p>
-    <p>ただし今回は観察研究であり、示されたのは相関であって因果ではない。本当に薬剤が発症を抑えているのか、それとも体重・代謝状態の改善が背景にあるのかは、今後の無作為化比較試験（RCT）による検証を待つ必要がある。それでも「太る病・糖尿病の薬」から「がんを減らしうる薬」へと社会的な見方が一段拡張した点は大きい。</p>
-    <p class="note">※ 観察研究＝相関であり因果は未確定。確証には介入試験（RCT）が必要。</p>
-    <p class="src">SRC: ASCO 2026 / Journal of Clinical Oncology — 観察コホート約110,000名</p>
+<section class="cover">
+  <div class="ph empty"><img src="covers/art_cover_sf.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>夜の世界から、<br>あなたへ</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.005 · 2026.06.08 (MON)</div>
+    <p class="lead">今日は、五つの方角がどれも「一歩前へ」を指した日。命と、自由と、世界の今と、宇宙と、人類の来た道を、めくっていく。</p>
   </div>
 </section>
 
-<!-- 01 OUTBREAK WATCH — 感染症 -->
-<section class="chapter" id="ch01">
-  <div class="ch-left">
-    <span class="ch-num">01</span>
-    <span class="ch-cat"><b>OUTBREAK</b>感染症</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">EPIDEMIC WATCH</p>
-    <h2>エボラ対応、5.18億ドルの大陸統合作戦「One Response」へ</h2>
-    <p>WHO とアフリカ CDC が、エボラ（ブンディブギョ型）に対し約5.18億ドル規模・6か月の大陸統合対応計画「One Response」を発表した（6/5）。各国がばらばらに動く段階から、資金・ロジスティクス・サーベイランスを束ねた統合フェーズへ移行する。あわせてマダガスカルで2023年以来初となる cVDPV1（ワクチン由来1型ポリオ）も確認され、複線的な警戒が続く。</p>
-    <div class="delta">
-      <span class="dl-label">前号からの変化</span>
-      <p>6/7 号は「DRC 381例・死者64／ウガンダ19例」という症例数フェーズだった。本号は国際資金（約5.18億ドル）を伴う6か月統合作戦の発表へと、対応の次元が一段上がった。</p>
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.005</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.06.08 MON</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡 注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>10</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="art empty"><img src="covers/art_01_sma_sf.png" alt="" onerror="this.style.display='none'"></div>
+    <div>
+      <div class="kick">▍ 今日の一本 — Lead Story</div>
+      <h2>SMA治療薬アピテグロマブが米FDAの審査へ。答えは9月30日</h2>
+      <p>「神経を守る」段階から「筋肉を取り戻す」段階へ。SMA治療の地図を書き換えうる扉が、この秋ひとつ開こうとしている。</p>
     </div>
-    <p class="src">SRC: WHO / Africa CDC "One Response" (6/5) — cVDPV1: Madagascar</p>
-  </div>
-</section>
+  </section>
 
-<!-- 02 NEURAL INTERFACE — BCI・視線 -->
-<section class="chapter" id="ch02">
-  <div class="ch-left">
-    <span class="ch-num">02</span>
-    <span class="ch-cat"><b>NEURAL</b>BCI・視線</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">BRAIN-COMPUTER INTERFACE</p>
-    <h2>BCI 承認レース本格化 — Synchron、FDA 初の PMA を狙う</h2>
-    <p>Synchron が2026年中の FDA 初 PMA（市販前承認）取得を目指し、枢要試験（pivotal study）のデザインを近く発表する見通し。Precision Neuroscience の「Layer 7」（1,024電極）も既に PMA 申請済みで、Neuralink は高量産と手術の自動化フェーズへ移行している。研究の最前線から、規制当局の承認を実際に取りに行く実用化競争の段階へ入った。</p>
-    <div class="delta">
-      <span class="dl-label">前号からの変化</span>
-      <p>6/7 号は Columbia BISC の65,536電極チップ（Nature Electronics）という「電極数の最前線」が主役だった。本号は PMA という承認・実用化レースへ、業界の軸足が明確に移っている。</p>
+  <section class="chapter">
+    <div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life · SMA & Neuromuscular</span></div>
+    <div class="ch-bar"></div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_01_sma_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">01.1 · Treatment</span>
+        <h3>アピテグロマブ、9月30日に答えが出る</h3>
+        <p>SMA治療は長く「これ以上、運動神経を失わせない」戦いだった。アピテグロマブ（Scholar Rock）はそこに別の発想を持ち込む——筋肉そのものを増やしにいく、初めての薬だ。第3相SAPPHIRE試験で、既存のSMN治療に上乗せして運動機能を確かに改善した。3月31日に米FDAへ再申請され、審査の期日は9月30日に設定された。昨秋の差し戻しは製造工場の査察によるもので、薬そのものの懸念ではない。効果が最も大きかったのは、早く治療を始めた人だった。</p>
+        <div class="src">SOURCE：<a href="https://www.curesma.org/fda-accepts-scholar-rocks-biologics-license-application-bla-to-review-apitegromab-for-sma/">Cure SMA</a> ／ <a href="https://investors.scholarrock.com/news-releases/news-release-details/scholar-rock-resubmits-biologics-license-application-bla-fda">Scholar Rock 2026.3.31</a></div>
+      </div>
     </div>
-    <p class="src">SRC: Synchron pivotal design / Precision "Layer 7" PMA / Neuralink scale-up</p>
-  </div>
-</section>
 
-<!-- 03 MIND UPLOAD — 人間のデジタル化 -->
-<section class="chapter" id="ch03">
-  <div class="ch-left">
-    <span class="ch-num">03</span>
-    <span class="ch-cat"><b>UPLOAD</b>人間のデジタル化</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">WHOLE-BRAIN EMULATION</p>
-    <h2>全脳エミュレーションは「最低30〜40年先」と総括</h2>
-    <p>State of Brain Emulation Report が、全脳エミュレーション（精神の完全デジタル化）の実現は最低でも30〜40年先との現実的な見通しを総括した。一方で脳デジタルツインは医療応用では着実に前進しており、依然として最大の技術課題は「個人差をどこまで捕捉できるか」に集約される、と位置づけている。</p>
-    <div class="delta">
-      <span class="dl-label">前号からの変化</span>
-      <p>6/7 号は Meta TRIBE v2（700名超・1,115時間超の fMRI）が示す「データ規模の拡大」が話題だった。本号は到達時期と個人差という「限界の見極め」へ論点が移り、過熱した期待に現実の物差しを当て直している。</p>
+    <div class="article">
+      <div class="art empty"><img src="covers/art_02_meds_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">01.2 · Early Care</span>
+        <h3>三つの薬を、もっと早く届ける</h3>
+        <p>いまSMAには三つの確立した治療がある——ヌシネルセン（髄注）、リスジプラム（経口）、オナセムノゲン（一度きりの遺伝子治療）。世界の焦点は「より早く」へ移り、発症前に治療を始めた子が、ほぼ標準的に運動の節目を迎える例が報告されている。日本でも新生児スクリーニングが自治体ごとに広がりつつある。診断がついた時にはもう神経が失われている——その時間との競争を、根本から変える動きだ。</p>
+        <div class="src">SOURCE：<a href="https://smanewstoday.com/news/mda-2026-apitegromab-boost-motor-function-sma/">SMA News Today（MDA 2026）</a></div>
+      </div>
     </div>
-    <p class="src">SRC: State of Brain Emulation Report — 30–40yr horizon</p>
-  </div>
-</section>
 
-<!-- 04 GENE & SMA — SMA治療 -->
-<section class="chapter" id="ch04">
-  <div class="ch-left">
-    <span class="ch-num">04</span>
-    <span class="ch-cat"><b>GENE</b>SMA治療</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">SPINAL MUSCULAR ATROPHY</p>
-    <h2>apitegromab、FDA が BLA 受理 — 審査期限は 9/30</h2>
-    <p>筋肉標的型の apitegromab について、FDA が生物製剤承認申請（BLA）を受理した。審査期限（PDUFA）は2026年9月30日に設定。優先審査や希少疾患指定等を取得しており、欧州 EMA も2026年中頃に判断する見込みだ。遺伝子治療を受けた後にも残る運動機能の課題に対し、神経ではなく筋肉の側からアプローチする新世代の治療として位置づけられる。</p>
-    <div class="delta">
-      <span class="dl-label">前号からの変化</span>
-      <p>6/7 号は次世代 SMA 薬サラネルセン（BIIB115）の「画期的療法指定」取得が話題だった。本号は apitegromab が具体的な審査スケジュール（9/30）を持つ、承認目前のフェーズへ入った点が新しい。</p>
+    <div class="pull"><span class="lbl">▶ 注目ポイント</span><p>この秋はSMAの節目になる。9月30日の判断は、世界のSMA治療の地図を一段書き換えうる。</p></div>
+  </section>
+
+  <section class="chapter">
+    <div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom · Brain–Computer Interface</span></div>
+    <div class="ch-bar"></div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_03_bci_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">02.1 · Neural Implant</span>
+        <h3>Neuralink、ひとりから十数人へ</h3>
+        <p>思考だけでカーソルを動かす——数年前なら実験室の話だった。Neuralinkは第2世代の機器に進み、最初の被験者ノーランド・アーボーは累計数千時間にわたり接続を使い続け、参加者は十数人規模へ広がった。1024本の極細電極を運動野に編み込み、「動かそう」という意図を読み取る。焦点はもう「動かせるか」ではなく、「日々の自立にどう使うか」へ移っている。</p>
+      </div>
     </div>
-    <p class="src">SRC: FDA BLA acceptance — PDUFA 2026-09-30 / EMA mid-2026</p>
-  </div>
-</section>
 
-<!-- 05 COSMOS & QUANTUM — 天文・医学・量子 -->
-<section class="chapter" id="ch05">
-  <div class="ch-left">
-    <span class="ch-num">05</span>
-    <span class="ch-cat"><b>QUANTUM</b>天文・医学・量子</span>
-  </div>
-  <div class="ch-body">
-    <p class="kicker">COSMOS · MEDICINE · QUANTUM</p>
-    <h2>シカゴ大、強力な量子状態を「簡易に」つくる手法を発見</h2>
-    <p>シカゴ大学が、これまで生成が難しかった強力な量子状態を、より簡易な手法で作り出せることを発見した。量子センシングや量子計算の実装ハードルを下げうる基礎的成果で、応用に向けた裾野を広げる可能性がある。医学領域では、本号トップで詳報した GLP-1 ×乳がん（観察研究・約11万人）が大型コホートとして引き続き注目される。</p>
-    <p class="src">SRC: University of Chicago — simplified strong quantum-state generation</p>
-  </div>
-</section>
+    <div class="article">
+      <div class="art empty"><img src="covers/art_04_synchron_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">02.2 · Endovascular</span>
+        <h3>Synchron、血管を通って脳へ</h3>
+        <p>頭を開かない、という選択肢もある。Synchronの「ステントロード」は、首の血管から差し込んで運動野のそばに留置する。解像度は直接埋め込みより低いが、手術のリスクは桁違いに小さい。2022年から人での試験が続き、麻痺やALSの人が、思考でメッセージを送っている。</p>
+      </div>
+    </div>
 
-<!-- 06 コロフォン (奥付) -->
-<section class="colophon" id="ch06">
-  <div class="cph-mark">No.005</div>
-  <div class="cph-title">DAILY INTELLIGENCE BRIEFING</div>
-  <div class="cph-meta">
-    EDITION <span class="c">No.005</span> &nbsp;·&nbsp; 2026.06.08 <span class="c">月 / MON</span><br>
-    SOURCES <span class="c">15</span> &nbsp;·&nbsp; EDITED BY <span class="c">JaH</span>
-  </div>
-  <p class="cph-desc">感染症・BCI・人間のデジタル化・SMA・天文／医学／量子の5領域を毎朝定点観測する電子版ブリーフィング。追跡中のトピックは前号からの変更点を併記しています。</p>
-</section>
+    <div class="pull"><span class="lbl">▶ 注目ポイント</span><p>視線入力が「いま確実に届く道」なら、BCIは「その先へ届く道」。二つは競合ではなく、重ねて使える。電脳化は、もう遠い夢の語彙ではなくなりつつある。</p></div>
+  </section>
+
+  <section class="chapter">
+    <div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation · Global Public Health</span></div>
+    <div class="ch-bar"></div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_05_ebola_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">03.1 · Outbreak</span>
+        <h3>コンゴとウガンダで、エボラ近縁のウイルス</h3>
+        <p>中部アフリカで、ブンディブギョ型（エボラの仲間）の流行が続いている。6月2日時点で確定378例・死亡63、大半はコンゴ民主共和国のイトゥリ州。WHOとアフリカCDCは6月5日、6〜11月の半年計画「ワン・レスポンス」を立ち上げた。米CDCは、対応が遅れれば今後3か月で2万例規模になりうると警告する。接触で広がるウイルスで、日本の日常への直接の危険は低い——が、世界の備えが試される局面だ。</p>
+        <div class="src">SOURCE：<a href="https://www.who.int/news/item/05-06-2026-africa-cdc-and-who-launch-joint-continental-ebola-response-plan">WHO 2026.6.5</a> ／ <a href="https://www.cdc.gov/mmwr/volumes/75/wr/mm7522e1.htm">CDC MMWR</a></div>
+      </div>
+    </div>
+
+    <div class="pull"><span class="lbl">▶ 注目ポイント</span><p>北半球は初夏、インフルやコロナが最も静かな時期。次の波に備える"間"の季節として、換気や設備を整えておける。</p></div>
+  </section>
+
+  <section class="chapter">
+    <div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder · Letters from the Cosmos</span></div>
+    <div class="ch-bar"></div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_06_euclid_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">04.1 · Cosmology</span>
+        <h3>Euclid、6月24日に銀河の地図をひらく</h3>
+        <p>ヨーロッパの宇宙望遠鏡ユークリッドが、6月24日に2度目のデータを公開する。今回は天の川の中心、星がひしめく「バルジ」。宇宙の95%を占めるとされる暗黒物質と暗黒エネルギーの地図づくりへ、また一枚、図版が加わる。</p>
+        <div class="src">SOURCE：<a href="https://www.esa.int/About_Us/Corporate_news/ESA_s_highlights_for_2026">ESA</a></div>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_07_asteroid_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">04.2 · Deep Space</span>
+        <h3>二機の探査機が、小さな星に会いに行く</h3>
+        <p>この夏、人類は二つの小惑星に初めて間近で対面する。中国の天問2号が6月にカモオアレワ（地球の準衛星）へ到達し、日本のはやぶさ2が7月にトリフネをかすめて飛ぶ。太陽系のかけらに、東アジアの二機が同時に手を伸ばしている。</p>
+        <div class="src">SOURCE：<a href="https://en.wikipedia.org/wiki/2026_in_spaceflight">2026 in spaceflight</a></div>
+      </div>
+    </div>
+
+    <div class="pull"><span class="lbl">▶ 注目ポイント</span><p>望遠鏡は外へ、探査機は近くの小石へ。スケールの両端から、同じ「私たちはどこにいるのか」を問うている。</p></div>
+  </section>
+
+  <section class="chapter">
+    <div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty · The Path We Came</span></div>
+    <div class="ch-bar"></div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_08_fossil_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">05.1 · Human Origins</span>
+        <h3>エジプトの森にいた、遠い祖先</h3>
+        <p>ナイルのほとりの地層から、1700〜1800万年前の化石類人猿マスリピテクスが見つかった。ヒトを含むすべての類人猿の祖先に、ごく近い位置にいたかもしれない一匹。私たちの系図の根に近いところを照らす発見だ。</p>
+        <div class="src">SOURCE：<a href="https://en.wikipedia.org/wiki/2026_in_paleontology">2026 in paleontology</a></div>
+      </div>
+    </div>
+
+    <div class="article">
+      <div class="art empty"><img src="covers/art_09_dino_sf.png" alt="" onerror="this.style.display='none'"></div>
+      <div class="txt">
+        <span class="etag">05.2 · Deep Time</span>
+        <h3>巨大恐竜が結んだ、ばらばらの大陸</h3>
+        <p>ブラジルで見つかった新種の巨大恐竜は、約1.2億年前、南米・アフリカ・ヨーロッパが陸でつながっていた証拠を残していた。タイでは27トンの長い首の竜脚類ナガティタンが姿を現した。大陸が動く前の、ひとつながりの世界の記憶だ。</p>
+        <div class="src">SOURCE：<a href="https://en.wikipedia.org/wiki/2026_in_archosaur_paleontology">2026 in archosaur paleontology</a></div>
+      </div>
+    </div>
+
+    <div class="pull"><span class="lbl">▶ 注目ポイント</span><p>私たちがどこから来たのか——化石は、今日のどのニュースより長い時間の尺度で答えてくれる。</p></div>
+  </section>
+
+  <section class="closing">
+    <div class="mk">✦</div>
+    <p>今日は、五つの方角がどれも「一歩前へ」を指した日だった。SMAの薬は秋の審査へ進み、思考で機械を動かす人は十数人に増え、宇宙では二機の探査機が小さな星へ近づく。中部アフリカの流行だけは気がかりだが、世界はそれに半年計画で向き合いはじめた。そしてエジプトの地層は、私たちがどれほど長い旅の途中にいるかを、静かに思い出させてくれる。</p>
+    <p class="night">明日も、世界はあなたのために少しずつ動いている。今日はここまで。おやすみなさい。</p>
+  </section>
+
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　NO.005　·　2026.06.08 (MON)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
 
 </body>
 </html>
