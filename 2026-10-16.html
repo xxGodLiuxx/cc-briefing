@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.16 (金) · No.109</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-a">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-16/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>スターガルト病の患者が、<br>網膜チップで単語を読んだ</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.109 · 2026.10.16 (FRI)</div>
+    <p class="lead">金曜日の便り。元Neuralink幹部が創業したScience Corporationは、網膜下チップPRIMAを初めて遺伝性の若年黄斑変性『スターガルト病』の患者に埋め込み、リハビリ2回目で単語を読めたと発表した。基盤の章ではDRCエボラの米CDC集計(確定9,144例)、米ペンシルベニア州の麻疹1,222例、DRCのmpox死者600人超、名古屋市のインフルエンザ動向を届ける。自由の章ではPRIMAの新適用に加え、磁気ロボットで電極を脳へ誘導するEU事業MINIGRAPHの完了を。畏敬の章では嫦娥6号の試料が示す月のマグマオーシャン循環説、アフリカでの長時間作用型HIV治療、網膜の遺伝子治療GS030の新データを。命の章ではSMAのある英上院議員がAI再現音声で初の議会演説をしたことと、Continuum誌のSMA認知発達総説を。美の章では同じAI音声演説を『声を取り戻す技術』として、そしてアタプエルカ遺跡のホモ・アンテセソル化石24点の発見を取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.109</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.16 FRI</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡 注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>13</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-16/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>網膜チップ「PRIMA」、スターガルト病の初患者で「単語が読めた」</h2><p>Science Corporation(元Neuralink幹部が2021年に創業)は10月13日、TechCrunch Disruptの場で、2mm角の網膜下チップPRIMAを初めてスターガルト病(若年発症の遺伝性黄斑変性)の患者に埋め込んだと発表した。手術は5月にシドニー眼科病院で行われ(PRIMAlia試験)、リハビリ1回目で文字を、2回目で単語を読めたという。カメラ付き眼鏡と組み合わせ、狭い範囲の白黒の中心視野を補う仕組み。患者1人の初期データで企業発表の段階だが、欧州で加齢黄斑変性向けに販売中の技術が、別の遺伝性疾患へ広がった点が新しい。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-16/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 新規</span><h3>SMA当事者の英上院議員、AI再現音声で初の議会演説</h3><p>SMAのある英上院議員ジェーン・キャンベル氏(サービトンのキャンベル女男爵)が、昔の録音から声の高さやリズムを再現したAI音声を使い、保健法案の第二読会で演説した。英議会の両院でAI音声が使われたのは初めて。2012年から介助者による代読に頼ってきた同氏は『AIに言葉を言わせたのではなく、自分の言葉を話すためにAIを使った』と述べた。</p><div class="src">SOURCE：<a href="https://elevenlabs.io/blog/first-ever-ai-voiced-speech-uk-parliament">ElevenLabs</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 新規</span><h3>SMAと認知発達 ― Continuum誌10月号の総説</h3><p>米国神経学会(AAN)の生涯教育誌Continuumの2026年10月号に掲載されたSMA総説は、一部の患者で認知発達の遅れが認識されつつあると指摘した。治療の進歩で長く生きる子どもが増えたことで、運動機能だけでなく認知を含めた発達全体に目を向ける必要が出てきたという。SMA医療の焦点が『生き延びる』から『どう生きるか』へ広がっていることを示す一本。</p><div class="src">SOURCE：<a href="https://continuum.aan.com/doi/10.1212/cont.0000000000001750">Continuum(AAN)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>治療の選択肢が増えた今、SMAの論点は『生き延びる』から『どう生きるか』へ移っている。声を取り戻す技術と、運動以外の発達を見るケアの視点――今日の2本に共通するのは、治療後の人生の『質』への視線だ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-16/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 続報</span><h3>網膜チップ『PRIMA』、スターガルト病の初患者に埋め込み</h3><div class="upd">🔁 続報 — 10/8号(No.102)『視覚回復インプラントPRIMA、36カ月後も効果が持続』の続報。これまでの対象は加齢黄斑変性による地図状萎縮だったが、今回は遺伝性の若年黄斑変性スターガルト病への初適用という新情報。</div><p>Science Corpのマックス・ホダックCEOがTechCrunch Disrupt(10/13)で発表。シドニー眼科病院のシムノビッチ医師が監督するPRIMAlia試験で、5月に手術した患者が単語を読めるようになったという。視野は狭く色もないため、同社は視野を広げ電極を小さくした次世代機を開発中。同社は脳の表面に置く方式のBCIも開発している。</p><div class="src">SOURCE：<a href="https://tech.yahoo.com/science/articles/science-corporation-implants-vision-restoring-231331586.html">TechCrunch via Yahoo</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 新規</span><h3>磁気ロボットでグラフェン電極を脳へ ― EU事業MINIGRAPH完了</h3><p>スペインのINBRAINが主導したEU事業MINIGRAPH(約393万ユーロ)が成果を公表した。Nanoflex RoboticsとETHチューリッヒが開発した磁気ロボットが、X線ガイド下で電極を直線・曲線の経路に誘導し、大型動物でこの手技を確認した。最初の標的はパーキンソン病だが、ヒト試験や臨床使用はまだない。電極を脳へ届ける『経路』そのものを技術革新の対象にした点が特徴。</p><div class="src">SOURCE：<a href="https://thenextweb.com/news/inbrain-minigraph-magnetic-robot-graphene-brain-implants">The Next Web</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>視覚回復では適用疾患が広がり、埋め込み手技では電極を届ける経路そのものが磁気誘導という新しい段階に入った。どちらも企業発表・動物実験の段階で、独立した検証はこれから。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-16/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報</span><h3>DRCエボラ、米CDC集計で確定9,144例に</h3><div class="upd">🔁 続報 — 10/15号(No.108)『確定9,000例を超える ― 数字は3系統に分かれる』の続報。米CDCの最新集計(10/14時点)で確定9,144例・死亡4,410人という、前号のAP報道値(9,066例・4,381人)から更新された数字が新情報。</div><p>米CDCによると、コンゴ民主共和国(DRC)のエボラ確定例は9,144例・確定死亡4,410人(10月14日時点、推定例は含まず)。前号で伝えた保健省集計に基づく報道(確定9,066例・死亡4,381人)から数字が更新された。ブンディブギョ型で承認済みのワクチン・治療薬はなく、Reutersはコンゴ史上最大・最悪の流行と報じている。集計機関と時点で数値に差がある点に注意が必要。</p><div class="src">SOURCE：<a href="https://www.cdc.gov/ebola/situation-summary/index.html">米CDC Ebola Situation Summary</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 新規</span><h3>米ペンシルベニア州の麻疹、1,222例に</h3><p>ペンシルベニア州保健局の発表によると、麻疹は1,222例に達し、1週間前から86例増え、入院は225人。郡の検視官は今年6人目の麻疹関連死を報告したが、州のサイト上は5人のままで数え方にずれがある(要確認)。隣接するウィスコンシン州でも複数の郡で症例が増えている。</p><div class="src">SOURCE：<a href="https://gvwire.com/2026/10/14/pennsylvania-reports-1222-measles-cases-as-outbreak-grows">GV Wire</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 新規</span><h3>DRCのmpox死者600人超、コンゴ共和国で初症例の情報も</h3><p>DRCのmpox(サル痘)による死者が600人を超えたとの情報があり、隣国コンゴ共和国で初めての症例が出たとも伝えられている。ただしこれは個人ニュースレターによる要約で、WHOなど公的機関による確認はまだない(要確認)。エボラと並行して複数の感染症がDRC周辺で動いている実情を示す。</p><div class="src">SOURCE：<a href="https://josepheastman.substack.com/p/pathogen-report-10-12-2026">Pathogen Report</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/03_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.4 · 新規</span><h3>名古屋市のインフルエンザ、第41週は11.04 ― 全国流行の中でわずかに減少</h3><p>名古屋市の第41週(10月5〜11日)インフルエンザ定点当たり報告数は11.04で、前週の11.46からわずかに減少した。全国的な流行が10月に入ってから続く中、主要都市の値が頭打ちの兆しを見せているのか、次週以降の全国値で確かめる必要がある。</p><div class="src">SOURCE：<a href="https://www.city.nagoya.jp/kenkofukushi/eisei/1015269/1015388/1034411/1015408.html">名古屋市 インフルエンザ情報(第41週)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>エボラは集計機関ごとに数字が割れたまま9,000台を更新し、麻疹はペンシルベニア単独で6人目の死者を数えようとしている。感染症の戦線は一つに収まらず、同時に複数の場所で動いている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-16/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 新規</span><h3>月の『二つの顔』、嫦娥6号の試料から新モデル</h3><p>南京大学の恵鶴九氏らは、中国の嫦娥6号が持ち帰った月の裏側の試料(斜長岩・Mgスイート岩・海の玄武岩)を、アポロ・嫦娥5号の表側試料と比較した。月が地球に潮汐固定された後、地球の重力による加熱でマグマオーシャンが大規模に循環し、熱いマグマが表側から裏側へ運ばれたとするモデルを提案している。マントル源は両側でほぼ似ており、違いは主に地殻にあるという。対立する説も多く、これで決着ではない。</p><div class="src">SOURCE：<a href="https://www.sciencedaily.com/releases/2026/10/261012185019.htm">ScienceDaily</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 新規</span><h3>アフリカのHIV治療、長時間作用型注射が経口薬と同等の効果</h3><p>NEJMに10月14日掲載された試験によると、服薬の継続が難しいアフリカの成人で、48週時点のウイルス量50コピー/mL未満となった割合は長時間作用型注射群91.0%、経口薬群89.2%とほぼ同等だった。一方、確定ウイルス学的失敗は長時間作用型群で5人、経口群で0人と、治療が効かなかった例は注射群にやや多かった。服薬の負担を減らす選択肢としての可能性と、見極めが必要な点の両方を示すデータ。</p><div class="src">SOURCE：<a href="https://nejm.org/doi/full/10.1056/NEJMoa2518753">NEJM</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 続報</span><h3>光で働く遺伝子治療GS030、網膜色素変性で10人中6人に改善</h3><div class="upd">🔁 続報 — 10/13号(No.106)『末期の網膜色素変性症、光遺伝学的遺伝子治療の初期結果』の続報。主要評価項目(安全性)は既報だったが、探索的評価で10人中6人に光感受性の臨床的に意味のある改善が見られたという具体的な数字が新情報。</div><p>NEJM10月8日号に掲載された、晩期網膜色素変性症に対する光遺伝学的遺伝子治療GS030(GenSight社)の第1/2相試験で、主な目的だった安全性では、薬や硝子体内注射に関連すると判断された全身性の有害事象は無かった。探索的評価では10人中6人で光感受性に臨床的に意味のある改善が見られたという。今日の一本の網膜チップ(PRIMA)とは別の方法で、視覚回復を目指す試みが並走している。</p><div class="src">SOURCE：<a href="https://www.biospace.com/press-releases/gensight-biologics-and-the-15-20-national-hospital-announce-nejm-publication-on-gs030-phase-1-2-trial-results-in-late-stage-retinitis-pigmentosa">BioSpace</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>視覚回復では『チップ』と『遺伝子治療』という異なる方法が同じ週に数字を出した。月の研究では、潮汐固定後のマグマ循環という大きな仮説が、嫦娥6号の試料で初めて検証可能になっている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Humanity</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-16/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 新規</span><h3>AIが『本人の声』を取り戻す ― 英議会で初のAI再現音声演説</h3><p>SMAのある英上院議員ジェーン・キャンベル氏(サービトンのキャンベル女男爵)が、昔の録音から声の高さやリズムを再現したAI音声で、保健法案の第二読会で演説した。英議会の両院でAI音声が使われたのは初めて。2012年から介助者の代読に頼ってきた同氏は『AIに言葉を言わせたのではなく、自分の言葉を話すためにAIを使った』と述べた。声という最も個人的な特徴をAIで再現する技術が、議会という公的な場にまで入ってきた一例になる。</p><div class="src">SOURCE：<a href="https://elevenlabs.io/blog/first-ever-ai-voiced-speech-uk-parliament">ElevenLabs</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-16/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 新規</span><h3>アタプエルカ2026年発掘シーズン、ホモ・アンテセソルの化石24点</h3><p>スペイン・アタプエルカ遺跡群のグラン・ドリナ遺跡TD6.2層で行われた2026年の発掘シーズンが終了し、ホモ・アンテセソル(先駆者人)に帰属する人骨化石が少なくとも24点見つかったと発表された。アンテセソルは約80万年前にヨーロッパに存在したとされる種で、現代人・ネアンデルタール人双方の祖先に近いと考えられている。発掘チーム自身の発表によるもので、査読を経た分析はこれから。</p><div class="src">SOURCE：<a href="https://comunicacio.iphes.cat/eng/news/new/1127.htm">IPHES-CERCA</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>一つは声という最も個人的な特徴をAIで取り戻す試み、もう一つは80万年前の骨から人類の来歴をたどる試み。人間を『記録する』技術と『遡る』技術が、同じ週に別の時間軸で動いていた。</p></div></section><section class="closing"><div class="mk">✦</div><p>金曜日の便り。元Neuralink幹部が創業したScience Corporationは、網膜下チップPRIMAを初めて遺伝性の若年黄斑変性『スターガルト病』の患者に埋め込み、リハビリ2回目で単語を読めたと発表した。基盤の章では、DRCエボラが米CDC集計で確定9,144例に更新されたこと、米ペンシルベニア州の麻疹が1,222例に達したこと、DRCのmpox死者が600人を超えたとの情報、名古屋市のインフルエンザがわずかに減少したことを届けた。自由の章では、PRIMAの新適用に加え、磁気ロボットで電極を脳へ誘導するEU事業MINIGRAPHの完了を伝えた。畏敬の章では、嫦娥6号の試料が示す月のマグマオーシャン循環説、アフリカでの長時間作用型HIV治療の経口薬との比較、網膜の遺伝子治療GS030で10人中6人に改善が見られたという新データを取り上げた。命の章では、SMAのある英上院議員がAI再現音声で初の議会演説をしたことと、Continuum誌のSMA認知発達総説を届けた。美の章では、同じAI音声演説を『声を取り戻す技術』として、そしてアタプエルカ遺跡でホモ・アンテセソルの化石24点が見つかったことを伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.109 · 2026.10.16 (金)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
