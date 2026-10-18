@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.19 (月) · No.112</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-d">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-19/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>世界最古の沈没船が、<br>トルコ沖で見つかった</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.112 · 2026.10.19 (MON)</div>
+    <p class="lead">月曜日の便り。トルコ南部ケコバ島沖の水深約30メートルで、紀元前2700〜2200年ごろに沈んだとみられる交易船が見つかり、同国文化観光相は『世界最古の沈没船』と位置づけた。基盤の章では、ケニアのエボラにアフリカCDCのジーン・カセヤ事務局長が現地入りを表明したことと、ケニア国内の接触者追跡率が流行全体の水準を大きく上回っている対比、タンザニアの国境管理強化を届ける。自由の章では、Paradromicsが個人用デバイスへのBCI接続範囲を広げたFDA承認と、Tobiiの研究が示す視線入力の『3〜5mmの壁』を。畏敬の章では、オックスフォード大のハイブリッド量子計算機によるアハラノフ=ボーム効果の再現と、火星探査車パーサヴィアランスの走行距離新記録を。命の章では、イングランドの新生児SMAスクリーニング前倒しの背景にあった15万人超の署名運動を。美の章では今日の一本の詳細に加え、エジプト・ナイル川デルタで見つかったラムセス2世とみられる巨像と、AIは意識を持たないとするブラッドフォード大学の研究を取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.112</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.19 MON</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡 注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>10</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-19/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>ケコバ島沖の沈没船、トルコが『世界最古』と発表 ― 4,400〜4,700年前の交易船か</h2><p>トルコ文化観光相メフメト・ヌリ・エルソイ氏は10月14日、南部アンタルヤ県ケコバ島沖の水深約30メートルで見つかった沈没船を『世界最古の沈没船』と発表した。木材は残っておらず放射性炭素年代測定はできなかったが、引き揚げた30点以上の壺(アンフォラ)と3つの石錨を他の遺跡の土器と比較し、年代を紀元前2700〜2200年ごろ(4,400〜4,700年前)と推定した。アンフォラはヨルダン渓谷周辺で作られたとみられ、オリーブ油かワインを運んでいた可能性がある。これまで最古とされてきたギリシャ・ヒドラ島沖の『ドコス沈没船』(紀元前2200年ごろ)より古い可能性があるが、年代は土器の比較による推定であり、独立した査読を経た確定値ではない。発掘はアクデニズ大学のハカン・オニズ氏らが2024年から進めてきた。詳細は美の章で。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-19/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 &middot; 続報</span><h3>イングランドのSMA新生児スクリーニング前倒し、背景に15万人超の署名</h3><div class="upd">🔁 続報 — 10/13号『イングランドNHS、新生児SMAスクリーニングを7検査機関から順次拡大』の続報。前倒しの経緯(患者家族の署名運動と議会討論)が新情報。</div><p>10月1日に始まったイングランドの新生児SMAスクリーニングの評価運用(バーミンガムを皮切りに7検査機関、新生児の約72%をカバー)は、当初2027年1月予定だった開始が3か月前倒しされたものだった。前倒しの背景には、SMAの子を持つジェシー・ネルソン氏が立ち上げた署名運動があり、15万人近い賛同を集めて議会請願委員会の自動審査基準(10万人)を超え、6月22日にウェストミンスター・ホールで討論が行われた。政府は討論を受け、NHSイングランドによる実運用評価(SENS試験)の前倒しを表明した経緯がある。残る6検査機関(ブリストル・ケンブリッジ・リーズ・リバプール・オックスフォード・ポーツマス)は2027年10月からの計画のままで、ウェールズ・北アイルランドは対象外という限界も残る。</p><div class="src">SOURCE：<a href="https://www.musculardystrophyuk.org/news/sma-newborn-screening-parliamentary-debate/">Muscular Dystrophy UK / SMA News Today</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>画期的な治療薬が出そろう一方で、『いつ見つけるか』を決めるのは医学だけでなく、家族の声が動かす政治のプロセスでもあることが今回はっきりした。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; Gaze</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-19/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 &middot; 新規</span><h3>Paradromics、個人用デバイスへのBCI接続拡大をFDAが承認</h3><p>Paradromicsは8月26日、治験段階の脳コンピュータ接続(BCI)『Connexus』について、本人のノートPCやタブレット、スマートフォンなど個人所有の汎用デバイスとの接続を広げるFDA承認を得たと発表した。これまでは会社支給の専用環境に限られていたが、今後は合意済みの展開・検証手続きを経れば、デバイスごとに個別のFDA承認を取らずに追加できる。対象は重度の運動障害がある人の意思疎通・コンピュータ操作を目指すConnect-One早期実行可能性試験。同社CEOのマット・アングル氏は、ユーザーを特定の計算環境に縛り付けず『本人について回る』BCIへの道が開けたと述べている。</p><div class="src">SOURCE：<a href="https://www.massdevice.com/paradromics-earns-fda-approval-to-expand-bci-device-compatibility/">MassDevice(2026-08-26)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-19/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 &middot; 新規</span><h3>視線入力の『3〜5mmの壁』― 実効精度は2〜3cmのまま</h3><p>Tobiiが公開した2026年第1四半期の研究ダイジェストは、視線入力デバイスの実効精度がおおむね2〜3cmにとどまる一方、文章の行間は一般に3〜5mm程度しかないと指摘した。読書支援や文字入力に視線入力を直接使おうとすると、精度が一桁足りない計算になる。埋め込み型・低侵襲のBCIが『発話』『接続先の自由度』という新しい軸で前進を重ねる一方、非接触・非侵襲である視線入力は、この精度の壁にここ数週目立った打開策を示せていない。視線で大まかに狙いを絞り、他の入力で確定させるような組み合わせ設計が、現実的な解として意識され始めている。</p><div class="src">SOURCE：<a href="https://www.tobii.com/learn-and-support/scientific-publications/research-digest/human-factors-2026-q1">Tobii 研究ダイジェスト 2026 Q1</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>BCIは『接続先を選ばない』方向に進み、視線入力は依然として精度という同じ壁の前に立っている。埋め込みと非侵襲、両者の守備範囲の違いが今週も改めて浮かんだ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-19/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 &middot; 続報</span><h3>ケニアのエボラ、アフリカCDC事務局長が現地入りへ ― 追跡率の落差も</h3><div class="upd">🔁 続報 — 10/18号『ケニアで国内感染の4例』の続報。アフリカCDCの対応表明と、ケニアとDRC全体の接触者追跡率の落差が新情報。</div><p>ケニアでエボラ(ブンディブギョ型)の累計が7例となったことを受け、アフリカCDCは連帯表明を発表し、ジーン・カセヤ事務局長が近く現地入りする意向を示した。ケニア保健省は独自に接触者130人中128人(98.5%)を追跡・隔離済みとしているが、アフリカCDCが示す流行全体(震源地DRCを含む)の接触者追跡率は約80%にとどまり、流行を減速させる目安とされる95%を下回ったままだ。小さく閉じたケニアの輸入例クラスターと、規模で勝る震源地DRCとの間で、同じ『追跡』という言葉が指す現実の差が改めて浮き彫りになった。</p><div class="src">SOURCE：<a href="https://africacdc.org/news-item/africa-cdc-expresses-solidarity-with-kenya-and-calls-for-stronger-regional-ebola-preparedness/">Africa CDC / The Online Kenyan(2026-10-18)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-19/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 &middot; 新規</span><h3>タンザニア、入国者全員に電子健康申告と検疫を義務化</h3><p>タンザニアは10月17日から、ケニアでのエボラ発生を受けて国境管理を強化し、入国者全員に電子健康申告と入国時スクリーニングを課す措置を始めた。入国後にリスクが高いと判定された人には、21日間の毎日の健康観察が求められる。タンザニア自体に確定例は出ていないが、ケニア・DRCの双方と国境を接する立場から、流行がまだ『国内に入っていない国』側の備えとして先手を打った形になる。</p><div class="src">SOURCE：<a href="https://www.theeastafrican.co.ke/tea/news/east-africa/-tanzania-tightens-border-controls-as-ebola-cases-rise-in-kenya-5636248">The East African</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ケニアでは支援と追跡率の落差が、タンザニアでは先回りの備えが、それぞれ今日の変化点になった。流行の中心から離れるほど、打てる手は『検知』から『予防』へと性格を変えている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-19/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 &middot; 新規</span><h3>トラップイオン量子計算機が、67年前の予言『アハラノフ=ボーム効果』を再現</h3><p>オックスフォード大学のセバスチャン・サナー博士らのチームは、トラップイオンを使ったハイブリッド量子計算機で、1959年に予言されたアハラノフ=ボーム効果を量子シミュレーションとして再現したとNature Physics誌に発表した。イオンの電子状態にエンコードした量子ビットでゲージ場を、イオンの振動に由来する量子振動子で物質粒子を表現する構成で、閉じたループ内の磁束が、粒子が実際には通らない経路であっても干渉を通じてトンネリングを完全に抑制する様子を観測した。格子ゲージ理論という、従来型コンピュータでは扱いにくい物理の検証に量子計算機を使う試みの一例で、研究チームは2022年からこの実験の構築を進めてきたという。</p><div class="src">SOURCE：<a href="https://www.newsbytesapp.com/news/science/oxford-scientists-recreate-aharonov-bohm-effect-using-hybrid-quantum-computer/tldr">The Quantum Insider / Newsbytes App</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-19/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 &middot; 新規</span><h3>火星探査車パーサヴィアランス、走行距離で史上最長記録を更新</h3><p>NASAは、火星探査車パーサヴィアランスが10月11日(火星日で2006ソル目)、91.31メートルの走行により総走行距離45.22kmに達し、2004〜2018年に稼働したオポチュニティの記録(45.16km)を抜いて、地球以外の天体での総走行距離の史上最長記録を更新したと発表した。『シャルムの湖』付近から『イドゥビ』に向かう途中での達成で、ギネス世界記録にも認定された。NASAのプロジェクト責任者は、この記録は今後何年も更新され続ける見込みだと述べている。</p><div class="src">SOURCE：<a href="https://www.guinnessworldrecords.com/news/2026/10/nasas-perseverance-rover-breaks-the-record-for-longest-road-trip-on-mars">Guinness World Records / NASA JPL(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>67年前の理論予言の再現と、地球以外の天体での走行距離という最も地道な記録更新が、同じ週に並んだ。宇宙を理解する歩みは、量子の抽象と車輪の具体という両極から同時に進む。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Human Origins</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-19/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 &middot; 新規</span><h3>ケコバ島沖の沈没船、『世界最古』説 ― 紀元前2700年ごろの交易船か</h3><p>トルコ南部アンタルヤ県、ケコバ島沖の水深約30メートルで見つかった沈没船を、同国文化観光相メフメト・ヌリ・エルソイ氏が10月14日『世界最古の沈没船』と発表した。木材は腐朽して残っておらず放射性炭素年代測定はできなかったため、引き揚げた30点以上のアンフォラ(壺)と3つの石錨を他の遺跡の土器様式と比較し、紀元前2700〜2200年ごろ(4,400〜4,700年前)と推定した。アンフォラはヨルダン渓谷周辺で作られ、オリーブ油かワインを運んでいたとみられる。これまで最古とされてきたギリシャ・ヒドラ島沖の『ドコス沈没船』(紀元前2200年ごろ)の記録を更新する可能性があるが、年代は様式比較による推定にとどまり、独立した査読論文としての確定はこれからだ。発掘はアクデニズ大学のハカン・オニズ氏らが2024年の発見・試掘を経て今年本格化させた。</p><div class="src">SOURCE：<a href="https://www.euronews.com/2026/10/14/worlds-oldest-shipwreck-discovered-off-turkeys-mediterranean-coast">Euronews(2026-10-14)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-19/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 &middot; 新規</span><h3>ナイル川デルタの農地から、ラムセス2世とみられる巨像2体</h3><p>エジプト観光・古代遺物省は10月中旬、ナイル川デルタのガルビーヤ県ベヘベイト・エルハガル村で、王像2体の頭部・胴体上部と、ヒエログリフを刻んだピンク花崗岩のブロックが見つかったと発表した。発端は住民ハーレド・エルシャハト・ハリール氏が自宅敷地内で彫刻の施された石を見つけ、当局に通報したこと。最高文化財評議会による緊急発掘の結果、1体はラムセス2世と確認され、もう1体も同じ王を表す可能性が高いとされる。頭部は二重冠(プシェント)をかぶり高さ約1.6メートル、全身像は建造当時およそ8.5メートルに達したとみられる。背面柱の碑文には王の五つの称号の一つ『ホル・カナクト・メリ・マアト』が刻まれていた。像が元々この場所に立っていたのか後世に運び込まれたのかは未確定で、発掘は続いている。</p><div class="src">SOURCE：<a href="https://www.livescience.com/archaeology/ancient-egyptians/2-giant-ramesses-ii-statues-one-wearing-a-double-crown-discovered-by-man-in-egypt">Live Science(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-19/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 &middot; 新規</span><h3>『AIは意識を持たない』― 振る舞いと内実を切り分けるブラッドフォード大学の研究</h3><p>英ブラッドフォード大学の2026年の研究は、AIが意識があるかのように振る舞っても、それ自体は意識・自己認識・生命性の証拠にはならないと結論づけた。人間はAIの流暢な応答や感情表現的な言い回しに『意識のようなもの』を読み取りがちだが、研究チームはその帰属のされ方自体を検証し、振る舞いの模倣と内実の有無は別の問題だと整理している。MIT Technology Reviewも8月20日の論考で、神経科学や動物の権利の語彙を借りて『AIの意識』を論じること自体が、かえって議論を曇らせると指摘した。デジタル化・AI倫理をめぐる議論は、『何を測れば意識と言えるのか』という線引きの精度を競う段階に入っている。</p><div class="src">SOURCE：<a href="https://www.bradford.ac.uk/news/archive/2026/no-ai-isnt-conscious-even-when-it-acts-like-it-is-new-study-finds.php">University of Bradford / MIT Technology Review(2026-08-20)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>4,700年前の交易船からラムセス2世の巨像まで、人類史の物証は今週も地中から姿を現した。一方でAIの『意識』は、どれだけ振る舞いを精緻にしても内実の証明にはならないという限界が改めて示されている。</p></div></section><section class="closing"><div class="mk">✦</div><p>月曜日の便り。トルコ・ケコバ島沖で見つかった沈没船が『世界最古』と発表され、4,700年前の交易の痕跡が地中海の海底から姿を現した。基盤の章では、ケニアのエボラにアフリカCDC事務局長が現地入りを表明したことと、ケニアとDRC全体の接触者追跡率の落差、タンザニアの国境管理強化を届けた。自由の章では、Paradromicsが個人用デバイスへのBCI接続範囲を広げたFDA承認と、Tobiiの研究が示す視線入力の『3〜5mmの壁』を伝えた。畏敬の章では、オックスフォード大のハイブリッド量子計算機によるアハラノフ=ボーム効果の再現と、火星探査車パーサヴィアランスの走行距離新記録を取り上げた。命の章では、イングランドの新生児SMAスクリーニング前倒しの背景にあった15万人超の署名運動を届けた。美の章では、ラムセス2世とみられる巨像の発見と、AIは意識を持たないとするブラッドフォード大学の研究を伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.112 · 2026.10.19 (月)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
