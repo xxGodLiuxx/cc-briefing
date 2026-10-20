@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.21 (水) · No.114</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-b">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-21/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>エボラ、西アフリカへ ―<br>ナイジェリアで初の確定例</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.114 · 2026.10.21 (WED)</div>
+    <p class="lead">水曜日の便り。ナイジェリアでウガンダ帰国者のエボラ感染が確定し、同国で初めての症例になった。接触者44人を追跡中で、感染経路は調査が続く。同じ週、ケニアは1例目の接触者が陽性となり累計9例に達し、保健局長の『一つの集団』説明に病理医が異議を唱えた。基盤の章ではこれに加え、DRCの確定例が出典により9,277〜9,552例・死亡4,478〜4,602人の幅で推移していること、鳥インフルエンザがヒトで新規3件にとどまることを届ける。自由の章ではNature Neuroscienceの神経技術特集と、ParadromicsとSiemens Healthineersの画像基盤提携、湖北省がBCI臨床研究の中国最大集群になったことを。畏敬の章ではQuantinuumが論理忠実度99.9995%を主張したことと、ウェッブ宇宙望遠鏡が誕生から数日の超新星を捉えた可能性、木星の磁気円盤が波打っていたという発見を。命の章ではリスジプラムによる上肢機能改善の小規模研究と、アピテグロマブの欧州再申請を。美の章では、2,100年前の難破船から『キケロの注文通り』の高級食器が引き揚げられたことと、AIの道徳的地位は意識を前提にすべきかという論争の広がりを取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.114</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.21 WED</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🔴緊急</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>31</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-21/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>ナイジェリアで初のエボラ確定例 ― 西アフリカ最大の人口大国に届いた越境</h2><p>ナイジェリア保健相ムハンマド・アリ・パテ氏は10月20日、首都アブジャでウガンダから帰国した女性のエボラ感染を確定したと発表した。女性は10月7日に発症し11日に私立病院へ入院、ウガンダは8月27日に終息宣言済みで感染経路は調査中(要確認)。連邦保健省・NCDC・WHO・アフリカCDCが合同で接触者44人(医療従事者・患者・付き添い・同乗者)を追跡しており、市中感染は確認されていない。同じ週、ケニアでは1例目の接触者だった24歳男性が9例目として確認され、保健局長は『一つの集団』に留まるとする一方、病理医アーメド・カレビ氏は感染経路の説明に異議を唱えた。東アフリカの流行が、単発とはいえ西アフリカの人口大国にまで届いたことが、今日最大の変化である。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-21/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 &middot; 新規</span><h3>リスジプラム投与下で上肢機能が改善 ― 中国15人の小規模研究</h3><p>SMA News Todayは10月19日、中国の15人のSMA患者を対象にした小規模研究を紹介した。リスジプラム(エブリスディ)投与下で全体の運動機能は安定し、上肢機能の改善と関連していたという。対象が15人・単一地域の報告にとどまり、一般化には慎重さが要る。</p><div class="src">SOURCE：<a href="https://smanewstoday.com/news/sma-treatment-linked-improved-upper-limb-function-new-study/">SMA News Today(2026-10-19)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 &middot; 新規</span><h3>アピテグロマブ(Isembyld)、欧州がEMAへ再申請 ― CHMP意見は2027年前半</h3><p>筋を標的にする初の承認薬アピテグロマブは9月11日に米FDAの承認を受けた。2歳以上でSMN2標的治療との併用、4週ごとの点滴投与で、第3相SAPPHIREでは52週時点のHFMSEがプラセボ比平均2.2点改善している(非歩行の2型・3型が対象)。欧州は8月に製造所のGMP不適合で申請を取り下げていたが、10月8日にEMAへ再提出し、CHMP意見は2027年前半を見込む。Scholar Rockは11月10日に第3四半期決算を発表予定。</p><div class="src">SOURCE：<a href="https://www.mda.org/press-releases/fda-approves-isembyld-the-first-and-only-muscle-targeted-therapy-for-spinal-muscular-atrophy">MDA / ACNR / Institut de Myologie</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>新薬は筋そのものを守る方向へ広がり続けているが、今日の進展は小規模研究と欧州の手続き的な再申請が中心で、臨床判断を変えるほどの新情報ではない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; Gaze</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-21/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 &middot; 新規</span><h3>Nature Neuroscienceが神経技術特集 ― 『The many interfaces of neurotechnology』</h3><p>Nature Neuroscience10月号は、脳コンピューター接続(BCI)を中心に神経技術の多様な研究を特集した。巻頭論説は、神経技術が『神経系が情報をどう表現するか』という知見を借りて機器を設計し、その機器がまた知見を検証・改良するという独特の往復関係にあると論じている。</p><div class="src">SOURCE：<a href="https://www.ebiotrade.com/newsf/2026-10/20261002024851152.htm">ebiotrade(特集紹介、2026-10-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 &middot; 新規</span><h3>ParadromicsとSiemens Healthineers、BCI向け画像基盤で提携</h3><p>埋め込み型BCIを手がけるParadromicsが、患者評価・手術計画・成果追跡のためのマルチモーダル画像プラットフォーム構築でSiemens Healthineersと提携したと発表した。個々の脳の構造をより正確に捉え、電極の配置精度を高めることが狙い。同社は10月8日にも前臨床で4年超の安定記録を発表している。</p><div class="src">SOURCE：<a href="https://biospace.com/press-releases/paradromics-and-siemens-healthineers-launch-strategic-initiative-to-build-advanced-imaging-foundation-for-the-future-of-brain-computer-interfaces">BioSpace(プレスリリース、2026-10-19)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/02_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.3 &middot; 新規</span><h3>湖北省が中国最大のBCI臨床研究集群に</h3><p>武漢を中心とする湖北省のBCI臨床試験が中国最大規模の集群となり、参加企業の6割超が省外によるものと報じられた。湖北省は侵入型BCIの医療サービス価格を全国で初めて定めるなど、制度面の整備でも先行している。</p><div class="src">SOURCE：<a href="https://www.cnr.cn/hubei/gstjhubei/20261018/t20261018_527845596.shtml">央広網(2026-10-18)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/02_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.4 &middot; 新規</span><h3>試験が終わった後、誰が参加者の機器を支えるのか ― 豪州の規則の空白</h3><p>10月20日の論評記事は、実験的な脳インプラントの試験が増える一方、豪州には試験終了後に参加者の機器や保守を長期に支える規則がないと指摘した。Synchronが豪州で血管内デバイスの新しい試験を始めたことにも触れ、埋め込み型BCIが研究から医療へ移る局面で、撤退時の責任という論点が前面に出てきたとする。</p><div class="src">SOURCE：<a href="https://www.quicknews.co.za/2026/10/20/experimental-brain-implants-are-on-the-rise-what-happens-after-the-trials-are-over/">Quicknews(2026-10-20)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>商用化の体制づくりと臨床集積の両方で前進が続く一方、試験が終わった後に参加者をどう支えるかという制度の穴が今週も指摘された。性能が実用域に近づくほど、この穴の重みは増す。視線入力の新規ニュースは今回も取得できなかった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-21/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 &middot; 新規</span><h3>ナイジェリアで初のエボラ確定例 ― 接触者44人を追跡</h3><p>ナイジェリア保健相ムハンマド・アリ・パテ氏は10月20日、首都アブジャでウガンダから帰国した女性のエボラ感染を確定したと発表した。女性は10月7日に発症し11日に私立病院へ入院、連邦保健省・NCDC・WHO・アフリカCDCが合同で接触者44人(医療従事者・患者・付き添い・関係便の乗客)を追跡している。ウガンダは8月27日に終息宣言済みで、感染経路は調査待ち(要確認)。輸入1例のみで市中感染は確認されていない。NCDCは10月6日の時点で輸入リスクの警告を出していた。</p><div class="src">SOURCE：<a href="https://von.gov.ng/ebola-nigeria-confirms-imported-case-in-abuja-tracks-44-contacts/">Voice of Nigeria(2026-10-20)/ Washington Post・AP(2026-10-20)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 &middot; 続報</span><h3>ケニアのエボラが9例目に ― 『一つの集団』説明に専門家が異議</h3><div class="upd">🔁 続報 — 10/20号(No.113)の8例目から、1例目の接触者だった24歳男性が陽性となり9例目に増加。保健局長の『一つの集団』説明に病理医が異議を唱えた点が新情報。</div><p>ケニア保健省は10月20日、隔離中だった24歳男性の陽性を確認し9例目とした。1例目(10月5日にナイロビで死亡)の近親者で、発症の兆候が出た時点で既に隔離されていた。保健局長パトリック・アモス氏は『9例すべてが一つの集団に属し、集団外への伝播の証拠はない』とし、接触者135人中134人を追跡・隔離済みとした。病理医アーメド・カレビ氏は『同じ集団に属することは、全員が1例目から直接感染したことを意味しない』と感染経路の説明に疑問を呈し、米国はケニアへの渡航再考を勧告している。</p><div class="src">SOURCE：<a href="https://www.aljazeera.com/news/2026/10/20/kenya-confirms-ninth-ebola-case">Al Jazeera / Citizen Digital / The Standard(2026-10-20) / Eastleigh Voice(2026-10-20)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 &middot; 続報</span><h3>DRCのエボラ、出典間で数百例の幅のまま確定9,000例台後半</h3><div class="upd">🔁 続報 — 10/20号(No.113)の確定9,455例・死亡4,561人(ECDC10/18時点)から、出典間で9,277〜9,552例・死亡4,478〜4,602人の幅に更新。</div><p>DRCの数値は出典と基準日で食い違ったままだ。ECDCは10月18日までのデータで確定9,552例・死亡4,602人、米CDCは10月18日時点で9,455例・4,561人、蘭RIVMは10月19日時点で9,277例・4,478人としている。米CDCはこれを記録上2番目に大きいエボラ流行とし、ECDCはDRC報告値が継続的な精査・整合化の途上にあると注記している。5月17日に宣言されたPHEICは継続中。</p><div class="src">SOURCE：<a href="https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda">ECDC / 米CDC / RIVM(2026-10-18〜19)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/03_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.4 &middot; 新規</span><h3>鳥インフルエンザ、動物で624件・ヒトは新規3件にとどまる</h3><p>FAOの更新(10月上旬)は、8月27日以降に25の国・地域で動物の高病原性鳥インフルエンザ624件、ヒトの新規事例3件(H5N1が1件、H9N2が2件)を報告した。WHOのH5N1累計は25か国で1,000例・死亡479人・致死率47.9%(7月7日まで)。持続的なヒト-ヒト感染は報告されておらず、WHOは公衆衛生上のリスクを引き続き低いと評価している。</p><div class="src">SOURCE：<a href="https://www.fao.org/animal-health/situation-updates/global-aiv-with-zoonotic-potential/en">FAO 人獣共通鳥インフル状況更新 / CIDRAP</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ナイジェリアの初例は、東アフリカの流行が人口大国へ届いたという越境そのものが焦点になる。ケニアは封じ込めが効いている証拠と、経路の説明が追いついていない疑いが同時に成り立つ段階にあり、DRCの数値は基準日とともに扱うのが安全だ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-21/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 &middot; 新規</span><h3>Quantinuumが論理忠実度99.9995%を主張 ― 誤り率を10分の1に</h3><p>Quantinuumは10月19日、Helios上で『カラーコード』を用い論理忠実度99.9995%を達成したと発表した。100万操作あたり5誤りに相当し、9月の自社記録から誤り率を10分の1にしたとする。2029年までの誤り耐性機Apolloにつなげる位置づけだが、企業発表であり第三者検証は未確認。前号の理研のシリコンスピン5量子ビット約99.9%とは、論理忠実度と物理ゲート忠実度・イオントラップとシリコンスピンという指標と方式が異なり、直接比較はできない。</p><div class="src">SOURCE：<a href="https://www.quantinuum.com/press-releases/quantinuum-breaks-error-correction-world-record-by-10x-validating-its-leading-path-to-fault-tolerant-quantum-computing-by-2029">Quantinuum プレスリリース(2026-10-19)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 &middot; 新規</span><h3>ウェッブ、宇宙誕生12億年後の超新星を『爆発から数日』で捕捉か</h3><p>AT 2026abckは赤方偏移約5.0の星形成銀河に出現した超新星で、爆発後およそ4〜10日という早い段階で捉えられたとみられる。重力レンズによる増光なしで見つかった点が珍しく、約2か月ごとに再観測するNEXUSサーベイが発見した(査読前論文)。初期宇宙の超新星をこれほど早期に捉えた例は少ない。</p><div class="src">SOURCE：<a href="https://universemagazine.com/en/jwst-detected-a-supernova-explosion-just-a-few-days-after-the-disaster/">Universe Magazine(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 &middot; 新規</span><h3>木星の磁気円盤は『波打っていた』― 山東大学チームがJunoデータで発見</h3><p>これまで滑らかな円盤と考えられてきた木星の電流シートが、数分から1時間超の波状の揺らぎを持つことを、山東大学主導チームがJunoの観測データから示した。揺らぎは経度約100度にわたる小さな磁気リコネクションと結びついており、Science China Earth Sciencesに掲載された。</p><div class="src">SOURCE：<a href="https://universetoday.com/articles/new-data-from-the-juno-spacecraft-reveals-that-jupiters-has-a-rippling-wavy-magnetodisk">Universe Today(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/04_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.4 &middot; 新規</span><h3>星の『死』に由来する物質から形成か ― 初の惑星候補をハッブルが発見</h3><p>ハッブル宇宙望遠鏡の保管データからニオブなどの化学指標が見つかり、星の誕生ではなく死に由来する物質から形成された惑星の候補が初めて示された(10月5日)。白色矮星の周囲という環境での発見で、惑星形成の時期に関する従来の前提を問う内容になっている。</p><div class="src">SOURCE：<a href="https://esahubble.org/news/archive/year/2026/">ESA Hubble ニュース(2026)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/04_5.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.5 &middot; 新規</span><h3>NEJM: 持続血糖モニタリングでHbA1cが26週で8.8%から7.2%へ</h3><p>NEJM(10月14日)は、インスリンを使っていない2型糖尿病の成人を対象にした試験CONNECTで、持続血糖モニタリング(Dexcom G7)を行った群のHbA1cが26週で8.8%から7.2%へ下がり、通常ケア群の低下を上回ったと報告した(Dexcom出資)。インスリン非使用の2型糖尿病でもCGMの対象を広げる根拠になるかが注目点。</p><div class="src">SOURCE：<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2608571">NEJM(2026-10-14)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>量子は『誰が一番か』より『指標が何か』を見る段階に入った。Quantinuumの数字は企業発表で査読を待つ必要があり、宇宙では初期宇宙の超新星から木星の磁気円盤、星の死に由来する惑星候補まで、観測技術の向上が新しい前提を問い続けている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Human Origins</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-21/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 &middot; 新規</span><h3>2,100年前の難破船から『キケロの注文通り』の高級食器</h3><p>トルコ・アンタルヤ県アドラサン沖の水深42〜55メートルで発掘が続く難破船から、魚皿やスープ鉢など、木箱に生の粘土で仕切られ保存された高級食器が多数引き揚げられた。船体のコインから紀元前1世紀半ばと推定され、食器の多くはハタイ県アルスズ(古代ロショス)産とみられる。キケロが紀元前50年に友人アッティクスへ宛てた書簡で、ロショスへ食器を注文したと記していたことから、発見は『キケロの注文』を連想させると報じられた。発表は9月28日で、積み荷はアルスズからローマへ向かう途中で座礁した可能性があるという。</p><div class="src">SOURCE：<a href="https://www.hurriyetdailynews.com/2-100-year-old-shipwreck-reveals-ancient-luxury-tableware-227459">Hürriyet Daily News / bianet(2026-09-28)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 &middot; 続報</span><h3>AIの道徳的地位は『意識』を経由するのか ― 前提を問う論争</h3><div class="upd">🔁 続報 — 10/19号(No.112)のブラッドフォード大学『AIは意識を持たない』という議論の続き。意識を前提にしない道徳的地位の枠組み(Dorsch)が新たに示された点が新情報。</div><p>Frontiers in AI論文(9月上旬)は、動物福祉の『五つの自由』を意識あるAIに適用する枠組みを示し、競合する意識理論には中立を保つ。これに対しDorsch論文(2026)は、人工システムは苦しむ必要も脆弱性を備える必要もなく道徳的配慮の対象になり得るとし、意識を迂回する別の経路を示した。世論調査では、米国人の20%が現行AIは既に感覚を持つと考え、38%が感覚あるAIへの法的権利を支持、69%が感覚あるAIの開発禁止を支持する一方、ヒトと区別できないAIへの意識の帰属はおおむね『アリ程度』にとどまるという。</p><div class="src">SOURCE：<a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2026.1801686/full">Frontiers in AI / Dorsch(2026) / AI Welfare Seminars</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 &middot; 新規</span><h3>『心を永続させる6つのアイデア』― 認知的不死の実現性を検証</h3><p>MIT Technology Reviewは、脳の凍結保存、生体脳の拡張、記憶のクラウドへのアップロードなど6つの道筋を取り上げ、それぞれの実現性と、完全な『認知的不死』に至らなくても今の研究から何が得られるかを検証した。実用化にはいずれも遠く、現時点の研究が副産物として医療や神経科学にもたらす価値に焦点を当てている。</p><div class="src">SOURCE：<a href="https://www.technologyreview.com/2026/10/15/1145819/six-wild-ideas-perpetuating-your-mind-cognitive-immortality/">MIT Technology Review(2026-10-15)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-21/05_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.4 &middot; 新規</span><h3>伴侶AIとの絆が途切れると『現実の喪失』に ― 14,081件の不具合記録を分析</h3><p>伴侶AIとの親密な関係は積み重なり予測しにくく、技術的な不具合で途切れると利用者は現実の喪失として体験すると報告する研究が、14,081件の不具合記録を分類して倫理的な設計指針を検討した(査読前、学会発表予定)。人格を模すAIの設計責任を問う流れの一つで、AIが意識を持つかという論争とは別に、依存する人間側に実際に生じる損失を扱っている。</p><div class="src">SOURCE：<a href="https://arxiv.org/html/2609.05432v2">arXiv 2609.05432v2(2026-10-15)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>2,100年前の難破船は、注文通りに届くはずだった荷が海の底で時を止めた記録だ。一方でAIの『意識』と『道徳的地位』をめぐる論争は前提そのものが割れ、依存する人間側に生じる実際の喪失だけが先に実証され始めている。</p></div></section><section class="closing"><div class="mk">✦</div><p>水曜日の便り。ナイジェリアでウガンダ帰国者のエボラ感染が確定し、同国で初めての症例になった。同じ週、ケニアは1例目の接触者が陽性となり累計9例に達し、保健局長の『一つの集団』説明に病理医が異議を唱えた。基盤の章ではこれに加え、DRCの確定例が出典により9,277〜9,552例の幅で推移していること、鳥インフルエンザがヒトで新規3件にとどまることを届けた。自由の章では、Nature Neuroscienceの神経技術特集と、ParadromicsとSiemens Healthineersの画像基盤提携、湖北省が中国最大のBCI臨床研究集群になったことを伝えた。畏敬の章では、Quantinuumが論理忠実度99.9995%を主張したことと、ウェッブ宇宙望遠鏡が誕生から数日の超新星を捉えた可能性、木星の磁気円盤が波打っていたという発見を取り上げた。命の章では、リスジプラムによる上肢機能改善の小規模研究と、アピテグロマブの欧州再申請を届けた。美の章では、2,100年前の難破船から引き揚げられた『キケロの注文通り』の高級食器と、AIの道徳的地位は意識を前提にすべきかという論争の広がりを伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.114 · 2026.10.21 (水)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
