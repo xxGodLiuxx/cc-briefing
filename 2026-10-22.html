@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.22 (木) · No.115</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-c">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-22/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>エボラ、5か国目へ ―<br>ブンディブギョ型が国境を越える</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.115 · 2026.10.22 (THU)</div>
+    <p class="lead">木曜日の便り。ナイジェリアで確認されたエボラのウイルス株が、DRCの流行と同じブンディブギョ型であることが確認され、この型の検出が確認された国は5か国目になった。米CDCの最新集計は確定9,582例・死亡4,605人で、ケニアは9例のまま増加していない。基盤の章ではこれに加え、ロシア・イルクーツクの研究所職員の原因不明肺炎(ペストは否定)と、米国の麻疹が4,410例に達したことを届ける。命の章では欧州で承認された髄腔内投与のゾルゲンスマ『Itvisma』と、インド・ケララ州での低価格薬をめぐる論争、イングランドの新生児スクリーニング評価事業の始動を。自由の章では中国の侵襲型BCI商用承認と、Paradromicsの4年耐久記録、発話インプラントの実用化見通しを。畏敬の章ではGoogleのWillowによる量子誤り訂正の前進と、Euclidが初めて発見した新彗星を。美の章では国連のニューロテクノロジー報告書と、AIの意識を人がどう判断するかという実証研究、ショウジョウバエの脳をAIの世界モデルで動かす話題を取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.115</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.22 THU</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🔴緊急</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>20</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-22/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>ナイジェリア初のエボラ確定例、ウイルス株はDRCと同じブンディブギョ型 ― 流行は5か国目へ</h2><p>10/21号(No.114)の続報 ― ナイジェリアで確認された国内初のエボラ確定例について、WHOはウイルス株がコンゴ民主共和国(DRC)の流行と同じブンディブギョ型であることを確認した。この型の検出が確認された国としては、5月中旬にDRCで流行が宣言されて以来、ナイジェリアが5か国目にあたる(先行する国の内訳は出典に明記がなく要確認)。米CDCは10月20日時点でブンディブギョ型エボラの累計を9,582確定例・4,605死亡とし、うち9,552例がDRC、残りはケニア9例・ナイジェリア1例などに分かれるとした。ECDCの10月15〜18日時点の集計(9,277〜9,552確定例・4,478〜4,602死亡)と比べても、増加のペースは鈍っていない。ケニアは9例のまま増えておらず、接触者135人中134人の追跡・隔離が続く。ナイジェリアは接触者44人を21日間観察しており、感染源は調査中。ブンディブギョ型には承認されたワクチンも特異的な治療薬もなく、WHOは渡航・貿易の制限には反対の立場を保っている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-22/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 &middot; 新規</span><h3>Itvisma(髄腔内投与のゾルゲンスマ)、欧州で承認 ― 高齢の患者にも遺伝子治療の道</h3><p>Novartisの髄腔内投与型オナセムノゲン アベパルボベク『Itvisma』が欧州委員会の承認を得て、2歳以上の小児・思春期・成人の5q SMAに使える初の遺伝子治療となった。従来のゾルゲンスマは静脈投与で体重制限から乳児向けが中心だったが、投与経路を脊髄腔内に変えることで年長の患者にも道が開けた。根拠となったSTEER試験では、HFMSEが52週にわたり統計的に有意な+2.39点の改善を示した。</p><div class="src">SOURCE：<a href="https://allsci.com/news/approvals/european-commission-approves-novartiss-itvisma-as-first-gene-therapy-for-older-sma-patients/">allsci.com(2026)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 &middot; 新規</span><h3>サラネルセン(BIIB115)、ゾルゲンスマ既治療児を対象にした新試験が10月31日開始予定</h3><p>Biogenが年1回投与を目指して開発するサラネルセンは、スピンラザの後継候補。ゾルゲンスマ投与後に反応が乏しかった小児を対象とした第1b相の中間成績では、1年以上の追跡で24人のうち12人が新たなWHO運動マイルストーンを1つ以上獲得し、神経損傷マーカーの神経フィラメント軽鎖は6か月で約75%低下してその後も維持された。ゾルゲンスマ既治療の乳児を対象とする新試験(NCT07444450)は開始予定日が2026年10月31日で、登録情報は10月15日に更新された。第3相STELLARは発症前の新生児を対象に、サラネルセン単独・ゾルゲンスマ単独・ゾルゲンスマ後にサラネルセンの3通りを比べる。</p><div class="src">SOURCE：<a href="https://clinicaltrials.gov/study/NCT07444450">SMA News Today / ClinicalTrials.gov NCT07444450(2026-10-15更新)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/01_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.3 &middot; 新規</span><h3>インド、ロシュのエブリスディでなくNatco製の後発リスジプラムを公的に採用</h3><p>インド保健当局は、SMA治療薬としてロシュのエブリスディ(リスジプラム)ではなくNatco製の後発品を選んだとThe Weekが報じた。価格は後発品が月額約3万ルピーとされる一方、先発品は1瓶あたり約62万ルピーと報じられている(要確認:Natcoは2025年に60mgボトルを15,900ルピーで発売済み)。デリー高裁は2025年10月、後発品の製造・販売を認める判断を下している。</p><div class="src">SOURCE：<a href="https://www.theweek.in/news/health/2026/10/21/why-recognising-a-generic-drug-for-spinal-muscular-atrophy-is-significant.html">The Week(2026-10-21)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/01_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.4 &middot; 新規</span><h3>ケララ州で低価格SMA薬の投与をめぐり論争 ― 州閣僚は専門家委員会の勧告と説明</h3><p>インド・ケララ州では低価格の国産SMA薬を子どもに投与しており、州閣僚は専門家委員会の勧告に基づく措置と説明した。野党は、治験段階にある薬が保護者の十分な同意なく投与されているのではないかと懸念を示している。価格を下げることと、安全性・同意手続きをどう両立させるかが問われている。</p><div class="src">SOURCE：<a href="https://www.onmanorama.com/news/kerala/2026/10/21/low-cost-sma-drugs-given-on-expert-panel-s-recommendation-minister-k-muraleedharan.html">Onmanorama(2026-10-21)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/01_5.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.5 &middot; 続報</span><h3>イングランド、新生児スクリーニングにSMAを加える評価事業が始動 ― 対象は新生児の72%から</h3><div class="upd">🔁 続報 ― 10/19号(No.112)の議会討論(背景は15万人規模の試験)から、実際の評価事業が開始した段階へ進展。</div><p>10月から、すでに検査体制のある7つの検査施設で、かかとからの採血(既存の新生児検査)にSMAを加える評価事業が始まった。対象は当面イングランドの新生児の約72%で、残る6施設は2027年10月から対象に加わる。政府は評価事業に410万ポンドを充てる。スコットランドは3月に試行を始めたが、ウェールズと北アイルランドには実施計画がない。</p><div class="src">SOURCE：<a href="https://www.gov.uk/government/news/every-baby-in-england-to-get-life-saving-genetic-test-from-birth">SMA News Today / gov.uk</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>新薬は『SMN2標的』『遺伝子治療』『筋肉標的』の3層が併用前提で揃う一方、今日はそれに加えて価格(インド・ケララ)と発症前診断の実装(イングランド)という普及の局面が同時に進んだ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; Gaze</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-22/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 &middot; 続報</span><h3>Paradromicsの前臨床BCI、羊モデルで4年超の安定記録 ― ヒトでの検証はこれから</h3><div class="upd">🔁 続報 ― 10/21号(No.114)でSiemens提携の記事内に一文で触れた同発表(10/8)の詳細。前臨床の羊モデルで4年超の安定動作を確認、2025年11月時点では『3年』だった記録が更新された。</div><p>Paradromicsは10月8日、埋め込み型BCIが羊の前臨床モデルで4年を超えて神経記録とデコード性能を安定して維持したと発表した。信号品質の劣化はわずかで、電極の組織内移動も見られないという。2025年11月時点の発表では『3年』だったため、同じ動物試験の継続とみられる(企業発表、第三者による検証は未確認)。埋込型BCIは電極周囲の瘢痕化で信号が落ちていくのが長年の課題で、年単位の安定性を示せるかが実用化の分かれ目になる。同社の最初のヒト埋め込みは2026年6月、ミシガン大学でのConnect-One早期実行可能性試験だった。</p><div class="src">SOURCE：<a href="https://www.medicaldesignandoutsourcing.com/paradromics-bci-design-durability-longevity/">Medical Design and Outsourcing(2026-09-29) / Paradromics</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 &middot; 新規</span><h3>中国Neuracleの無線BCI『NEO』 ― 侵襲型として世界初の商用承認、臨床試験は134件に</h3><p>中国Neuracle社の無線BCI『NEO』は2026年3月13日にNMPAの製造販売承認を取得しており、侵襲型BCIの商用承認としては世界初とされる。脊髄損傷による重度麻痺(18〜60歳)の運動信号を読み取り、補助機器を操作する用途向け。2026年6月時点の俯瞰研究では、中国臨床試験登録(ChiCTR)に載るBCI関連試験は134件、うち研究者主導試験26件、NMPA承認済み製品は5件にのぼる。米国企業の動きだけを見ていると、規制通過の速度を見誤る。</p><div class="src">SOURCE：<a href="https://www.scientificamerican.com/article/china-just-approved-its-first-brain-implant-for-commercial-use-a-world-first/">Scientific American(2026-03) / arXiv:2607.07185(2026-06)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/02_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.3 &middot; 新規</span><h3>声を失った人の発話を再構成するインプラント ― 日常医療までは『あと5年』</h3><p>Science Newsは、声を失った人の発話を脳信号から再構成するインプラント研究の現状をまとめた。UC Davisの脳神経外科医ブランドマン氏は、ALS患者に出会って『話す助けになるインプラントがある』と提案できるまで、おおよそ5年という見通しを示している。研究段階の成果が日常医療に移るまでには、まだ距離がある。</p><div class="src">SOURCE：<a href="https://www.sciencenews.org/article/brain-implants-restore-voices-injuries">Science News(2026-10-15)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>今週のBCIは新しい埋め込みそのものより、商用承認の速度(中国)・耐久性(Paradromics)・臨床応用までの時間軸の見積もり(UC Davis)という裏方の整備が中心だった。視線入力の新規ニュースは今回も取得できなかった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-22/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 &middot; 続報</span><h3>ナイジェリア初のエボラ、ウイルス株はDRCと同じブンディブギョ型 ― この型の検出は5か国目</h3><div class="upd">🔁 続報 ― 10/21号(No.114)のナイジェリア初例確定(接触者44人追跡)から、WHOがウイルス株をDRCと同じブンディブギョ型と確認。米CDC集計は9,582確定例・4,605死亡に更新。</div><p>WHOは、ナイジェリアで確認された国内初のエボラ確定例のウイルス株が、DRCの流行と同じブンディブギョ型であることを確認した。5月中旬のDRCでの流行宣言以来、この型の検出が確認された国としてはナイジェリアが5か国目にあたる。米CDCは10月20日時点で累計を9,582確定例・4,605死亡とし、うち9,552例がDRC、残りはケニア9例・ナイジェリア1例などに分かれるとした。ナイジェリアは接触者44人を21日間観察しており、感染源は調査中。ケニアは9例のまま増えておらず、接触者135人中134人の追跡・隔離が続く。</p><div class="src">SOURCE：<a href="https://afro.who.int/countries/nigeria/news/nigeria-confirms-imported-case-ebola-bundibugyo-virus-disease">WHOアフリカ地域事務局 / 米CDC(2026-10-20)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 &middot; 新規</span><h3>ロシア・イルクーツクの抗ペスト研究所職員が原因不明の重症肺炎で死亡 ― ペストは否定</h3><p>ロシア・イルクーツクにある抗ペスト研究所の検査担当職員が重症の肺炎を発症し、10月2日に死亡した。報道では肺ペストの可能性も取り上げられたが、ロシア当局は否定し、接触者からも高リスク病原体は検出されていないとしている。WHOは追加情報を求めつつ継続的な人-人伝播の証拠はないとし、ECDCはEU域内へのリスクを判断する情報が不十分だとしている。10月12日以降の新しい更新は確認できていない。</p><div class="src">SOURCE：<a href="https://www.wlox.com/2026/10/05/russia-reports-worker-siberian-plague-institute-got-pneumonia-an-unknown-cause-died/">AP配信/WLOX(2026-10-05) / ECDC週報第41週</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 &middot; 新規</span><h3>米国の麻疹、累計4,410例に ― ペンシルベニア州で最大の集積</h3><p>米国の今年の麻疹症例は10月15日時点で累計4,410例となり、前週比で約330例(約8%)増えた。州別ではペンシルベニア州が10月14日時点で1,222例・入院225件と最多で、CDCのEpi-Aidチームが派遣されている。同州の死亡数は出典により5人・6人と食い違い要確認。エボラの陰で、ワクチンで防げる感染症の国内流行が続いている点は見落としやすい。</p><div class="src">SOURCE：<a href="https://www.contagionlive.com/view/measles-update-october-16-2026">Contagion Live(2026-10-16)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ブンディブギョ型にはワクチンも特異的治療薬もなく、接触者追跡と隔離の速さが封じ込めの全てになる。エボラの陰で、麻疹のようにワクチンで防げる感染症の国内流行が続いている点も見落とせない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-22/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 &middot; 新規</span><h3>Google、Willowで『マジックステート栽培』を実証 ― 誤りを約40分の1に</h3><p>Google Quantum AIは10月15日のScience論文で、量子計算のボトルネックだったマジックステート生成について、チップの小領域でノイズの多い状態から育てて誤りが疑われる試行を捨てる『栽培(cultivation)』を実機Willowで実証した。未栽培の状態と比べ誤りは約40分の1、論理忠実度は99.99%以上に達したが、採択率は約8%で選別はかなり厳しい。手法は2024年にGidney・Shutty・Jonesが提案したもので、暗号解読につながる話ではない。</p><div class="src">SOURCE：<a href="https://blog.google/innovation-and-ai/models-and-research/quantum-computing/magic-state-cultivation-quantum-computing/">Google公式ブログ(2026-10-15) / Quantum Computing Report</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 &middot; 新規</span><h3>ESAのEuclid、初めて新彗星C/2026 S1を発見 ― 学生のソフトウェアが検出</h3><p>ESAは10月19日、宇宙望遠鏡Euclidが未知の彗星を初めて発見したと発表した。元画像は9月16〜24日に撮られたもので、ヘルシンキ大学の博士課程学生ペンティネン氏が書いた『露出間で位置がずれる天体を拾う』ソフトウェアが5組の画像から検出し、地上観測で確認、小惑星センターがC/2026 S1 (Euclid)と命名した。銀河面の上側を越える珍しい軌道のため、Euclidの探査領域を横切った。この彗星自体はESAの将来計画Comet Interceptorの対象には適さないとされるが、太陽から遠いうちに彗星を見つけられる実証にはなった。</p><div class="src">SOURCE：<a href="https://www.esa.int/Science_Exploration/Space_Science/Euclid/Euclid_discovers_new_comet">ESA(2026-10-19) / Sci.News / INAF(2026-10-19)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 &middot; 新規</span><h3>トリウム229の核時計、Natureに論文2本が同時掲載</h3><p>10月7日、トリウム229を使う光核時計の論文が2本Natureに掲載された。いずれもフッ化カルシウム結晶にトリウム229を埋め込み、148nmの核遷移に連続波レーザーをロックする方式で、フィードバックループ型は分数周波数不安定性3×10⁻¹²/√τを示した。現状の安定度は最良の原子時計には及ばないが、著者らは4桁程度の改善が見込めるとしている。原子の電子ではなく原子核を使うため外乱に強く、物理定数の変動検証などに向く。</p><div class="src">SOURCE：<a href="https://www.natureasia.com/en/info/press-releases/detail/9455">Nature Asia(2026-10-07) / Nature</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/04_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.4 &middot; 新規</span><h3>NASA、X線・可視光・赤外線を重ねた16銀河の合成画像ギャラリーを公開</h3><p>NASAはChandra X線望遠鏡、Webb、Hubbleなどの観測を重ねた16銀河の合成画像集を公開した。ブラックホールのジェット、爆発的な星形成、銀河の衝突など、波長ごとに異なる姿を一度に見ることができる。</p><div class="src">SOURCE：<a href="https://www.sciencedaily.com/releases/2026/10/261018205050.htm">ScienceDaily(2026-10-18)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>量子は『誰が一番か』より『どの段階のボトルネックを崩したか』で読む週になった。中国の一次科学ソース(CAS・CNSA)は10月20〜22日に確認できる新規発表がなかった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Human Origins</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-22/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 &middot; 新規</span><h3>国連、ニューロテクノロジー報告書 ― 『法が技術に追い越された』と警告</h3><p>10月15日に提示された国連の報告書は、ニューロテクノロジーの進展が人権を守る法整備を追い越していると警告した。挙がったリスクはプライバシー、思想の自由、そして公正な裁判を受ける権利で、とりわけ社会的に弱い立場の人に影響が大きいとする。脳データが本人に不利に使われうるという論点が、国際機関の文書として正面から扱われた形だ。</p><div class="src">SOURCE：<a href="https://news.un.org/en/story/2026/10/1168609">UN News(2026-10-15)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 &middot; 新規</span><h3>『同じ振る舞いでもAIは意識が低い』と人は判断する ― LMUの実験</h3><p>LMUミュンヘンのロンギン氏らはCognition誌で、AIとヒトがまったく同じように振る舞っても、参加者は最も反応のよいAIを最も反応の鈍いヒトより『意識が低い』と評価したと報告した。一方で『気づき(awareness)』という言葉で尋ねると、AIとヒトの評価は近かった。人は機能ではなく『本質』で意識を判断している可能性がある。</p><div class="src">SOURCE：<a href="https://www.lmu.de/en/newsroom/news-overview/news/when-ai-behaves-like-us-we-still-dont-think-it-is-conscious-1ba742c2.html">LMUプレスリリース(2026-10-02) / ScienceDaily(2026-10-13)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 &middot; 新規</span><h3>意識は生物の素材に依存するか ― セス氏の論考にBehavioral and Brain Sciencesが50本の論評</h3><p>神経科学者アニル・セス氏の『生物学的自然主義』(意識に関わる機能は生物学的な過程と切り離せないという立場)を検討する論集が、Behavioral and Brain Sciences誌に50本の論評とともに公開された。セス氏の応答論文『The stuff matters』は、シリコンのデジタル計算機に意識が宿ることに強い懐疑を示す。マインドアップロードの前提そのものを問う議論として重要。</p><div class="src">SOURCE：<a href="https://digg.com/ai/kofwosjc">Digg要約(2026-09-17)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-22/05_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.4 &middot; 新規</span><h3>ショウジョウバエの脳が『AIの作った世界』を飛ぶ ― 論文・技術詳細は非公開</h3><p>AIラボのOdysseyは10月17日、ショウジョウバエの脳モデルを自社の世界モデルOdyssey-3の中で動かし、港や市場の映像の中を自律的に移動する動画をXに公開した。ただし論文や技術詳細は未公開で、使ったコネクトーム(神経接続地図)も明らかにしていない。ニューロン数は報道により約13.9万(FlyWireの139,255に一致)と約16.6万で食い違う(要確認)。</p><div class="src">SOURCE：<a href="https://cybernews.com/ai-news/fly-brains-uploaded-ai-generated-matrix-simulator/">Glitchwire / Cybernews(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>『脳を写して動かす』デモは話題を集めるが査読の裏付けは乏しく、一方で規制(国連報告書)と実証研究(AIの意識の帰属・生物学的自然主義)は確実に歩を進めている。</p></div></section><section class="closing"><div class="mk">✦</div><p>木曜日の便り。ナイジェリアで確認されたエボラのウイルス株が、DRCの流行と同じブンディブギョ型であることが確認され、この型の検出が確認された国は5か国目になった。米CDCの最新集計は確定9,582例・死亡4,605人で、ケニアは9例のまま増加していない。基盤の章ではこれに加え、ロシア・イルクーツクの研究所職員の原因不明肺炎(ペストは否定)と、米国の麻疹が4,410例に達したことを届けた。命の章では欧州で承認された髄腔内投与のゾルゲンスマ『Itvisma』と、インド・ケララ州での低価格薬をめぐる論争、イングランドの新生児スクリーニング評価事業の始動を伝えた。自由の章では中国の侵襲型BCI商用承認と、Paradromicsの4年耐久記録、発話インプラントの実用化見通しを。畏敬の章ではGoogleのWillowによる量子誤り訂正の前進と、Euclidが初めて発見した新彗星を。美の章では国連のニューロテクノロジー報告書と、AIの意識を人がどう判断するかという実証研究、ショウジョウバエの脳をAIの世界モデルで動かす話題を取り上げた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.115 · 2026.10.22 (木)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
