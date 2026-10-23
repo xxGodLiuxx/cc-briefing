@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.24 (土) · No.117</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-a">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-24/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>シャモンダウイルス、ヒト初感染 ―<br>家畜のウイルスがついに種を越えた</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.117 · 2026.10.24 (SAT)</div>
+    <p class="lead">土曜日の便り。家畜にしか知られていなかったシャモンダウイルスが、世界で初めてヒトに感染し、フランスの患者が死亡したことが確認された。感染経路や公衆衛生上のリスクはまだ調査中だが、新たな人獣共通感染症が監視網に姿を見せた意味は重い。基盤の章ではこれに加え、DRCのエボラ最新集計、ワクチン試験『Tumaini』がついに接種を開始したこと、ナイジェリアとケニアの初症例がウガンダの空港で接点を持っていた可能性を届ける。命の章ではインド・ケララ州で後発SMA薬の投与継続を州保健相が表明したことを。自由の章では中国の聴覚脳幹インプラント初承認、BCI国際標準の発行、視線入力の決算実績を。畏敬の章ではハンチントン病のRNA干渉薬の有効性データ、反陽子の陸路輸送という物理学の記録、ゼオライトだけで進む新しい化学反応を。美の章ではNIHのデジタルツイン研究への着目と、ハンガリー・中国で見つかった人類の古い痕跡を取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.117</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.24 SAT</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🔴緊急</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>20</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-24/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>フランスで『シャモンダウイルス』のヒト初感染、患者は死亡 ― 家畜のウイルスがヒトに渡った</h2><p>家畜(主に牛)にしか知られていなかったシャモンダウイルスのヒト感染が、世界で初めて確認された。リヨンの病院で免疫不全の患者が10月初旬に死亡し、10月22日に公表された。ECDCによると、このウイルスは2026年夏に欧州の家畜で初めて検出され、以後フランスを含む複数国で見つかっている。媒介はヌカカ(Culicoides属)で、1960年代にナイジェリアで同定されたウイルスだ。フランス当局は『現時点で一般人口への健康リスクは確認されていない』としているが、死亡への寄与の度合いと感染経路はWHOと共同で調査中。同じ日、DRC発エボラのワクチン試験『Tumaini』もついに接種を開始し、基盤の章は『新たな脅威の出現』と『既存の脅威への対処が進む』という両方の動きを同時に記録する日になった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-24/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 &middot; 続報</span><h3>ケララ州、後発リスジプラム『Natsmart』の投与継続を州保健相が表明</h3><div class="upd">🔁 続報 ― 10/23号(No.116)のケララ州低価格SMA薬ボトル表示問題から、州保健相が薬自体の安全性と投与継続を明確に表明。</div><p>ムラリーダラン州保健相は10月23日、Natco社の後発リスジプラム『Natsmart』は安全だとして継続を表明した。先発品(ロシュのエブリスディ)より劣るという証拠は示されていないとし、専門家の意見に基づく異議は検討するが、『治験専用』表示ボトルの問題は正式な苦情があれば調べるとした。州内で治療中のSMAの子どもは109人。前号のボトル誤配布問題は『印刷ミス』の説明から、薬自体の安全性という論点に軸が移った。</p><div class="src">SOURCE：<a href="https://www.onmanorama.com/news/kerala/2026/10/23/sma-drug-is-safe-muraleedharan-defends-medicine-turns-guns-on-cpm-and-former-health-ministers.html">Onmanorama(2026-10-23)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ボトル表示問題は『印刷ミス』から『薬自体は安全』という州の立場表明へ進んだが、独立調査の要求は解決していない。低価格薬で多くの子に届けることと、安全確認・適正表示をどう両立させるかという論争はまだ終わっていない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; Gaze</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-24/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 &middot; 新規</span><h3>中国、国産の聴覚脳幹インプラントを初承認 ― 蝸牛神経欠損の小児に</h3><p>中国国家薬品監督管理局(NMPA)は10月19日、聴覚脳幹インプラント『Nurotron WH-01A』を承認した。最もリスクの高い第III類医療機器にあたる。上海交通大学医学院附属第九人民医院の呉皓氏らのチームが、浙江ノイロトロンと共同開発した。内耳の形成異常や蝸牛神経の欠損で人工内耳の恩恵を受けられない小児が対象で、蝸牛ではなく脳幹の蝸牛神経核を直接刺激する。報道によっては『BCI』と括るが、分類としては確定した呼称ではなく、中国のBCI推進策の文脈での位置づけと読むのが妥当だ。中国は3月にも、脊髄損傷患者向けのNeuracle製侵襲型BCIを世界初の商用承認としている。</p><div class="src">SOURCE：<a href="https://www.sixthtone.com/news/1019153">Sixth Tone(2026-10-22) / AsiaNews</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 &middot; 続報</span><h3>中国主導のBCI国際標準『参照アーキテクチャ』、ISO/IECが発行</h3><div class="upd">🔁 続報 ― 10/23号(No.116)の『中国がBCI国際標準づくりを主導』から、参照アーキテクチャ規格が実際に発行された段階へ進展。</div><p>中国の国家市場監督管理総局によると、中国の専門家がプロジェクトを率いたBCIの参照アーキテクチャ規格をISO/IECが発行した。イタリア、韓国、英国、米国、日本など各国の専門家が参加し、『BCIとは何か・どう使うか・どんな機能か・どう実装するか』の共通の枠組みを示す。ISOの登録上はISO/IEC 27572として進められていた案件で、最終的な規格番号は要確認。</p><div class="src">SOURCE：<a href="http://www.ecns.cn/cns-wire/2026-10-20/detail-ihfmiwhm0736637.shtml">ECNS(2026-10-20) / Global Times</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/02_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.3 &middot; 続報</span><h3>視線入力決算 ― Dynavoxは増収増益、Tobiiは減収</h3><div class="upd">🔁 続報 ― 10/14号(No.107)で予告した決算発表日(Dynavox 10/21・Tobii 10/22)の、実際の決算結果。</div><p>視線で操作する意思伝達装置の大手Dynavox Groupは10月21日に第3四半期決算を発表。売上は前年比13%増(為替調整後15%増)、EBITは約2倍(+94%)だったが、米国の保険償還の時期が読めないことから株価は約16%下がった。部品を供給するTobiiは売上1.4億スウェーデン・クローナで前年比11%減(特殊要因を除く既存事業は16%増)。</p><div class="src">SOURCE：<a href="https://investing.com/news/company-news/dynavox-q3-2026-slides-ebit-surges-94-as-margins-expand-to-17-93CH-4962173">Investing.com(2026-10-21 / 2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>聴覚インプラントの承認・国際標準の発行・決算という3つの『制度化』の動きが同じ週に重なった。中国は規格づくりで存在感を増し、視線入力は利用者需要は堅調だが保険制度の不確実さが業績を左右している。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-24/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 &middot; 新規</span><h3>フランスで『シャモンダウイルス』のヒト初感染を世界で初めて確認</h3><p>ECDCは10月22日、フランスの重症患者が世界で初めてシャモンダウイルスに感染したと確認したと発表した。患者は10月初旬に死亡しており、神経症状は感染と関連する可能性が高いとされるが、死亡への寄与と感染経路は調査中。フランス当局は、ウイルスが動物で循環していた東部での感染が最も有力とみている。このウイルスはこれまで家畜(主に牛)にしか知られていなかった。ECDCは欧州の家畜で2026年夏に初検出され、以後複数国に広がったとしている。WHOはフランスと協力し、より広い公衆衛生リスクの有無を見極める段階にある。</p><div class="src">SOURCE：<a href="https://www.ecdc.europa.eu/en/news-events/severely-ill-patient-france-becomes-first-ever-human-infected-shamonda-virus">ECDC(2026-10-22) / UN News / Al Jazeera</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 &middot; 続報</span><h3>エボラ(ブンディブギョ型)、DRCの確定例が9,700台へ ― 波及は4か国</h3><div class="upd">🔁 続報 ― 10/23号(No.116)の米CDC集計(確定9,582例・死亡4,605人)から、ECDC集計で確定9,704例・死亡4,687人へ更新。</div><p>ECDCの最新更新(10月21日)では、コンゴ民主共和国(DRC)の累計は確定9,704例・死亡4,687人(10月20日時点)。ケニアは10月23日時点で9確定例・1死亡で、いずれも最初の輸入例につながる単一クラスターとされる。ナイジェリアは10月20日に初症例を確認、ウガンダ(20確定例・2死亡)は流行終息、フランスは輸入例1件が回復済みで、DRC以外では計4か国に波及した。数値は集計主体で差があり、前号が引いた米CDCの集計より今回のECDC値は高いが、締め切り日と報告経路の違いによるもので、いずれも暫定値。</p><div class="src">SOURCE：<a href="https://www.ecdc.europa.eu/en/ebola-disease-multi-country-outbreak-2026">ECDC(2026-10-21) / Al Jazeera / CNN</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 &middot; 続報</span><h3>エボラ・ワクチン試験『Tumaini』がついに接種開始</h3><div class="upd">🔁 続報 ― 10/15号(No.108)で『10月末までに開始見込み』とされたワクチン試験『Tumaini』が、10月23日に実際の接種で開始。</div><p>10月23日(金)、コンゴ民主共和国東部ブニアで、最初の参加者にMerck製『エルベボ』が接種された。エルベボは別の種(ザイール型)向けの承認ワクチンで、今回の流行株ブンディブギョ型に効くかを検証する。試験は感染者の周囲に接種する『リング接種』方式で、同型専用のモデルナ候補とオックスフォード大/インド・セラム研究所候補も数週間以内に試験へ加わる可能性がある。ブンディブギョ型に承認されたワクチンや特異的治療薬はまだない。</p><div class="src">SOURCE：<a href="https://www.bloomberg.com/news/articles/2026-10-23/ebola-vaccine-trial-begins-in-congo-with-three-shots-in-sight">Bloomberg(2026-10-23) / 新華社</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/03_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.4 &middot; 続報</span><h3>ナイジェリアとケニアの初症例、ウガンダの空港で接点か</h3><div class="upd">🔁 続報 ― 10/23号(No.116)の『感染地をめぐりウガンダと説明が対立』から、両国の初症例が同日にウガンダの空港を通過していた可能性が判明。</div><p>アフリカCDCのマンクーラ氏によると、両国の初症例はいずれも10月3日にウガンダのエンテベ空港を通過しており、そこで接点があった可能性を調べている。ただし『結論を急ぐべきでない』としており、感染経路は確定していない。ケニアは計9例(死亡1)、ナイジェリアは接触者44人を追跡中。</p><div class="src">SOURCE：<a href="https://www.ksat.com/health/2026/10/22/first-ebola-patients-in-nigeria-and-kenya-might-have-crossed-paths-at-uganda-airport/">AP via KSAT(2026-10-22) / Health Policy Watch</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>『ワクチンがない株』に初めて試験の形で手段が入った一方、症例は増え続け、ナイジェリア・ケニアの感染経路の解明が周辺国の警戒の度合いを左右する。そしてシャモンダは症例1件でも意味が重い ― 家畜で広がったウイルスがヒトに渡る瞬間を欧州の監視網が捉えた、という事実そのものが警報だからだ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-24/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 &middot; 新規</span><h3>Alnylam、ハンチントン病のRNA干渉薬で変異タンパクが60〜64%低下</h3><p>Alnylamは10月23日、ハンチントン病を対象とする遺伝子サイレンシング薬『brezosiran』の初期試験で、髄液中の変異ハンチンチンが平均60〜64%低下したと発表した。進行を止める治療が存在しない疾患で、標的の低下を直接示したことに意味がある。ただし小規模な初期段階の試験であり、企業発表であって査読論文ではない。タンパク低下が臨床症状の改善につながるかは別の問いで、後期試験の結果を待つ必要がある。</p><div class="src">SOURCE：<a href="https://statnews.com/2026/10/23/huntingtons-alnylam-gene-silencing-brezosiran">STAT News(2026-10-23)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 &middot; 新規</span><h3>反陽子をトラックで運び、1か月超保存 ― CERN BASEがNatureに報告</h3><p>CERNのBASE共同研究グループは、専用の可搬トラップに反陽子を入れて陸路で輸送し、移動可能な容器内で1か月を超えて保存することに初めて成功したとNatureに報告した。輸送は2026年3月に実施され、マインツ大PRISMAが9月17日に成果を公表した。反物質は通常、作られた加速器施設から持ち出せない。保存の安定性は際立っており、27日目の抽出試験で失われた反陽子はわずか1個だったという。BASEは据え置き型の貯蔵トラップで600日の保持記録も持つ。測定を『静かな実験室』へ運び出せれば、反物質の精密測定の精度が一段上がる。</p><div class="src">SOURCE：<a href="https://prisma.uni-mainz.de/en/2026/09/17/antiproton-storage-and-transport-records-achieved/">マインツ大PRISMA(2026-09-17) / CERN BASE実験</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 &middot; 新規</span><h3>金属も配位子も使わず ― ゼオライトだけでカルボニル化反応を実現(Nature)</h3><p>中国科学院大連化学物理研究所・劉中民院士のチームは、金属も配位子も使わず、ゼオライト(分子ふるい)だけでプロピレンからイソ酪酸、エチレンからプロピオン酸をつくるカルボニル化反応を実現した。工業ではロジウムやイリジウムなどの貴金属が主流で、分離が難しいのが課題だった。論文は北京時間10月21日にNatureに掲載、今後は工程のスケールアップを目指す。</p><div class="src">SOURCE：<a href="https://www.news.cn/tech/20261021/5d0c284c79aa421584d9d9c750a32e4a/c.html">新華社(2026-10-21) / Nature</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>神経変性疾患の原因タンパクを60%超抑える薬、加速器施設の外へ初めて持ち出せた反物質、貴金属を使わない触媒反応 ― いずれも『長年できなかったことが、具体的な一歩として動いた』週になった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Human Origins</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-24/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 &middot; 新規</span><h3>NIHが『デジタルツイン』を重点研究テーマに掲げる</h3><p>米国立衛生研究所(NIH)は、生物医学・生物学・行動科学のデジタルツイン(個人の分身となる計算モデル)を研究費の重点テーマとして10月15日に掲示した。成果の報告ではなく、試作開発を促す公募の案内で、期限は2028年9月10日。脳のデジタルツイン研究の壁は計算力より『計測』にあるという指摘が積み重なる中、資金の流れそのものがこの分野に向き始めたことを示す動きだ。</p><div class="src">SOURCE：<a href="https://grants.nih.gov/funding/find-a-fit-for-your-research/highlighted-topics/129">NIH(2026-10-15)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 &middot; 新規</span><h3>ハンガリー・ショムロー丘で大規模な青銅器-鉄器時代の集落跡</h3><p>ハンガリー国立博物館の考古学チームは、西ハンガリーのショムロー丘で後期青銅器時代から初期鉄器時代にかけての広大な集落跡を発見したと発表した(10月1日報道)。出土物には製錬の跡、陶器、工具、武器、複数の埋納された金属の蓄蔵品が含まれ、工芸生産と祭祀の大規模な中心地だったことを示す。丘の上の居住は鉄器時代への移行期も途切れなかったとみられ、約700年続いた集落と報じられている。</p><div class="src">SOURCE：<a href="https://www.heritagedaily.com/2026/10/archaeologists-uncover-extensive-bronze-age-settlement-on-hungarys-somlo-hill/159484">HeritageDaily(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-24/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 &middot; 新規</span><h3>中国アルタイ山脈の洞窟壁画、ハイパースペクトル分析で複数時代の活動を確認</h3><p>中国新疆のタンバレタシにある洞窟群の壁画を、図像比較・史料・空間分析とハイパースペクトル撮像(400〜930nmの180バンド)を組み合わせて調査した研究が報告された。青銅器時代の人型文様に続き、後の時代のチベット文字の銘文や十字金剛杵(クロスヴァジュラ)が確認され、肉眼では見えない2つの文様も新たに識別された。約112m離れた2つの描画区域(C1・C2)を含み、C2の角のある人型文様はアルタイ地域の青銅器文化との関連が指摘されている。</p><div class="src">SOURCE：<a href="https://www.heritagedaily.com/2026/10/ancient-cave-paintings-reveal-thousands-of-years-of-religious-activity-in-china/159543">HeritageDaily(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>資金(NIH)・集落(ハンガリー)・壁画(中国)という異なる3つの対象が、同じ問いに触れている ― 人間がどう生きた痕跡を残し、それをどう『測り直す』か。デジタルツインも考古学も、観察の精度そのものが新しい発見を生んでいる。</p></div></section><section class="closing"><div class="mk">✦</div><p>土曜日の便り。家畜にしか知られていなかったシャモンダウイルスが、世界で初めてヒトに感染し、フランスの患者が死亡したことが確認された。感染経路や公衆衛生上のリスクはまだ調査中だが、新たな人獣共通感染症が監視網に姿を見せた意味は重い。基盤の章ではこれに加え、DRCのエボラ最新集計、ワクチン試験『Tumaini』がついに接種を開始したこと、ナイジェリアとケニアの初症例がウガンダの空港で接点を持っていた可能性を届けた。命の章ではインド・ケララ州で後発SMA薬の投与継続を州保健相が表明したことを伝えた。自由の章では中国の聴覚脳幹インプラント初承認、BCI国際標準の発行、視線入力の決算実績を取り上げた。畏敬の章ではハンチントン病のRNA干渉薬の有効性データ、反陽子の陸路輸送という物理学の記録、ゼオライトだけで進む新しい化学反応を伝えた。美の章ではNIHのデジタルツイン研究への着目と、ハンガリー・中国で見つかった人類の古い痕跡を取り上げた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.117 · 2026.10.24 (土)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
