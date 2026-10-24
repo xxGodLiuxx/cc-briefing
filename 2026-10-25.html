@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.25 (日) · No.118</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-b">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-25/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>MMX、火星の衛星へ出発 ―<br>2031年、試料は地球に還る</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.118 · 2026.10.25 (SUN)</div>
+    <p class="lead">日曜日の便り。JAXAの火星衛星探査機MMXが10月20日未明に種子島から打ち上げられ、上段分離の成功とプローブの安定状態が確定した。目指すのはフォボスの試料を持ち帰る2031年までの長い旅。畏敬の章ではこれに加え、ESAのHeraが小惑星系との相対速度を合わせる減速噴射の計画と、シェーグレン病の新薬ianalumabが数値では効いても患者の実感には届かなかったという試験結果を届ける。基盤の章では、ケニアのエボラ接触者134人が本日検疫を解除される見込みであることと、DRCで急増するコレラ、米国の麻疹が週178例増のペースで積み上がっていることを。自由の章では、臨床的に無反応と判定されたICU患者の3人に1人が思考だけで音を操った研究と、視線入力のTobiiが売上は減っても中身は伸びているという決算を。命の章では、サラネルセンの最初の投与が米国・日本で始まったことと、成人SMA患者に合う評価指標がまだ無いという現場の声を。美の章では、国連のニューロテクノロジー報告が求める具体的な3つの要求と、イタリアの湖から引き揚げられた3本目の青銅器時代の剣を取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.118</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.25 SUN</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>16</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-25/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>MMX、火星の衛星フォボスへ出発に成功 ― 2031年、試料は地球に還る</h2><p>10/20号の続報 — 打ち上げ自体は報じたが結果は執筆時点で未確認としていた。JAXAの火星衛星探査機MMX(Martian Moons eXploration)は、日本時間10月20日午前4時41分、H3ロケット10号機で種子島宇宙センターから打ち上げられた。約1時間11分後、ロケット上段からの分離に成功。プロジェクトマネージャーの川勝康弘氏は『探査機が安定した状態にあることを確認した』と述べた。火星圏到着は2027年夏ごろの見込みで、火星最大の衛星フォボスに着陸し、少なくとも10グラムの試料を採取、フランス製の小型ローバー『IDEFIX』による表面観測も行う。試料は2031年に地球へ帰還する計画で、実現すればフォボスに着陸・試料回収した世界初の探査機になる。打ち上げは当初2024年の計画から、H3ロケットの開発遅延などで延期されていた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-25/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 続報</span><h3>サラネルセン、米国・日本で最初の投与が始まる</h3><div class="upd">🔁 続報 — 10/22号: NCT07444450(ゾルゲンスマ既治療乳児対象、10/31開始予定)を既報。今日は別の第3相試験で米国・日本の最初の参加者への投与が既に始まっていることが判明。</div><p>Biogenが年1回投与を目指して開発するアンチセンス薬サラネルセン(BIIB115)について、同社は9月22日付のアップデートで、乳児から成人までを対象とする新たな第3相試験を開始し、米国と日本で最初の参加者への投与を既に終えたことを明らかにした(Cure SMAの業界アップデートが引用)。サラネルセンは6月にFDAの画期的治療薬指定を受けている。別の試験(NCT07444450、ゾルゲンスマ既治療の乳児が対象)は10月31日に開始予定で登録が進行中だが、今回判明したのはそれとは別の、より広い年齢層を対象とする第3相試験での投与開始だ。</p><div class="src">SOURCE：<a href="https://www.curesma.org/industry-updates/">Cure SMA(業界アップデート、2026-09-22付)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 新規</span><h3>成人SMA患者「評価指標そのものが、症状をとらえていない」</h3><p>NeurologyLiveが掲載したAjroud-Driss医師(ノースウェスタン大学)へのインタビュー記事(2026年8月12日公開、9月28日修正)は、新しい臨床試験データではなく、現場の専門医が見る成人SMA診療の未解決課題を伝える。同医師は『成人集団に使う評価指標は、臨床的な改善をとらえるほど感度が高くない』と述べ、併用療法の是非や治療切り替えの時期も『分からない』とした。遺伝子治療が2025年11月に成人へも承認対象が広がった一方、実施方法や効果が出るまでの時間は不明なままで、嚥下・栄養・呼吸の支援、小児科から成人医療への移行、多職種ケアへのアクセスも課題として挙げられている。</p><div class="src">SOURCE：<a href="https://www.neurologylive.com/view/addressing-unmet-needs-adults-spinal-muscular-atrophy">NeurologyLive(Ajroud-Driss医師インタビュー、2026-08-12・09-28修正)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>SMAは薬を『足す』段階に入ったが、足した効果を測る物差しが成人にはまだ合っていないという現場の声が同じ月に上がっている。投与の広がりと評価の精度は、別々の速さで進んでいる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-25/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規</span><h3>「反応がない」ICU患者41人、3人に1人が思考だけで音を操った</h3><p>コロンビア大学メディカルセンターの研究チームは、急性脳損傷で臨床的に無反応と判定された患者41人を対象に、頭皮に貼る非侵襲EEG電極でブレイン・コンピュータ・インターフェースを試した。短い訓練の後、手を開閉することを想像してヘッドホンのビープ音の高さを上げ下げするよう求めたところ、約3人に1人が身体を動かさずに音を制御できた。この中には、別の検査で『認知運動解離』(意識はあるが外見上は無反応な状態)が検出されていた患者が全員含まれていた。論文「Clinically unresponsive patients with acute brain injury activate a brain-computer interface」は10月23日に学術誌Brainに掲載された。Jan Claassen教授は『このBCIはまだ第一歩に過ぎない』としつつ、将来的に一部の患者に意思疎通の『声』を与えられる可能性を示したと述べている。</p><div class="src">SOURCE：<a href="https://www.news-medical.net/news/20261023/Brain-computer-interface-enables-unresponsive-ICU-patients-to-control-sounds.aspx">Brain誌 / コロンビア大学メディカルセンター(2026-10-23)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 新規</span><h3>視線入力のTobii、売上11%減でも中身は+16%、資金繰りは綱渡り</h3><p>視線計測の本家Tobiiは10月22日、第3四半期決算を公表した。売上高はSEK1億4,000万で前年同期のSEK1億5,800万から11%減。だが前年同期に含まれていたDynavoxとの事前購入契約(SEK3,000万)と一時的ロイヤリティ(SEK700万)を除いた調整後オーガニック成長率は+16%だった。製品・ソリューション部門はSEK8,600万でオーガニック+3%に復帰、組み込み(Integrations)部門はSEK4,200万で一時項目を除くと+31%。一方でCEOのFadi Pharaon氏は『当社の流動性は厳しく、複数の財務上の義務が迫っている』と述べ、2027年に控える税金繰延分の返済などを前に、財務基盤の確保を最優先課題とした。</p><div class="src">SOURCE：<a href="https://www.investing.com/news/transcripts/earnings-call-transcript-tobii-sinks-on-q3-2026-loss-cash-strain-93CH-4964892">Tobii 2026年第3四半期決算説明(Investing.com、2026-10-22)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>無反応と見なされた患者に『音』という出口を与える技術が一歩を刻む一方、視線入力という最も成熟した応用の一つが資金繰りに苦しんでいる。技術が育つ速さと、事業が生き延びる速さは、同じ業界でも別の話だ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-25/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報</span><h3>ケニアのエボラ接触者134人、本日大半が検疫解除へ</h3><div class="upd">🔁 続報 — 10/21号: ケニアの接触者数とクラスター構成を既報。今日は、21日間の監視を終えた大多数が本日10/25に帰宅できる見込みであることが判明。</div><p>ケニアで確認されたエボラ(ブンディブギョ型)の9例は、いずれも最初の患者につながる単一クラスターとされ、保健当局は『このクラスター外への感染の証拠は現時点でない』としている。接触者135人のうち134人を追跡・検疫してきたが、21日間の監視期間を問題なく終えた大多数が本日10月25日から帰宅できる見込みだ。保健当局は住民に帰宅者の受け入れを呼びかけ、検疫施設内での感染は発生していないと説明している。</p><div class="src">SOURCE：<a href="https://www.aljazeera.com/news/2026/10/20/kenya-confirms-ninth-ebola-case">Al Jazeera(2026-10-20)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 新規</span><h3>DRCでコレラが急増、エボラと同じ医療体制を圧迫</h3><p>WHOの集計によると、コンゴ民主共和国(DRC)では2026年に入ってから疑い例51,412件以上・死亡1,487件が21州で報告されている(9月末時点)。直近の週(9月21〜28日)は疑い2,932件・死亡86件で、前週の2,506件・62件から増加した。南キブ・北キブ・オー・カタンガの3州で疑い例の約6割を占め、東部では治安と物流の悪さが対応を妨げている。エボラの確定例集計とは別の『疑い例』の数字であり、単純に足し合わせることはできないが、同じ医療網・同じ地域に二つの流行が重なっている現実は変わらない。</p><div class="src">SOURCE：<a href="https://news.un.org/en/story/2026/10/1168595">UN News(WHO集計、2026-10-14)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 続報</span><h3>米国の麻疹は4,588例、週あたり+178例</h3><div class="upd">🔁 続報 — 10/22号: 4,410例(10/15時点)を既報。今日は4,588例(10/22時点)へ、+178例増加。</div><p>米CDCは10月22日時点で、今年の麻疹確定例が4,588件に達したと公表した。前週(10月15日時点の4,410件)から178件(約4.0%)増え、増加ペースは鈍化していない。CNNは10月21日、特に致死率が高く見えるペンシルベニア州の流行について、軽症例の捕捉漏れ(過少報告)で分母が小さくなっている可能性を指摘した。</p><div class="src">SOURCE：<a href="https://www.cdc.gov/measles/data-research/index.html">米CDC(2026-10-22時点) / CNN(2026-10-21)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>DRCでは致死率の高いエボラと、疑い5万件超のコレラが同じ医療網に重なる一方、ケニアでは接触者が検疫を終えて日常へ戻り始める。悪化と回復が同じ週、同じ大陸で同時に進んでいる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Cosmos</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-25/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 続報 · 今日の一本</span><h3>MMX、火星の衛星フォボスへ出発に成功</h3><p>10/20号の続報 — 打ち上げは報じたが結果は執筆時点で未確認としていた。JAXAの火星衛星探査機MMXは日本時間10月20日午前4時41分、H3ロケット10号機で種子島宇宙センターから打ち上げられ、約1時間11分後にロケット上段からの分離に成功した。プロジェクトマネージャーの川勝康弘氏は探査機が安定した状態にあることを確認したとしている。火星圏到着は2027年夏ごろの見込みで、フォボスに着陸して少なくとも10グラムの試料を採取し、フランス製の小型ローバー『IDEFIX』による表面観測も行う。試料の地球帰還は2031年の計画で、実現すれば火星の衛星から試料を持ち帰る世界初の探査機になる。</p><div class="src">SOURCE：<a href="https://www.nippon.com/en/news/yjj2026102000118/japan-successfully-launches-rocket-with-martian-moon-probe.html">JAXA / Jiji Press(Nippon.com、2026-10-20)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 予定</span><h3>Heraが小惑星系との速度合わせへ、11月初旬にランデブー</h3><p>ESAは10月7日、小惑星防衛探査機Heraが10月15日と22日に計93分間の減速噴射(ブレーキバーン)を実施する計画を発表した。Heraは地球に対して秒速約12kmで飛行しており、NASAの衝突実験(DART)の対象となったディディモス・ディモルフォス連星系に到着するには、この速度差を縮める必要がある。2回の噴射を経て、11月初旬にも同系への最初の接近(ランデブー)を迎える計画だが、噴射が計画どおり完了したかは本稿執筆時点で確認できていない(要確認)。実現すれば、人類が小惑星の軌道と自転をどこまで変えられたかを確かめる6か月間の観測が始まる。</p><div class="src">SOURCE：<a href="https://www.spacelaunchschedule.com/space-news/brake-time-for-esas-hera-asteroid-mission-to-go-slow/">ESA(発表、spacelaunchschedule.com転載、2026-10-07)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 新規</span><h3>シェーグレン病の新薬、効いたが「患者の実感」には届かず</h3><p>10月21日号のNEJMに、シェーグレン病に対する抗BAFF受容体抗体ianalumabの第3相試験2件(NEPTUNUS-1・275人、NEPTUNUS-2・504人)の結果が掲載された。月1回300mg投与群は、48週時点の疾患活動性指標ESSDAIをプラセボより有意に低下させ、主要評価項目を達成した。一方、ノバルティス自身の発表によれば、患者自身が感じる症状を測る副次評価項目では、統合解析・個別解析のいずれも統計的な有意差には届かなかった。医師が測る指標では動き、患者が感じる症状では動かなかった形で、評価尺度の選び方が結論を左右する典型例となっている。</p><div class="src">SOURCE：<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2601088">NEJM(2026;395:1585-1599、2026-10-21)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>10億kmを超える距離を飛んできた探査機、速度差を縮め始めたもう一つの探査機、数値では効いても本人の実感には届かなかった薬。『届くこと』と『届いたと感じられること』は、宇宙でも医学でも別の話だと気づかされる一日だった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Human Origins</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-25/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 続報</span><h3>国連ニューロテクノロジー報告、具体的な3つの要求が判明</h3><div class="upd">🔁 続報 — 10/22号: 『法整備が技術に追い越された』という警告を抽象的に既報。今日、報告書(A/81/351)が求める具体的な3要求が判明。</div><p>10月15日に国連総会へ提出された事務総長報告(文書番号A/81/351)は、神経技術の進歩が人権を守る法整備を追い越していると警告している。今日判明したのは、報告が求める具体的な内容だ:①強制的・濫用的な神経技術の利用を禁止すること、②強力な法的・倫理的保護措置を確立すること、③神経データを『極めて機微な個人データ』として特別に保護すること。加えて、インフォームド・コンセント、科学的検証、監督、説明責任も求めている。脳データが本人に不利に使われうるという論点が、抽象的な警告から具体的な要求事項へと一歩進んだ形だ。</p><div class="src">SOURCE：<a href="https://news.un.org/en/story/2026/10/1168609">UN News(2026-10-15)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-25/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 新規</span><h3>イタリア・メッツァーノ湖で3本目の青銅器時代の剣を回収</h3><p>イタリア中部のメッツァーノ湖(ヴィテルボ県)で9月28日、イタリア国家警察(カラビニエリ)の潜水チームの協力のもとに考古学者が青銅器時代の剣を回収した。州の文化財監督局は紀元前13世紀のものと推定し、刃はまだ鋭さを保っていたという。1970年代から調査が続くこの湖でこれまでに見つかった剣としては3本目。湖底には紀元前1700〜1150年ごろに人が住んでいた高床式の集落跡があり、2025年の調査では600本を超える木柱と25点を超える青銅製品(斧・槍先・ブローチなど)が見つかっている。なぜこれほど多くの精巧な剣が湖に沈められたのかは、今も分かっていない。</p><div class="src">SOURCE：<a href="https://greekreporter.com/2026/10/07/sword-italian-lake-cutting-edge/">Ancient Origins / GreekReporter(2026-10-07)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>脳データをどう守るかという最新の法整備の動きと、3000年前に湖に沈められた剣の謎。なぜ沈めたのかは今も分からないままだが、人が何を大切にし、何を手放したかの跡は、形を変えて今も積み重なっている。</p></div></section><section class="closing"><div class="mk">✦</div><p>日曜日の便り。JAXAの火星衛星探査機MMXが10月20日未明の打ち上げから上段分離の成功とプローブの安定状態を確定させ、2031年の試料帰還に向けて長い旅に出た。畏敬の章ではこれに加え、ESAのHeraが小惑星系との速度合わせに入ったことと、シェーグレン病の新薬ianalumabが数値では効いても患者の実感には届かなかった試験結果を届けた。基盤の章では、ケニアのエボラ接触者134人が本日検疫を解除される見込みであることと、DRCで急増するコレラ、米国の麻疹が週178例増のペースで積み上がっていることを伝えた。自由の章では、臨床的に無反応と判定されたICU患者の3人に1人が思考だけで音を操った研究と、視線入力のTobiiの決算を取り上げた。命の章では、サラネルセンの最初の投与が米国・日本で始まったことと、成人SMA患者に合う評価指標がまだ無いという現場の声を届けた。美の章では、国連のニューロテクノロジー報告が求める具体的な3つの要求と、イタリアの湖から引き揚げられた3本目の青銅器時代の剣を取り上げた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.118 · 2026.10.25 (日)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
