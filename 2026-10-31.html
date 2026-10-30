@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.10.31 (土) · No.124</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-d">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-10-31/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>エボラ、死者5,000人に迫る ―<br>「流行の中心が移動している」</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.124 · 2026.10.31 (SAT)</div>
+    <p class="lead">土曜日の便り。アフリカCDCのカセヤ事務局長は、DRCを中心に広がるエボラについて確定10,172例・死亡4,932人・回復2,727人(致死率48.5%)という集計を示し、流行の中心が移りつつあると警告した。10/30号で届けた閣僚会合の合意内容に続き、医療従事者の感染や国境を越えてすり抜ける感染、未承認薬への依存を課題として挙げている。基盤の章ではこれに加え、米国の麻疹でペンシルベニア州の郡別集計が判明したことと、前号で伝えたワシントン州のH5N1感染情報が誤配信の疑いで訂正されたことを届ける。自由の章では、NeuralinkがTelepathyを最初の製品と位置づけ治験参加者が思考でAIを操作したデモを公開したことと、視線入力・AAC機器のDynavox Groupが増収増益の決算を発表したことを。命の章では、北アイルランドの母親がSMA新生児スクリーニングの地域差を訴えたことを届ける。畏敬の章では、JWSTが恒星間彗星3I/ATLASの氷を観測したことと、中国の研究チームが許家窯人をタンパク質解析でデニソワ人と特定したこと、独ユーリッヒ研究所の超高速量子ゲートを。美の章では、ニューヨーク州とオーストラリアが相次いで子ども向けAIコンパニオンを規制したことを取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.124</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.10.31 SAT</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>22</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-10-31/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>アフリカCDC、エボラの死者5,000人に迫ると警告 ― 「流行の中心が移動している」</h2><p>10/30号の続報 ― 前号ではアフリカCDC閣僚会合の合意内容(確定10,172例・死亡4,932人、国境は開けたまま監視を強化)までを届けた。今回新たに判明したのは、致死率48.5%・回復2,727人という内訳と、カセヤ事務局長が『流行の中心が移動している』と述べたこと。医療従事者への感染、監視や接触者追跡をすり抜けた国境越えの感染、そして承認済みのワクチンや治療薬が無く寄付された未承認薬に頼らざるを得ない状況を、重大な課題として挙げている。症例の数を追う段階から、どこに重心が移り、誰が感染のリスクを負っているかを読む段階へ、報道の焦点も移ってきた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-31/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 続報</span><h3>北アイルランド・ウェールズでSMA新生児スクリーニング、いまも『計画なし』 ― ベルファストの母の訴え</h3><div class="upd">🔁 続報 ― 10/5号: 北アイルランドとウェールズにSMA新生児スクリーニングの導入計画が無いことを既報。今回新たに判明したのは、ベルファストの母キャサリン・シンプソンさんが息子エズラ君の発達の遅れに気づいた経験を公の場で語ったことと、慈善団体が2028年までの全国導入を求めていること。</div><p>イングランドでは10月からSMAの新生児スクリーニングの実地評価が始まり、スコットランドも3月から独自に運用している。一方、北アイルランドとウェールズには現時点で導入計画がない。ベルファストのキャサリン・シンプソンさんは、息子エズラ君が乳児期につかまり立ちをしようとしない様子を保健師に伝えていたと振り返り、『なぜ北アイルランドのかかと採血検査にSMAが入らないのか』と訴えた。慈善団体は2028年までに英国内の全ての新生児を検査対象にするよう求めている。</p><div class="src">SOURCE：<a href="https://www.newsletter.co.uk/your-world/belfast-mum-and-uk-charity-call-for-sma-screening-in-northern-ireland-as-england-starts-testing-9252983">News Letter(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>イングランドの評価事業が前進するほど、検査を受けられない地域との差は際立つ。『生まれた場所で早期発見の機会が変わる』という課題は、制度が進むたびに繰り返し問われている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-31/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規</span><h3>Neuralink、『最初の製品はTelepathy』 ― 思考だけでAIと対話するデモも</h3><p>Neuralink創業者のイーロン・マスク氏は10月30日、同社の最初の製品が『Telepathy』であり、考えるだけでコンピュータや人と高速にやり取りできると投稿した。同日、治験参加者が思考だけでAIのGrokを操作したり、iPhoneで通話したりするデモも共有された。Telepathyは1,024電極・64本の糸状電極を持つN1インプラントを使う。ただし米FDAの商用承認はまだで、価格や発売時期は示されていない。</p><div class="src">SOURCE：<a href="https://www.businesstoday.in/technology/news/story/control-computers-with-your-thoughts-elon-musk-reveals-neuralinks-first-product-telepathy-564720-2026-10-30">Business Today(2026-10-30) / Elon Musk on X(2026-10-30)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 新規</span><h3>視線入力・AAC機器のDynavox Group、第3四半期は増収増益 ― EBITDA43%増</h3><p>視線入力コミュニケーション機器Tobii Dynavoxなどを傘下に持つスウェーデンのDynavox Groupは10月21日、第3四半期決算を発表した。売上高はSEK6億8,500万(前年同期SEK6億600万)で前年比+13%(為替調整後+15%)。EBITDAはSEK1億7,500万で前年同期のSEK1億2,200万から+43.4%、EBITマージンは17.4%に達した。CEOのフレドリック・ルーベン氏は、米国での保険償還手続きの厳格化という逆風がある中でも『着実な増収と大きく強まった収益性』の四半期だったと述べた。1〜9月累計の売上高はSEK19億4,200万(前年同期比+9%)。</p><div class="src">SOURCE：<a href="https://news.cision.com/dynavox-group/r/dynavox-group-interim-report-third-quarter-2026">Dynavox Group 決算発表(Cision、2026-10-21) / Capital.com</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>Neuralinkは埋め込み型の『製品化宣言』で一歩踏み出し、視線入力・AAC機器の会社は地道な増収増益で応える。意思伝達の未来は、まだ一つの技術に絞られていない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-31/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報 · 今日の一本</span><h3>エボラ、確定10,172例・死亡4,932人 ― 『流行の中心が移動している』</h3><div class="upd">🔁 続報 ― 10/30号(No.123)でアフリカCDC閣僚会合の合意内容(確定10,172例・死亡4,932人、国境は開けたまま監視強化)を既報。今回新たに判明したのは、致死率48.5%・回復2,727人という内訳、カセヤ所長が『流行の中心が移動している』と警告したこと、医療従事者の感染と国境を越えた監視をすり抜ける感染を課題として挙げたこと。</div><p>アフリカCDCのジャン・カセヤ事務局長は、DRCを中心に広がるブンディブギョ型エボラについて、確定10,172例・死亡4,932人・回復2,727人(致死率48.5%)という集計を示し、流行の中心(震源地)が移りつつあると警告した。10/28の閣僚会合で示された合意内容(国境は開けたまま監視を強める)に続き、今回は医療従事者への感染、監視や接触者追跡をすり抜けた国境越えの感染、そして承認済みのワクチンや治療薬が無く寄付された未承認薬に頼らざるを得ない状況を、重大な課題として挙げた。症例はDRCのほか、ケニア(9例)とナイジェリア(1例)でも報告されている。</p><div class="src">SOURCE：<a href="https://www.premiumtimesng.com/health/health-news/921422-ebola-africa-cdc-warns-continent-not-winning-as-cases-surpass-10000.html">Premium Times(2026-10) / Eastleigh Voice(2026-10) / Parrot Nigeria(2026-10-30)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 続報</span><h3>米国の麻疹、ペンシルベニア州で44郡・1,338例に ― 全米は4,588例のペース続く</h3><div class="upd">🔁 続報 ― 10/25号で米CDCの10/22時点集計(確定4,588例、前週比+178例)を既報。今回新たに判明したのは、最多のペンシルベニア州で44郡・計1,338例が確認されたという州保健局の集計。</div><p>米CDCの集計では10月22日時点で、今年の麻疹確定例は4,588件(前週比+178件、+4.0%)。96%(4,404件)が集団発生に関連し、2026年の新たな集団発生は43件に上る。最も症例が多いペンシルベニア州では、10月25日時点で44郡にわたり少なくとも1,338例が確認されたと州保健局が報じられている。10月30日時点でさらに増えたとの報道もあるが、最新値は要確認。</p><div class="src">SOURCE：<a href="https://www.contagionlive.com/view/measles-update-october-23-2026">Contagion Live(2026-10-23) / NPR(2026-10-25)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 訂正</span><h3>前号の『ワシントン州酪農従事者のH5N1感染』、誤配信の疑いで訂正</h3><div class="upd">⚠️ 訂正 ― 10/23号(No.116)でECDC(10/15付)を出典に『米ワシントン州の酪農従事者がH5N1に感染』と既報。10/28付の感染症ニュースレター(Pathogen Update)は、この情報が『2024年10月の記事が誤って流通したもの』だったと指摘し取り下げた。州・CDCの一次情報で確認できるまで、前号の記述は要確認として扱う。</div><p>10月23日号でECDC(10月15日付報告)を出典に伝えた、米ワシントン州ヤキマ郡の住民の乳牛接触によるH5N1感染について、10月28日付の感染症ニュースレター(Pathogen Update)が『2024年10月の記事が誤って流通したものだった可能性がある』と指摘し、記述を取り下げた。州またはCDCの一次情報で改めて確認できるまで、前号の記述は要確認として扱う。国外では、二次情報としてバングラデシュで3例目、カンボジアで新たなヒト感染が報じられているが、これも一次情報での確認が済んでいない。</p><div class="src">SOURCE：<a href="https://josepheastman.substack.com/p/pathogen-update-10-28-2026">Pathogen Update 10-28(2026-10-28) / Pathogen Update 10-25(2026-10-25)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>エボラは数を数える段階から、どこに重心が移るかを読む段階へ進んだ。麻疹とH5N1は対照的に、集計の粒度を上げること(麻疹)と、誤った情報を取り下げること(H5N1)という、地味だが欠かせない『裏取り』の大切さを示した。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-31/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 新規</span><h3>JWST、恒星間彗星3I/ATLASの氷は『海王星以遠の天体』に似ていた</h3><p>米サウスウェスト研究所(SwRI)のシルビア・プロトパパ氏らは、JWSTの近赤外分光器NIRSpecで恒星間彗星3I/ATLASを3回(2025年8月6日・12月22日、2026年4月1日)観測した。氷の粒子は数マイクロメートル以下で、水の氷と岩石質の物質が混ざっていた。そのスペクトルは太陽系の彗星より、海王星以遠の氷天体に近いという。粒の大きさは太陽系の彗星と同程度だが、『氷に混ざる塵の量』が異なるとみられる。恒星間天体は他の恒星系の材料見本であり、太陽系外縁と似ていたことは、惑星系の材料に共通点がある可能性を示す。</p><div class="src">SOURCE：<a href="https://sci.news/astronomy/webb-dust-rich-water-ice-interstellar-comet-3i-atlas-15153.html">Sci.News(2026-10) / BBC Sky at Night(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 新規</span><h3>中国科学院、許家窯人を『デニソワ人』とタンパク質で特定</h3><p>中国科学院古脊椎動物・古人類研究所などのチームは、中国・許家窯遺跡の人類化石(頭骨片と下あご)から18種類の古代タンパク質を検出し、デニソワ人と特定した(Nature、10月21日オンライン公開)。決め手はコラーゲン遺伝子COL1A2の変異で、現生人類やネアンデルタール人では見つかっていない。年代は約13万年前〜13万8,000〜19万9,000年前と報道により幅がある。比較対象となるデニソワ人の標本がまだ少ない点を指摘する声もあるが、DNAが残らないほど古い化石にも、タンパク質解析なら迫れることを示した成果だ。</p><div class="src">SOURCE：<a href="https://www.chinadaily.com.cn/a/202610/29/WS6ae2a824e4b06d4aa0565d18.html">China Daily(2026-10-29) / Live Science(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 新規</span><h3>6.8ナノ秒・忠実度99.98%超 ― 超高速の量子ゲートで『余計な遷移』を抑制</h3><p>独ユーリッヒ研究所・アーヘン工科大学・ケルン大学の研究者は、超伝導量子ビット(トランズモン)1個で、6.8ナノ秒・忠実度99.98%超の単一量子ビット操作を実現した。新しいパルス整形法『R2D』により、望まない多光子遷移を標準手法DRAGより20倍以上減らしたという。ただし試験は孤立した量子ビット1個のみで、大規模なプロセッサや2量子ビット操作での性能は今後の課題となる。</p><div class="src">SOURCE：<a href="https://thequantuminsider.com/2026/10/29/researchers-curb-unwanted-transitions-in-ultrafast-quantum-gates/">The Quantum Insider(2026-10-29)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>恒星間彗星の氷、13万年前の頭骨に残るタンパク質、6.8ナノ秒の量子操作 ― スケールはまるで違うが、どれも『そこにある情報をどれだけ精密に読み取れるか』を競う仕事だ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Humanity &amp; Digital Minds</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-10-31/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 新規</span><h3>NY州、『人間のふりをするAI』を子どもに提供禁止</h3><p>ニューヨーク州のキャシー・ホークル知事は10月28日、未成年に『危険なAIコンパニオン機能』12項目の提供を禁じる法(S9051-B/A10379-C)に署名した。人間だと思わせる出力、へつらい・お世辞、感情的な依存をあおる機能、以前の会話で聞いた子どもの健康情報を持ち出す機能などが対象となる。違反には州司法長官が訴訟を起こせ、損害賠償やチャットボットの停止、データ削除もあり得る。施行日は報道により差があり要確認。</p><div class="src">SOURCE：<a href="https://www.governor.ny.gov/news/governor-hochul-signs-nation-leading-legislation-protect-kids-ai-chatbots-and-ensure-baby">ニューヨーク州知事室(2026-10-28) / Fortune(2026-10-28) / IAPP(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-10-31/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 新規</span><h3>豪州下院、子どもと『感情的な親密さ』を築くチャットボットを禁止する法案を可決</h3><p>オーストラリア下院は10月28日、SNS・ゲーム・アプリ・AIチャットボットに包括的な『デジタル注意義務』を課す法案を可決した。チャットボットが子どもと感情的な親密さを築くことを害として扱う修正(無所属のケイト・チェイニー議員提案)を政府が受け入れた。罰金の上限は報道により約1億800万〜1億920万豪ドルと幅がある。上院での成立は緑の党などの賛否次第で、政府は年内成立を目指す。</p><div class="src">SOURCE：<a href="https://thenextweb.com/news/australia-duty-of-care-bill-ai-chatbots-emotional-intimacy-children">The Next Web(2026-10) / MLex(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ニューヨークとオーストラリアは、互いに参照し合ったわけではないのに同じ週に『AIが子どもと親密になりすぎること』を規制した。人とAIの境界線を引く作業が、同時多発的に動き始めている。</p></div></section><section class="closing"><div class="mk">✦</div><p>土曜日の便り。アフリカCDCは、DRCを中心に広がるエボラが確定10,172例・死亡4,932人・回復2,727人(致死率48.5%)に達したとし、流行の中心が移りつつあると警告した。医療従事者への感染や国境を越えてすり抜ける感染、未承認薬への依存が課題として挙げられている。基盤の章ではこれに加え、米国の麻疹でペンシルベニア州の郡別集計(44郡・1,338例)が判明したことと、前号で伝えたワシントン州のH5N1感染情報を誤配信の疑いで訂正したことを届けた。自由の章では、NeuralinkがTelepathyを最初の製品と位置づけ治験参加者が思考でAIを操作するデモを公開したことと、視線入力・AAC機器のDynavox Groupが増収増益の決算(EBITDA+43.4%)を発表したことを伝えた。命の章では、北アイルランドの母キャサリン・シンプソンさんが、SMA新生児スクリーニングの地域差を公の場で訴えたことを届けた。畏敬の章では、JWSTが恒星間彗星3I/ATLASの氷を観測し海王星以遠の天体に似た組成を示したことと、中国の研究チームが18種類の古代タンパク質から許家窯人をデニソワ人と特定したこと、独ユーリッヒ研究所などが6.8ナノ秒・忠実度99.98%超の超高速量子ゲートを実現したことを取り上げた。美の章では、ニューヨーク州とオーストラリア下院が、子どもと感情的な親密さを築くAIチャットボットを相次いで規制したことを伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.124 · 2026.10.31 (土)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
