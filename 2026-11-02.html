@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.02 (月) · No.126</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-c">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-02/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>米国の麻疹、<br>「排除国」の地位が瀬戸際に</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.126 · 2026.11.02 (MON)</div>
+    <p class="lead">月曜日の便り。米CDCの集計(10/29時点)で、米国の麻疹は4,852例に達し、1週間で264例増と勢いが強まった。汎米保健機構(PAHO)は11月10〜13日に米国の『麻疹排除』認定の見直しを行うと報じられ、取り消しがほぼ確実との見方も出ている。基盤の章ではこれに加え、カリフォルニア州でmpoxクレードIが4例確認されたことと、アフリカCDCのカセヤ所長が出身国カナダへエボラ支援の拡大を個人的に呼びかけたことを届ける。命の章ではScholar Rockの筋肉標的薬Isembyldが11月10日の決算で初の売上を示す見込みであることとFDAの骨折リスク注意を、自由の章ではNeuralinkのTelepathy・Blindsightをめぐる続報とFDA指定の限界を伝える。畏敬の章ではJWSTが溶岩惑星TOI-561 bに光を跳ね返す雲の可能性を見つけたことと史上最遠のリング銀河、原因不明の失神に関する大規模試験、CERNの素粒子測定を。美の章ではAIエージェントが動かす人間のデジタルツインの医療総説と、中国アルタイ山脈の洞窟壁画が青銅器時代からチベット仏教期まで積み重なっていたことを取り上げる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.126</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.02 MON</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡 注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>21</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-02/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>米国の麻疹4,852例 ― PAHOが11月中旬に「排除」認定の見直しへ</h2><p>米CDCの集計(10/29時点)で、2026年の麻疹は4,852例に達した。前回(10/22時点、4,588例)から1週間で264例増え、前週の増加(178例)より勢いが強まった。入院は511例(約11%)、CDCが確認した死亡は3例。患者の96%(4,666例)は集団発生に関連している。汎米保健機構(PAHO)は11/10〜13に米国の『麻疹排除』認定を見直す予定と報じられ、専門家の間では取り消しはほぼ確実との見方が出ている(決定はまだ)。前号まで3日続けてエボラを一本に選んだが、今号は米国の麻疹で週ごとの増加が再び加速し、国際的な認定の見直しという新しい局面に入った点を重く見た。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &amp; SMA</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-02/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 続報</span><h3>Isembyld、11月10日決算で初の売上公表へ ― FDAは骨折リスクを安全性の懸念に</h3><div class="upd">🔁 続報 ― 10/21号(No.114)でScholar Rockが11月10日に第3四半期決算を発表予定と既報。今回新たに判明したのは、この決算で発売からおよそ3週間分の売上が初めて示される見込みであることと、FDAが骨折リスクの増加を重要な安全性の懸念に挙げている点。</div><p>Scholar Rockの抗体薬Isembyld(アピテグロマブ)は9月11日、SMN2を標的とする既存治療を受けている2歳以上の小児・成人のSMAに対し、筋肉を狙う初の治療薬としてFDAの承認を得た。11月10日予定の第3四半期決算では、発売からおよそ3週間分の売上が初めて示される見込みだと報じられている。FDAは添付文書で、重い骨折を含む骨折リスクの増加を重要な安全性の懸念として挙げている。欧州では8月に取り下げた申請を10月8日にEMAへ再提出済みで、CHMP意見は2027年前半を見込む。</p><div class="src">SOURCE：<a href="https://www.nasdaq.com/press-release/scholar-rock-announces-fda-approval-isembyldtm-apitegromab-mstn-first-and-only-muscle">Nasdaq(Scholar Rock発表、2026-09-11) / SMA News Today(2026)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>筋肉を狙う新しいクラスの薬が、承認から『実際にどれだけ使われているか』を数字で示す番を迎える。期待と並んで、骨折という具体的なリスクをどう管理するかが次の焦点になる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &amp; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-02/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 続報</span><h3>Neuralink『Telepathy』『Blindsight』― ALS参加者が脳信号でコーヒーを注文、FDAは『承認ではない』と注意</h3><div class="upd">🔁 続報 ― 10/31号(No.124)でマスク氏の10/30投稿(Telepathyが第1製品、Blindsightが第2製品で承認待ち)を既報。今回新たに判明したのは、ALSの治験参加者が脳から生成した文章でコーヒーを注文した実例が紹介されたことと、Benzingaが指摘したFDA『ブレークスルー機器』指定の限界。</div><p>イーロン・マスク氏の10月30日の投稿を受け、各メディアが10月末、最初の製品『Telepathy』と視覚回復をめざす第2の製品『Blindsight』を詳しく紹介した。ALSの治験参加者が脳から生成した文章でコーヒーを注文した例も示され、考えるだけでの意思伝達が日常の場面に近づいていることをうかがわせた。一方Benzingaは、FDAの『ブレークスルー機器』指定は研究・臨床試験を後押しするものであり、商用利用を認める承認ではないと注意を促した。Blindsightは技術面では準備済みとされるが、規制当局の承認はまだ先になる。いずれも企業側の発信で、査読済みデータは示されていない。</p><div class="src">SOURCE：<a href="https://www.benzinga.com/markets/tech/26/10/62727742/elon-musk-reveals-neuralink-implants-that-could-restore-sight-and-enable-communication-through-thoughts-mom-maye-highlights-this-amazing-achievement">Benzinga(2026-10) / NewsBytes(2026-10) / Tom's Hardware(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>脳信号でコーヒーを注文する場面は、BCIが『実験室の実演』から『生活の一場面』に近づいたことを印象づける。ただしFDAの指定が意味するものと商用化までの距離は、期待と規制のあいだでまだ開いたままだ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &amp; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-02/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報 · 今日の一本</span><h3>米国の麻疹4,852例 ― PAHOが11月中旬に『排除』認定の見直しへ</h3><div class="upd">🔁 続報 ― 10/31号(No.124)で米CDCの10/22時点集計(4,588例)を既報。今回新たに判明したのは、10/29時点で4,852例に達し1週間で264例増えたこと(前週の178例増より加速)、入院511例・死亡3例という内訳、そしてPAHOが11/10〜13に米国の『麻疹排除』認定の見直しを行うと報じられたこと。</div><p>米CDCは10月30日、10月29日時点の麻疹確定例が4,852例に達したと発表した。10月22日時点の4,588例から1週間で264例増え、前週の178例増より勢いが強まった。入院は511例(約11%)、CDC確認の死亡は3例だが、ペンシルベニア州は同州独自の集計で流行関連死を5例としており、数字は一致していない。患者の96%(4,666例)はワクチン未接種か接種歴不明で、集団発生に関連する。汎米保健機構(PAHO)は11月10〜13日に米国の『麻疹排除』認定の見直しを行うと報じられ、専門家の間では取り消しがほぼ確実との見方が出ている(決定はまだ)。排除認定の条件は『12か月以上途切れずに国内流行が続いていないこと』で、米国では2025年1月から流行が続いている。</p><div class="src">SOURCE：<a href="https://www.usnews.com/news/us/articles/2026-10-30/us-measles-cases-rise-to-4-852-cdc-says">Reuters/US News(2026-10-30) / Contagion Live(2026-10-30) / Tech Times(2026-10-31) / JHU公衆衛生大学院(2026)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-02/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 新規</span><h3>カリフォルニア州でmpox4例、2例がクレードI ― 渡航歴のない例も</h3><p>カリフォルニア州スタニスラウス郡は10月29日、直近1週間ほどでmpox4例を確認したと発表した。州保健局が2例をクレードIと確定し、残る2例は確認検査中。4人のうち3人には海外渡航歴がなく、国内で感染が広がっている可能性がある。郡は『2026年8月以降、渡航歴のないクレードIの例が増えている』としつつ、一般の人へのリスクは低いとしている。感染経路や4例のつながりは公表されていない。</p><div class="src">SOURCE：<a href="https://fox40.com/news/local-news/stanislaus-county/health-officials-confirm-4-mpox-cases-in-stanislaus-county/">FOX40(2026-10-29) / Medical Daily(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-02/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 続報</span><h3>アフリカCDCのカセヤ所長、エボラ支援拡大をカナダへ個人的に呼びかけ</h3><div class="upd">🔁 続報 ― 10/31号(No.124)でカセヤ所長が『流行の中心が移動している』と述べたことを既報。今回新たに判明したのは、カセヤ氏が10/31、自身の出身国でもあるカナダに向けてX上で直接支援拡大を呼びかけたこと。</div><p>アフリカCDCのジャン・カセヤ事務局長は10月31日、自身のX投稿で、出身国でもあるカナダに向けてコンゴ民主共和国のエボラ対応への支援拡大を直接呼びかけた。カセヤ氏はコンゴ出身で2013年からカナダに住んでおり、流行のため数か月家族に会えていないと明かした。『今エボラが広がっている場所で食い止め、ゼロにする力を貸してほしい』と述べ、カナダへの感染リスクは低いままだとしつつ、軽視しないよう市民に求めた。カナダによる初期資金提供やワクチン試験への協力、ウイルスの配列解析でのコンゴの研究者との連携に謝意を示した。確定例は1万例超、死亡は5,000人前後とされるが、集計時点や出典によって数字に差があり、一次情報での確認はまだ済んでいない。</p><div class="src">SOURCE：<a href="https://www.tvcnews.tv/africa-cdc-chief-jean-kaseya-appeals-for-global-support-to-end-ebola-outbreak/">TVC News(2026-10-31)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>麻疹は増加のペースそのものが強まり、国際的な『排除国』の地位という新しい局面に入った。mpoxは渡航歴のない例が増え、エボラは数字を追う段階から支援の呼びかけへと焦点が移っている。ワクチンで防げる病気への対応が、改めて問われている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &amp; Space</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-02/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 新規</span><h3>JWST、溶岩惑星TOI-561 bに『光を跳ね返す雲』の可能性 ― 史上最遠のリング銀河も確認</h3><p>JWSTで溶岩惑星TOI-561 bを37時間観測し、惑星がほぼ4周する様子をとらえた結果、恒星光の約75%を反射する明るい大気をもつ可能性が示された(Astronomical Journal、10月下旬に報道)。二酸化ケイ素やケイ酸マグネシウムの雲が昼側にできる『日焼け止め』のような働きが考えられているが、大気中の特定の気体はまだ検出されておらず、雲も推定の段階。JWSTは別の観測で、ビッグバン後約21億年にできた史上最も遠いリング銀河GS18660も確認しており(A&amp;A誌、9月)、銀河どうしの正面衝突でできた可能性があるという。</p><div class="src">SOURCE：<a href="https://www.eurekalert.org/news-releases/1149285">EurekAlert!(2026-10) / Phys.org(2026-10) / Live Science(2026-10) / A&amp;A(2026-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-02/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 新規</span><h3>原因不明の失神、『すぐ心電図モニター』でも主要評価に差なし ― 英45病院の試験</h3><p>英国45病院によるASPIRED試験(NEJM10月29日号、8月30日オンライン公開)は、救急で原因がわからなかった失神の成人2,233人を、14日間の携帯型心電図モニターと通常診療に分けて比較した。1年後の失神回数は平均1.37回と1.58回で有意差はなかった(発生率比0.89、P=0.42)。一方モニター群では重要な不整脈の検出が2倍以上になり、早期発見が的を絞った治療につながった。『診断が改善』という見出しは副次的な結果に基づく点に注意が必要。</p><div class="src">SOURCE：<a href="https://www.nejm.org/doi/abs/10.1056/NEJMoa2605812">NEJM(2026) / PubMed(2026-10-29)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-02/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 新規</span><h3>CERN・ATLAS、トップクォークとZボソンの同時生成を詳しく測定</h3><p>CERNのATLAS実験は10月20日、トップクォークとZボソンが一緒に生まれる『tZq生成』について、生成粒子の運動量や方向ごとの分布(微分断面積)を初めて測定したと報告した。標準模型の予測を細かく確かめ、トップクォークとZボソンの結びつきに未知の物理が隠れていないかを調べる手がかりになる。10月1日にはZボソン2個がともに『縦偏極』した現象の初観測も報告しており、ヒッグス機構の検証が進んでいる。</p><div class="src">SOURCE：<a href="https://atlas.cern/tags/physics-results">ATLAS物理結果(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>惑星の雲、失神の検査、素粒子の結びつき ― スケールはまるで違うが、どれも『見えているものをどれだけ精密に測れるか』を競う仕事だ。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &amp; Humanity</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-02/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 新規</span><h3>AIエージェントで動く『人間のデジタルツイン』、医療応用の総説</h3><p>Springerの学術誌に10月12日、AIエージェントで動く『人間のデジタルツイン』を個別化医療に使う研究を整理した総説が出た。さまざまな健康データ、大規模な基盤モデル、説明可能なAI、診療の意思決定支援をつなぐ共通の枠組みを提案している。ただし関連の総説では、医療分野の研究の多くはまだ構想やシミュレーションの段階で、厳密な定義を満たす『デジタルツイン』は一部にとどまると指摘されている。</p><div class="src">SOURCE：<a href="https://link.springer.com/article/10.1007/s44584-026-00004-x">Springer(2026-10-12)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-02/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 新規</span><h3>中国・アルタイ山脈の洞窟壁画、青銅器時代からチベット仏教期まで重なる図像</h3><p>中国新疆ウイグル自治区のアルタイ山脈、富蘊県から約70km離れたタンバレタシの2つの洞窟で、ハイパースペクトルイメージングによる調査が行われた(npj Heritage Science、10月11日)。C1洞窟に19、C2洞窟に51の図像が確認され、三つ目の人型の顔や角のある人型像など青銅器時代(チェムルチェク文化と関連する可能性)の図像に、元朝期(1271〜1368年)のチベット仏教の金剛杵やチベット文字の銘文が重なっていた。洞窟は異なる時代の複数の共同体によって繰り返し利用され、世代を超えて図像が積み重なってきたとみられる。</p><div class="src">SOURCE：<a href="https://www.heritagedaily.com/2026/10/ancient-cave-paintings-reveal-thousands-of-years-of-religious-activity-in-china/159543">npj Heritage Science(2026-10) / HeritageDaily(2026-10-11)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>医療の『デジタルの写し』は構想から実装への課題を積み重ね、アルタイの洞窟壁画は青銅器時代からチベット仏教期まで異なる時代の図像を積み重ねてきた。どちらも、同じ場所に幾重にも積もった時間をどう読み解くかという仕事だ。</p></div></section><section class="closing"><div class="mk">✦</div><p>月曜日の便り。米CDCの集計で、米国の麻疹は4,852例に達し、1週間で264例増と勢いが強まった。汎米保健機構(PAHO)は11月10〜13日に米国の『麻疹排除』認定の見直しを行うと報じられ、取り消しがほぼ確実との見方も出ている。基盤の章ではこれに加え、カリフォルニア州でmpoxクレードIが4例確認されたことと、アフリカCDCのカセヤ所長が出身国カナダへエボラ支援の拡大を個人的に呼びかけたことを届けた。命の章では、Scholar Rockの筋肉標的薬Isembyldが11月10日の決算で初の売上を示す見込みであることと、FDAが骨折リスクを安全性の懸念に挙げていることを伝えた。自由の章では、NeuralinkのTelepathy・BlindsightをめぐるALS参加者のコーヒー注文の例と、FDAの『ブレークスルー機器』指定は承認ではないという注意を取り上げた。畏敬の章では、JWSTが溶岩惑星TOI-561 bに光を跳ね返す雲の可能性を見つけたことと史上最遠のリング銀河、原因不明の失神に関する大規模試験ASPIRED、CERNの素粒子測定を届けた。美の章では、AIエージェントが動かす人間のデジタルツインの医療総説と、中国アルタイ山脈の洞窟壁画が青銅器時代からチベット仏教期まで積み重なっていたことを伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.126 · 2026.11.02 (月)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
