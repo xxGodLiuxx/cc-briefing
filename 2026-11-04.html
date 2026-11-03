@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.04 (水) · No.128</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-a">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-04/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>牛から人へ、<br>2026年初の死者</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.128 · 2026.11.04 (WED)</div>
+    <p class="lead">ワシントン州ヤキマ郡で、乳牛から感染した鳥インフルエンザ(H5N1)による死者が出た。2026年では初めて、米国では通算3人目。エボラの死者はアフリカCDC集計で5,376人まで増え、麻疹は来週『排除』認定の見直しを控える。基盤の章が示すのは、動物由来の感染症がいくつもの経路で人に迫り続けている現実だ。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.128</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.04 WED</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>34</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-04/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>米国で鳥インフルエンザ(H5N1)の死者 — 2026年で初、乳牛からの感染</h2><p>前号(11/3号)はエボラの死者5,000人超えを今日の一本に選んだが、今号は米国内の新しい展開を優先した。ワシントン州ヤキマ郡の住民が11/1(日)に鳥インフルエンザで死亡したと、郡の保健当局が11/2に発表した。感染した乳牛のいる酪農場で曝露しており、持病があった。米CDCがH5N1への感染を確認し、CNN・Fox Newsなど複数の全米メディアが伝えている。米国の鳥インフルエンザによる死者は、2025年1月のルイジアナ州(H5N1)、2025年11月のワシントン州(H5N5という別の型)に続き3人目で、2026年では初めて。同州では10/8に乳牛の感染が初めて確認されたばかりで、ヤキマ郡と隣のベントン郡の酪農場に広がっている。エボラはその後も死者が増え続けており(アフリカCDCの集計で5,376人)、今号の基盤の章ではその続報も届ける。CDCは一般の人への危険は低いとしている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-04/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 &middot; 研究</span><h3>生後3週未満の治療開始で、運動発達の到達度が約13倍</h3><p>米ユタ大学とCure SMAの研究者は、Cure SMAが集めた家族の回答データを解析し、Neurology and Therapy誌に発表した(Cure SMAが10/21に告知)。SMN2遺伝子のコピー数が2以下の子どもでは、生後3週未満に治療を始めた場合、生後4か月以降に始めた場合に比べて、より多くの運動発達の節目(座る・立つ・歩くなど)に到達するオッズが約13.4倍だった。新生児スクリーニングや出生前検査が早い治療につながり、家庭の所得による差も小さくしていたという。保護者の回答にもとづく解析で、無作為化試験ではない点に注意。</p><div class="src">SOURCE：<a href="https://link.springer.com/article/10.1007/s40120-026-00943-x">Neurology and Therapy(2026) / SMA News Today(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 &middot; 続報</span><h3>Isembyld、11/10に初の売上公表へ — 価格は年間約31万ドル</h3><div class="upd">🔁 続報 — 11/2号: 11/10決算予定とFDA骨折リスク警告を既報、今回は投資家会議出席の公表と価格(1バイアル1万1,659ドル・年間約31万ドル)の報道が新情報</div><p>Scholar Rockは、9/11に米国で承認された筋肉標的薬Isembyld(アピテグロマブ)を含む第3四半期決算を11/10(米国の取引開始前)に発表する。11/3には、経営陣が投資家会議に出ると公表した。Isembyldは、SMN2を標的とする治療(スピンラザ・エブリスディなど)をすでに受けている2歳以上の患者が対象で、添付文書には骨折のリスクが高まるおそれがあるとの警告がある。価格は1バイアル1万1,659ドル、年間の正味価格は約31万ドルとの報道があるが、要確認。欧州では10/8に承認申請を再提出済み(前号既報)。</p><div class="src">SOURCE：<a href="https://www.biospace.com/press-releases/scholar-rock-to-report-third-quarter-2026-financial-results-on-november-10-2026">BioSpace/Business Wire(2026-10-20) / FinancialContent/Business Wire(2026-11-03)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/01_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.3 &middot; 季節</span><h3>11月は家族介護者月間 — Cure SMAは『次の10年』へ</h3><p>米国では11月が『全米家族介護者月間』。SMA News Todayでは11/3、SMAと暮らすコラムニストが、自分の生活を支えてきた両親への感謝をつづった。Cure SMAは10/1から年末キャンペーン『This Gen, Next 10』を行い、この世代で治療が大きく進んだことを振り返りつつ、次の10年の研究とケアに向けた支援を呼びかけている。治療が増えても、毎日の生活を支える家族の負担は続いているという視点を思い出させる。</p><div class="src">SOURCE：<a href="https://smanewstoday.com/columns/national-family-caregivers-month-honor-parents-set-bar/">SMA News Today(2026-11-03) / Cure SMA(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>早い治療がもたらす差が、家族の回答データからも裏付けられた。一方で、新薬の価格と決算が示すのは『承認』から『支払う』段階への移行。11月は、その両方を支える家族の存在を思い出す月でもある。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI &amp; Gaze Input</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-04/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 &middot; BCI</span><h3>中国BrainCo、脳を刺激して食欲を抑える『電子版GLP-1』を開発</h3><p>Bloombergは11/3、中国の脳技術企業・強脳科技(BrainCo)が、頭に着ける非侵襲の脳刺激装置で食欲を抑え、やせ薬のGLP-1薬に代わる手段をめざしていると報じた。共同創業者は『電子版のGLP-1』と表現した。発売目標は2〜3年後で、まず中国、その後に米国も視野に入れる。医療用と一般向けの2種類を検討しているという。同社はすでに自閉症・ADHD・不眠向けのヘッドセットや、米FDAが認めた義手を販売している。ただし効果を示す臨床データや規制当局への申請はまだ確認できず、報道はほぼBloombergの1本にもとづく。</p><div class="src">SOURCE：<a href="https://inshorts.com/en/news/musk-s-neuralink-rival-is-developing-a-wearable-device-to-curb-appetite-1793712919581">Inshorts(2026-11) / mezha(2026-11) / NewsBytes(2026-11)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 &middot; 続報</span><h3>Neuralinkの視覚回復、試験はまだ未登録 — 中国では阶梯医疗が上場準備</h3><div class="upd">🔁 続報 — 9/8号: StairMedの多施設試験計画(2026年前半開始・2028年頃上市目標)を既報、今回は上場(IPO)に向けた指導登録という資本市場での新しい動き</div><p>マスク氏は10/30に、視覚回復の『Blindsight』は技術的には準備済みで規制当局の承認待ちだと投稿した。しかしXenoSpectrumの確認では、11/2時点でClinicalTrials.govにNeuralink関連の試験は7件あるが、視覚回復の試験は登録されておらず、最初の埋め込みの日程も示されていない。中国では、埋め込み型BCIを開発する上海の阶梯医疗(StairMed)が11/3、上場(IPO)に向けた指導の登録を上海証券監督管理局で済ませたと報じられた(新浪の速報まとめ、一次の公示は未確認)。StairMedは9月時点で30〜40人規模の多施設試験を2026年前半に開始し2028年頃の上市を目標としていると報じられており、臨床試験と資本市場の両方を並行して進めている。</p><div class="src">SOURCE：<a href="https://xenospectrum.com/en/neuralink-blindsight-vision-trial-record">XenoSpectrum(2026-11) / 新浪科技(2026-11-02, 2026-11-03)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/02_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.3 &middot; 新規</span><h3>杭州のNanochap、視覚BCIで5億元を調達 — 網膜埋め込みは3例が手術済み</h3><p>視覚回復をめざすBCIを開発する杭州のNanochapは11/3、シリーズC+で5億元(人民元)を調達したと発表した。Gaorong Venturesが主導し、今年2回目の調達で累計調達額は10億元に達した。320チャネルの網膜インターフェースは臨床試験の段階にあり、すでに3人が埋め込み手術を受けている。1,280チャネルの視覚野インターフェースは開発中で、臨床検証はまだ計画段階。中国では強脳科技(BrainCo)や神経訊息(Neuracle Medical)も上場準備を進めており、視覚回復BCIの資金と上場をめぐる動きが同時に進んでいる。</p><div class="src">SOURCE：<a href="https://technode.com/2026/11/03/visual-brain-computer-interface-developer-nanochap-raises-rmb-500-million/">TechNode(2026-11-03)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>視覚回復をめざす中国企業は、臨床試験・資金調達・上場準備を同時並行で進めている。Neuralinkは『発表』が先行し、試験登録という裏付けはまだ追いついていない。BCIの応用先は、まひ・発話・視覚に加えて肥満にも広がりつつあるが、効果の裏付けはどの技術もまだ薄い。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-04/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 &middot; 感染症</span><h3>米国で鳥インフルエンザ(H5N1)の死者 — 乳牛からの感染、2026年で初</h3><p>ワシントン州ヤキマ郡の住民が11/1(日)に鳥インフルエンザで死亡したと、郡の保健当局が11/2に発表した。感染した乳牛のいる酪農場で曝露しており、持病があった。米CDCがH5N1への感染を確認したとCNN・Fox News・ContagionLiveなど複数の全米メディアが伝えている(10/23号で伝えた同郡の酪農従事者感染情報は、2024年の記事の誤配信だったと判明し10/31号で取り下げたが、今回は別の死亡事例で複数メディアが直接確認済み)。米国の鳥インフルエンザによる死者は、2025年1月のルイジアナ州(H5N1)、2025年11月のワシントン州(H5N5という別の型)に続き3人目で、2026年では初めて。同州では10/8に乳牛の感染が初めて確認されたばかりで、ヤキマ郡と隣のベントン郡の酪農場に広がっている。感染した牛群の数は報道により9〜39と大きく異なり、人の感染例の数も郡の発表(3例)と州のまとめ(酪農関連1例)で食い違っている。CDCは一般の人へのリスクは低いとしつつ、低温殺菌した乳製品は安全だが感染した牛の生乳にはウイルスが残りうるとして注意を呼びかけている。</p><div class="src">SOURCE：<a href="https://www.cnn.com/2026/11/02/health/bird-flu-death-2026">CNN(2026-11-02) / ContagionLive(2026-11-02) / WSAW/AP(2026-11-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 &middot; 続報</span><h3>エボラの死者5,376人に — アフリカCDCが集計を更新</h3><div class="upd">🔁 続報 — 11/3号: DRC保健省発表の死亡5,026人を既報、今回はアフリカCDC集計で死者5,376人(ケニア・ウガンダ含む)・確定10,444例に更新</div><p>アフリカCDCが11/2(月)に共有したデータで、ブンディブギョ型エボラの死者は5,376人となった。内訳はコンゴ民主共和国(DRC)5,372人、ケニア2人、ウガンダ2人で、確定例は10,444例、致死率は5割を超える。米CDCの集計(10/31時点)では死者5,107人で、アフリカCDCの数に『疑い例』の死者が含まれるかは明らかにされていない。前号(11/3号)で伝えたDRC保健省の発表(死亡5,026人)からも増えた。アフリカCDCのカセヤ所長は、流行地域の広がりは『前例がない』とし、国際支援が足りないと訴えている。承認済みのワクチン・治療薬はまだない。</p><div class="src">SOURCE：<a href="https://www.dailysabah.com/world/africa/africa-cdc-revises-latest-ebola-outbreak-toll-to-over-5300">Daily Sabah(2026-11) / Insider Paper/AFP(2026-11)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 &middot; 続報</span><h3>米国の麻疹『排除』見直しは来週 — フロリダではデング熱も増加</h3><div class="upd">🔁 続報 — 11/2号: 麻疹4,852例とPAHO見直し会合(11/10〜13)を既報、今回はフロリダ州デング熱が1週間で60例増え485例になったという新情報</div><p>米国の麻疹はCDC集計(10/29時点)で4,852例(前々号既報、新しい集計は未取得)。汎米保健機構(PAHO)の地域検証委員会が、米国とメキシコの『麻疹排除』の地位を年次会合で見直す。会合は11/10〜13と報じられている(日程はPAHOの公式発表で要確認)。判断の対象は、米国で流行が始まった2025年1月20日から1年間に国内で感染が途切れずに続いたかどうか。PAHOは2025年11月にカナダの排除の地位を取り消している。フロリダ州では国内で感染したデング熱が1週間で60例増え、485例になった(CIDRAPの11/2記事を引用したKFFのまとめ)。</p><div class="src">SOURCE：<a href="https://www.paho.org/en/news/2-3-2026-update-review-measles-elimination-status">PAHO(2026) / ジョンズ・ホプキンス大(2026) / KFF Health News(2026-11-03)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>鳥インフルは『牛から人』への感染死が2026年に入って初めて出たことで、酪農従事者の防護と検査体制が改めて問われる。ただし人から人への感染は報告されていない。エボラは数字が増え続け、集計元による差も大きい。来週は米国の麻疹排除の判断とデング熱の広がりに注目。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-04/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 &middot; 太陽系</span><h3>1.63秒で1回転 — 地球に落ちた小惑星が『最速の自転』</h3><p>中国科学院雲南天文台の張西亮氏らは、2024年12月4日に大気圏に突入した小惑星『2024 XA1』の自転周期が1.63秒で、これまでの記録(2.58秒)を破り、近地球小惑星で最も速いと確認した。論文はAstronomical Journal誌に掲載(報道は10/25〜27)。直径は約0.55メートルで、発見から落下までわずか約10時間。麗江の2.4メートル望遠鏡で落下直前の1時間に撮影した。これほど速く回ると、ばらばらの岩の寄せ集めなら飛び散ってしまうため、一枚岩のような固い天体だとわかる。地球に落ちる小天体の監視と予測にも役立つ。</p><div class="src">SOURCE：<a href="https://m.gmw.cn/2026-10/27/content_1304579622.htm">光明網(2026-10-27) / 科技日報(2026-10-25)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 &middot; 理論</span><h3>ブラックホールが2つに割れる? 超高速回転なら理論上ありうる</h3><p>南デンマーク大学などの研究チームは、ブラックホールが2つに分裂できる条件を理論的に調べ、Physical Review D誌に10/22に発表した。回転していないブラックホールは、割れると全体のエントロピー(乱雑さ)が減るため分裂できない。しかし、回転が理論上の最大値に近い場合に限り、分裂がありうるという。その場合、ブラックホールの境界(地平面)は時間とともにズボンのような形を描く。実際に起こる確率はまだ出せず、アインシュタインの理論を超えた重力の性質しだいとしている。ガンマ線望遠鏡(Fermi-LAT)で小さな破片の信号を探せる可能性がある。分裂が観測されたわけではない。</p><div class="src">SOURCE：<a href="https://www.sdu.dk/en/om-sdu/fakulteterne/naturvidenskab/nyheder-2026/black-hole-in-two">南デンマーク大学(2026-10) / Space.com(2026-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 &middot; 新規</span><h3>天の川の中心ブラックホール周辺、重元素に富むガス — JWSTで確認</h3><p>カナダ・マギル大学トロティエ宇宙研究所などのチームは、天の川銀河の中心にある超大質量ブラックホール『いて座A*』の周りを回るガス(ミニスパイラル)をJWSTで観測し、重元素(金属)に富んでいることを確認したと10/19に発表した。論文『Ionization Structure and Metal Enrichment of the Galactic Center Minispiral Observed with JWST』はAstronomical Journal誌に掲載。ガスの組成は近くの恒星と似ており、超新星爆発でつくられた金属が混ざった可能性が高いという。重元素が多いガスは冷えやすく、ブラックホールに落ち込みやすくなるはずだが、いて座A*が実際にはわずかな量しか取り込んでいない理由はまだ説明できていない。別の研究チームは同じガスに過去の爆発的な活動の痕跡も探している。</p><div class="src">SOURCE：<a href="https://www.livescience.com/space/astronomy/james-webb-telescope-discovers-surprising-trove-of-metals-around-the-milky-ways-supermassive-black-hole">McGill University(2026-10-19) / Live Science(2026-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>中国科学院の観測が、地球に落ちる直前の小天体の正体まで明らかにした。ブラックホールの理論的な分裂可能性と、天の川中心の重元素に富むガスは、理論と観測の両面から『当たり前ではない』ことを示す。ESAのEuclidは11月中旬に最初のデータ公開(DR1)を予定している。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Origins &amp; Digital Self</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-04/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 &middot; デジタルツイン</span><h3>上海・瑞金医院、5,000万人の『健康デジタルツイン』めざす国際連合</h3><p>China Dailyの11/2の報道によると、上海交通大学医学院附属瑞金医院が国内外の機関と『医療・健康のデジタルツイン国際コンソーシアム』を立ち上げた。最終的に5,000万人分の健康デジタルツイン(体の情報をもとにコンピューター上に作る分身)をつくる構想だという。寧光院長は、遺伝・生理・心理・行動・社会・環境などの多くのデータをまとめ、一人ひとりの『デジタルな生命の座標』をつくると説明した。参加機関や資金、個人データの扱いの詳細は報道からは確認できず、報道ベースの情報である。</p><div class="src">SOURCE：<a href="https://chinadaily.com.cn/a/202611/02/WS6ae82819e4b06d4aa0566761.html">China Daily(2026-11-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 &middot; 続報</span><h3>『脳を写した』と言えるのはいつか — 全脳エミュレーションに評価基準を</h3><div class="upd">🔁 続報 — 10/14号: Eon Systemsのハエ全脳エミュレーション発表と『ヒトは30〜40年先』という懐疑論を既報、今回は成果を比べるための具体的な評価基準(4段階)の提案という新しい展開</div><p>研究者のDavy Deng氏とClaire Wang氏は11/2の論考で、全脳エミュレーション(脳をまるごとコンピューター上に再現する試み)の成果を比べるための共通の基準が必要だと提案した。『表現』『予測』『介入への反応』『計算の仕組み』の4段階で評価する案で、意識に関わるとされる脳の特徴とも結びつけている。背景には、2026年3月にEon Systemsが『ハエの脳を丸ごと再現して仮想の体を動かした』と発表し、批判が出たことがある。批判側は、動きの多くは既存の制御モデルに頼っていて、脳の配線図が働いた証拠にはならないと指摘した。論考は査読を経ていない。</p><div class="src">SOURCE：<a href="https://davyneuro.substack.com/p/whole-brain-emulation-needs-a-benchmark">Davy Neuro(2026-11-02) / Carboncopies(2026) / LessWrong(2026)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-04/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 &middot; デジタルツイン</span><h3>患者とともに『育つ』モデル — Dukeのデジタルツイン構想</h3><p>米デューク大学の『Duke Digital Twin Initiative』は、工学・医学・看護・データ科学の専門家が組み、患者一人ひとりのデータで更新され続ける計算モデルを作ろうとしている。11/2に公開されたインタビューでは、個別化した治療と病気の早期発見をねらいとしている。前号のスタンフォード大の『脳の予測モデル』と並び、米国の大学で人間のデジタルツインを医療に使う動きが続いている。具体的な臨床成果はまだ示されていない。</p><div class="src">SOURCE：<a href="https://ramaonhealthcare.com/digital-twins-in-health-care-dukes-approach-to-personalized-care-and-earlier-disease-detection">Rama on Healthcare(2026-11-02)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>中国は『数千万人規模の分身』という量で、米国の大学は個人に合わせた精度で、デジタルツインを医療に取り込もうとしている。一方で『脳を写した』という主張には、ようやく比べるための物差しが提案され始めた。</p></div></section><section class="closing"><div class="mk">✦</div><p>今日は、動物から人への感染症が複数の経路で迫り続けていることを示す一日だった。米国では乳牛から感染した鳥インフルエンザが2026年で初めての死者を出し、コンゴ民主共和国のエボラは死者が5,376人に達した。自由の章では、脳を刺激する技術が『まひの回復』から『食欲の抑制』へと応用先を広げ、視覚回復をめざす中国企業が資金と上場の両方を競っている。畏敬の章では、地球に落ちる直前の小天体の正体が明らかになり、天の川の中心では重元素に富むガスがブラックホールの謎を少しだけ解きかけた。美の章では、5,000万人規模の健康デジタルツインという構想と、『脳を写した』と言えるための評価基準づくりが、同じ週に報じられている。</p><p class="night">数字と構想がどれだけ大きくなっても、確かめる手は一つずつの事実を積み重ねていくしかない。では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.128 · 2026.11.04 (水)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
