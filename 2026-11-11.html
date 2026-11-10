@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.11 (水) · No.135</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-d">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-11/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>ディディモスの、まだ<br>見たことのない面</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.135 · 2026.11.11 (WED)</div>
+    <p class="lead">ESAの探査機Heraが衝突現場の小惑星に約60kmまで接近し、DARTが見なかった側面を初めて捉えた。流行地では英国人医師が初めて本国へ医療搬送され、深センの超音波治療で意識障害の患者13人に改善が見られた。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.135</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.11 WED</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡 注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>15</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-11/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>ESAのHera、ディディモスの『まだ見たことのない面』に接近 — DARTが見なかった側面を初めて撮影</h2><p>欧州宇宙機関(ESA)の探査機Heraが11/5、衝突実験の現場である小惑星ディディモス・ディモルフォス系に大きく接近し、新しい画像を公開した。撮影地点はディモルフォスから約37マイル(約60km)で、画面の大部分を親天体ディディモスが占め、その下に衛星ディモルフォスがわずかに写っている。注目すべきは、NASAの探査機DARTが2022年の衝突直前に見ていなかったディディモスの側面を、Heraが初めて捉えたこと。10/18の『ファーストライト』画像(距離約1,280km)から1か月弱で、観測距離は270〜360kmを経て約60kmまで縮まった。ESAのイアン・カルネッリ氏は、Heraが近づくにつれて画像はさらに鮮明になり、ディモルフォスの最初の詳細画像は11/25に公開される予定だと説明している。衝突でディモルフォスの軌道と自転がどう変わったかを確かめる『検死』が、着実に次の段階へ進んでいる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-11/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 新規</span><h3>Scholar Rock、ISEMBYLDの初決算は売上57万〜60万ドル — 市場予想を下回る出だし</h3><p>Scholar Rockは11/10、2026年第3四半期(9月末まで)の決算を発表した。9/11に米国で承認された抗体薬ISEMBYLD(一般名apitegromab、筋肉を狙うSMA治療薬。本誌は前号までapitegromabを「ISEMBLYD」と表記していたが、会社発表の正式表記は「ISEMBYLD」)の売上は約57万〜60万ドル(資料により数字に幅がある)で、専門薬局網への初回出荷分にとどまり、アナリスト予想の約143万ドルを下回った。純損失は1億720万ドル(前年同期は1億220万ドル)、1株当たり損失は0.81ドルで、こちらはアナリスト予想(0.84ドルの損失)より小さかった。9月末時点の現金・有価証券などの残高は4億1,360万ドル。優先審査バウチャー(PRV)を2億500万ドルで売却する契約も結んだが、買い手の社名は今回確認した資料には記載がない(未確認)。欧州では販売承認申請(MAA)が10月に再提出・受理され、欧州医薬品委員会(CHMP)の意見は2027年前半の見込み。発売直後で売上はまだ在庫の出荷段階にあり、保険の承認が進む次の四半期が本当の試金石になる。</p><div class="src">SOURCE：<a href="https://www.biospace.com/press-releases/scholar-rock-reports-third-quarter-2026-financial-results-and-recent-business-highlights">BioSpace(2026-11-10)/ Investing.com</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ISEMBYLDは承認から2か月、出だしの売上は在庫の出荷段階にとどまり市場予想を下回った。欧州の判断は2027年前半の見込みで、次の四半期の保険承認の進み方が本当の試金石になる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI &amp; Eye-Tracking</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-11/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規</span><h3>超音波で脳を刺す非侵襲BCI、慢性意識障害の患者13人に明確な改善 — 深センの初期臨床研究</h3><p>11/2、粤港澳大湾区国際脳機接口産業創新大会(深セン)で、中国科学院深セン先進技術研究院などのチームが、頭を切らない超音波BCIの臨床成果を発表した。MRIで脳内の標的部位を特定し、超音波をミリメートル単位で集中させる仕組みで、てんかんやうつ病への応用研究も進めている。昆明医科大学との初期臨床研究では、脳出血や外傷などで生じた遷延性意識障害(いわゆる植物状態)の患者24人に、週3回・1回20分・4週間の超音波治療を行い、13人に意識や行動の明確な改善が見られた。脳出血で3か月間昏睡状態だった1人は、30日間の治療後に覚醒し、会話や自力での食事ができるようになり、介助があれば歩行もできるようになったという。24人中13人という数字は初期の臨床研究にとどまり、無作為化対照試験のような厳密な検証はまだない。</p><div class="src">SOURCE：<a href="https://www.ncsti.gov.cn/kjdt/kjrd/202611/t20261102_260641.html">国家新一代人工智能治理専業委員会(2026-11-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-11/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 新規</span><h3>ONWARD Medical、Q3売上2.5倍 — 在宅のARC-EX供給が倍増、BlackRockから最大5,000万ユーロ</h3><p>脊髄刺激で麻痺の回復をめざすONWARD Medicalは11/3、2026年第3四半期の業績を発表した。売上は250万ユーロ(前年同期から2倍超に成長)、うち主力製品ARC-EXの販売・供給分は200万ユーロ。ARC-EXは四半期に88台を臨床・在宅向けに供給し、台数は前年同期の2倍超(一部報道では120%増)、供給先の過半数は在宅使用向けだった。世界170以上の施設(米国の150のリハビリ施設・退役軍人病院を含む)で利用されている。資金面では、BlackRockが運用するファンドなどから最大5,000万ユーロの融資枠を確保した。脳とARC-EXを結ぶBCI『ARC-BCI』を組み込んだ重症例向けのEmpower BP試験は、参加者31人・拠点16か所(米国・カナダ・ドイツ)まで拡大している(上半期時点は22人・14拠点)。</p><div class="src">SOURCE：<a href="https://www.ariva.de/news/onward-medical-delivers-revenue-of-eur-2-5m-in-q3-2026-with-12191929">BioSpace/ Ariva.de(2026-11-03)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>中国では非侵襲の超音波が意識障害という難治の領域に数字を伴って踏み込み、欧州ではARC-EXの供給が倍増して在宅利用が主流になってきた。埋め込み型の派手な発表に比べ、着実な臨床と商業の積み上げが目立つ一週間だった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-11/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報</span><h3>エボラ流行で初めて英国人を本国へ医療搬送 — ロンドンの隔離病棟へ</h3><div class="upd">🔁 続報 — 確定10,668例・死者5,198人・致死率48.7%という数字は11/10号(WHO DON625既報)と同一。今号の新規情報は、流行で初めて英国人医療従事者がロンドンへ医療搬送されたこと</div><p>コンゴ民主共和国(DRC)で人道支援にあたっていた英国人の男性医師がエボラに感染し、11/5(木)、英国とDRC両政府および国際的な保健パートナーの手配により、ロンドンのロイヤル・フリー病院の高度隔離病棟へ医療搬送された。今回の流行で英国人が本国へ搬送されるのは初めてで、ロンドン大学衛生熱帯医学大学院(LSHTM)の専門家は『英国の一般の人へのリスクは低い』としている。原因株はブンディブギョ型ウイルス。流行全体の規模は、WHOが11/6に正式公表した11/3時点の集計(確定10,668例・死者5,198人・回復者2,881人、致死率約48.7%)から更新がなく、この数字自体は11/10号で既報。新しい動きは、対応にあたる医療従事者自身の感染と、国境を越えた搬送という段階に入ったことだ。</p><div class="src">SOURCE：<a href="https://www.news4jax.com/health/2026/11/05/british-man-being-treated-for-ebola-in-congo-is-being-evacuated-to-the-uk/">News4JAX(AP、2026-11-05)/ ITV/ WHO DON625</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>エボラはDRC国内の対応に加え、国境を越えた医療搬送という新しい段階に入った。流行そのものの規模はWHOの11/3集計から更新がなく、次の焦点は搬送された医師の経過と、国際的な支援体制の広がり。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-11/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 続報</span><h3>ESAのHera、ディディモスの『まだ見たことのない面』に接近 — DARTが見なかった側面を初めて撮影</h3><div class="upd">🔁 続報 — 11/1号(No.125)の『初めて2つに分けて撮影』(距離1,280km)からの続報。今号の新規情報は、約60km(37マイル)まで接近し、DARTが衝突直前に見なかったディディモスの側面を初めて捉えたこと</div><p>欧州宇宙機関(ESA)の探査機Heraが11/5、衝突実験の現場である小惑星ディディモス・ディモルフォス系に大きく接近し、新しい画像を公開した。撮影地点はディモルフォスから約37マイル(約60km)で、画面の大部分を親天体ディディモスが占め、その下に衛星ディモルフォスがわずかに写っている。注目すべきは、NASAの探査機DARTが2022年の衝突直前に見ていなかったディディモスの側面を、Heraが初めて捉えたこと。10/18の『ファーストライト』画像(距離約1,280km)から1か月弱で、観測距離は270〜360kmを経て約60kmまで縮まった。ESAのイアン・カルネッリ氏は、Heraが近づくにつれて画像はさらに鮮明になり、ディモルフォスの最初の詳細画像は11/25に公開される予定だと説明している。</p><div class="src">SOURCE：<a href="https://www.space.com/space-exploration/asteroid-comet-missions/hera-probe-gets-1st-good-luck-at-asteroid-system-clobbered-by-nasas-dart-mission-space-photo-of-the-day-for-nov-6-2026">Space.com(2026-11-06)/ Neoteo/ New Space Economy(2026-11-06・07)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-11/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 訂正</span><h3>EuclidのDR1、正式な公開日はまだ示されず — 前号までの『11/12予定』は裏付け取れず</h3><div class="upd">⚠️ 訂正 — 11/1号・11/9号で『11/12予定(暫定)』としていた具体的な日付は、ESA公式タイムラインページでは確認できず、『2026年11月中』とのみ示されている</div><p>ESAの宇宙望遠鏡Euclidの最初の大型データ公開(DR1)について、ESA公式のタイムラインページ(2026年6月15日更新)を確認したところ、第1段『DR1-Foundation』(生データ・較正済み画像・カタログ・スペクトル、約1,900平方度)は『2026年11月』に公開予定とされているが、具体的な日付はこのページには示されていない。完全版のDR1(銀河の集団や弱い重力レンズ効果の高次科学プロダクトを含む)は2027年中頃の予定。前号・前々号で伝えた『11/12予定(暫定)』という日付は、今回確認した公式ページでは裏付けが取れなかった。素粒子物理では、CERNの大型ハドロン衝突型加速器(LHC)が高輝度化(HL-LHC)のための長期停止(LS3)に入っており、新しい大型の物理成果の発表は今号でも確認できなかった。</p><div class="src">SOURCE：<a href="https://www.cosmos.esa.int/web/euclid/dr1-timeline">ESA Euclid DR1タイムライン(2026-06-15更新)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>Heraは衝突現場への『検死』を一歩ずつ進め、11/25の詳細画像公開が次の山場。Euclidの最初の大型データ公開は『11月中』に留まり、前号までの具体的な予定日は裏付けが取れなかった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Story</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-11/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 新規</span><h3>2,800年前のシベリアの墓から、大麻を使った儀式の化学的な証拠</h3><p>スイス・ベルン大学のギノ・カスパリ氏らのチームは、ロシア南部トゥヴァ共和国のウユク川流域にある墓『トゥヌグ1』の調査結果をScience誌に発表した(2026年11月上旬)。種子の放射性炭素年代測定により、埋葬は紀元前8世紀初頭(約2,800年前)のものと判明。墓の中には1,000〜1,400個を超える大麻の種子が散らばっており、複数の遺体の毛髪を高分解能の質量分析で調べたところ、カンナビノール(CBN、大麻の分解産物)の明確な信号が検出され、一部ではTHCのわずかな痕跡も見つかった。カスパリ氏は、大麻の使用は墓という儀礼的な文脈の中にあり、シャーマニズム的な信仰と結びついている可能性があると説明している。毛髪の毒性学的分析自体は考古学で新しい手法ではないとの指摘も専門家から出ており、過大評価には注意が必要。</p><div class="src">SOURCE：<a href="https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims">Science(2026年11月)/ Live Science/ Popular Science</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>2,800年前の墓からも、人が儀式や死者を送る場面で向精神物質を使っていた確かな化学的証拠が出てきた。考古学は『推測』から『分子レベルの裏付け』の時代に入っている。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号は、ESAのHeraが衝突現場の小惑星に60kmまで迫り、DARTが見なかった側面を初めて捉えたところから始まった。11/25の詳細画像公開が次の山場になる。基盤の章では、エボラの対応にあたる英国人医師が流行で初めて本国へ搬送されたことを届けた。自由の章では、深センの超音波治療が慢性意識障害の患者13人に改善をもたらした初期研究と、ONWARD Medicalの在宅ARC-EX供給の広がりを。命の章では、承認から2か月のISEMBYLDが初めての決算を迎え、売上はまだ小さな出だしにとどまった。美の章では、2,800年前のシベリアの墓から、大麻を使った儀式の化学的な証拠が見つかったことを伝えた。</p><p class="night">では、また明日の朝に。 — JaH</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.135 · 2026.11.11 (水)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
