@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.13 (金) · No.137</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-b">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-13/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>10億の光点、<br>宇宙の土台になる</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.137 · 2026.11.13 (FRI)</div>
+    <p class="lead">二度延期されたEuclidの最初の大型データが、ついに届いた。待たれていたものが動いた一日。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.137</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.13 FRI</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>22</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-13/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>欧州の宇宙望遠鏡Euclid、10億天体超の最初の大型データ「DR1-Foundation」を公開</h2><p>10月11日号・11月11日号で公開予定日が二度にわたり後ろ倒しになっていた欧州宇宙機関(ESA)の宇宙望遠鏡Euclidの観測データが、11/12にようやく公開された。「DR1-Foundation」と名づけられた最初の本格データは、2024年春から2025年春までの約13か月間で約1,900平方度(満月約9,500個分)の空を撮影し、10億個を超える天体の光をとらえた内容。銀河が9億個超、「重力レンズ」候補が約1万5,000個、明るいクエーサー候補が6,000万個超、1億6,000万を超える天体のスペクトルを含む。これは6年計画の観測範囲の約14%にあたり、宇宙の約95%を占めるとされる暗黒物質・暗黒エネルギーの正体に迫る「宇宙の3D地図」の土台となる。銀河の分布や重力レンズの解析を加えた完全版DR1は2027年半ばの予定で、データ量は約1.7〜1.8ペタバイトと報じられている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-13/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 続報</span><h3>ゾルゲンスマの腫瘍調査、髄注製剤「Itvisma」にも拡大</h3><div class="upd">🔁 続報 — 11/7号・11/8号・11/9号: FDAの調査対象に髄注製剤Itvismaが追加された</div><p>FDAは11/6の安全性情報で、点滴型ゾルゲンスマだけでなく、同じベクターと遺伝子構造を使う脊髄腔内投与(髄注)製剤Itvismaも調査対象に加えた。Itvismaでは今のところ腫瘍の報告はない。ノバルティスによると2019年の承認以来の治療者は6,000人超で、腫瘍の報告は9件、うち2件でベクターDNAのがん遺伝子GLI1付近への組み込みが確認された。FDAは治療歴のある人や治験参加者の経過観察を求める一方、承認された使い方では利益がリスクを上回るとの立場は変えておらず、回収や販売中止、治験停止は確認されていない。</p><div class="src">SOURCE：<a href="https://www.biospace.com/drug-development/novartis-confirms-9-reported-cases-of-tumors-in-patients-treated-with-zolgensma">BioSpace / NeurologyLive(2026-11-06〜07)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 決算</span><h3>スピンラザ、第3四半期の世界売上4億6,100万ドル — 前年比23%増</h3><p>開発元Ionisが11/9に発表した2026年第3四半期決算によると、販売元バイオジェンによるスピンラザ(ヌシネルセン)の世界売上は4億6,100万ドルで前年同期比23%増。Ionisが受け取るロイヤルティーは6,900万ドル(前年同期5,600万ドル)。より多い量を投与する高用量レジメンが欧州・米国の両方で承認済みで、日本でも高用量向けの28mg・50mg製剤が2025年11月から販売されている。ゾルゲンスマの安全性が議論になる中、既存薬の需要は伸びている。</p><div class="src">SOURCE：<a href="https://ir.ionis.com/news-releases/news-release-details/ionis-reports-third-quarter-2026-financial-results-and">Ionis / BioSpace(2026-11-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/01_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.3 · 日本</span><h3>スピンラザからリスジプラムへ切り替えた7例 — 理由は「針を刺す痛み」</h3><p>日本の小児神経科医のグループ(井上健司氏ら)は、背中に針を刺して投与するスピンラザから、飲み薬のリスジプラム(エブリスディ)に切り替えた7人の経過を米国の専門誌Journal of Child Neurologyに報告した。切り替えの主な理由は投与時の痛みだったという。効果の詳しい数字は本号では原文を確認できず要確認。なお成人対象の別の比較研究では、両剤とも約3年にわたり運動機能を同程度に安定させたと報告されている。</p><div class="src">SOURCE：<a href="https://journals.sagepub.com/doi/10.1177/08830738261501579">Journal of Child Neurology(SAGE)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ゾルゲンスマとItvismaの調査結果、そしてFDAが添付文書の変更などに踏み込むかが次の焦点。日本でも『痛みの少なさ』を理由にした切り替えの動きがある。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-13/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 中国</span><h3>中国でBCIの恩恵を受けた患者121例 — 上海の保険で費用の最大30%補償</h3><p>11/12に開かれた『2026脳機接口大会』の記者会見で、中国国内で脳コンピューター・インターフェース(BCI)の恩恵を受けた患者は121例に達したと紹介された。3月に国の医療機器(第3類)として承認された博睿康(Neuracle)の植込み型BCI『NEO』は、商業ベースの植込みが累計12例。上海の補完型医療保険『沪惠保』の対象になり、治療費の最大30%が補償されるという。ただし会社側の別の発表では『13セット販売・8例植込み』とされ、数え方に差がある。2026年版の沪惠保はBCI手術の自己負担材料費を最大15万元まで補償する項目を新設したが、詳しい支払い条件はまだはっきりしない。</p><div class="src">SOURCE：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001908ukyi.html">新浪新聞 / 虎嗅(2026-11-12)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 続報</span><h3>上海の阶梯医疗、長期植込み42例 — 上場準備へ</h3><div class="upd">🔁 続報 — 11/7号: 累計調達26億元と報じられた上場ラッシュの続き</div><p>頭蓋内に電極を入れる植込み型BCIを開発する上海の阶梯医疗(StairMed)は、10/28時点で長期植込みが42例、被験者の装着日数は延べ5,000日を超えたと公表した。8月には製品承認に向けた多施設登録臨床試験WRS01の参加者登録を完了。首から下がまひした患者が、腕を動かすイメージだけでロボットアームを操作できるとしている。10/30には証券会社と株式上場に向けた指導契約を結んだ。いずれも会社側の発表で、国の承認や試験データの正式公表はまだ。視線入力(アイトラッキング)の新製品・臨床試験の発表は本号でも確認できなかった。</p><div class="src">SOURCE：<a href="https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwukpx9543997.d.html">新浪財経 / 財聯社(2026-10-28〜11-03)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>中国は『承認→保険→症例数』の順で実用化の段階に入りつつある。一方で数え方の違いが目立ち、国の公式統計で確かめたい。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-13/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 続報</span><h3>エボラ、感染1万1,000例を突破 — MSF「半年たっても制御できていない」</h3><div class="upd">🔁 続報 — 11/12号の10,990例から5日間で52例増。流行開始から半年の節目</div><p>AP通信の報道によると、コンゴ民主共和国(DRC)政府は11/11、感染11,042例・死者5,387人を発表した(政府発表の数字でECDC・CDCの集計とは日付・定義が異なる、要確認)。国境なき医師団(MSF)は11/12、流行は『依然として制御できていない』とし、直近1か月のエボラ関連の死者の約3分の2が治療施設でなく地域の中で亡くなっていると指摘した。英インペリアル・カレッジのニール・ファーガソン教授は『実際の患者の約半分しか見つけられていない可能性が高い』と述べている。流行は全26州のうち8州に広がり、原因のブンディブギョ型には承認されたワクチンも治療薬もない。</p><div class="src">SOURCE：<a href="https://fox2now.com/health-3/ap-health/ap-congos-ebola-outbreak-tops-11000-cases-as-disease-keeps-spreading/amp/">AP(Fox2) / CNBC Africa(2026-11-11〜12)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · ケニア</span><h3>ケニア、終息宣言へのカウントダウンへ — 最後の患者が退院</h3><div class="upd">🔁 続報 — 11/8号で『残り1人治療中』だった最後の患者が退院</div><p>ケニアでは10/6にDRCからの輸入例が確認されて以来、計9例(うち死者2人)が報告された。保健省は11/6時点で6人目の回復者の退院を発表し『治療中は残り1人』としていたが、その後、最後の患者が退院し、エボラのない状態を宣言するための42日間のカウントダウンが始まったと報じられた(開始日は要確認)。最後の確定例は10/19。WHOの基準では、最後の患者の血液検査が48時間以上あけて2回陰性になってから42日間、新しい感染がなければ終息を宣言できる。保健省は『周辺国で流行が続いており油断はできない』としている。</p><div class="src">SOURCE：<a href="https://nbcnews.com/world/africa/kenya-countdown-ebola-free-declaration-last-patient-discharged-rcna608712">NBC News / Kenyans.co.ke(2026-11-12)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 続報</span><h3>米国の麻疹排除はまだ判断待ち、日本のインフルは注意報レベル超え続く</h3><div class="upd">🔁 続報 — 11/6号・11/7号・11/9号・11/12号から続く審査待ち。日本は第44週データから第45週へ</div><p>11/12時点でも、汎米保健機構(PAHO)は米国の『麻疹排除』の地位について最終判断を公表していない。米国の確定例は少なくとも5,182例(45州とワシントンDC)。焦点は、2025年1月20日に西テキサスで始まった流行と、サウスカロライナ州などその後の流行が遺伝的につながっているかどうかだ。日本では第44週(10/26〜11/1)のインフルエンザの定点当たり報告数が10.26と、注意報レベルの目安(10)を超えた(前年同期は14.90)。第45週(11/2〜11/8)分は本日11/13に厚生労働省が公表予定。</p><div class="src">SOURCE：<a href="https://goodmorningamerica.com/news/story/upcoming-meeting-determine-us-loses-measles-elimination-status-137989156">ABC News / PAHO / 厚生労働省(2026-11-10〜12)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>エボラは公式の数字だけで1万1,000例を超え、『見えていない患者』が同じくらいいる可能性も。ケニアは周辺国で初めて終息に近づく例になるか。日本のインフルは今日公表の第45週の数字で増加が続くかを確認したい。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Science</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-13/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 今日の一本</span><h3>Euclid「DR1-Foundation」公開 — 10億天体の宇宙地図、最初の大型データ</h3><div class="upd">⚠️ 訂正/続報 — 10/11号『10月21日公開予定』・11/11号『公開日まだ示されず』から、11/12に正式公開</div><p>ESAのEuclidは11/12、約13か月分(2024年春〜2025年春)の観測をまとめたDR1-Foundationを公開した。範囲は約1,900平方度で、銀河9億個超、重力レンズ候補約1万5,000個、クエーサー候補6,000万個超、1億6,000万天体超のスペクトルを含む。2025年3月の速報版(Q1)に比べて大幅に広く、6年間で予定する観測範囲の約14%にあたる。銀河の集まり方や重力レンズによる像のゆがみから暗黒物質の分布と宇宙の膨張の歴史を調べる研究用データは、2027年半ばの完全版DR1で加わる。</p><div class="src">SOURCE：<a href="https://www.cosmos.esa.int/web/euclid/euclid-dr1">ESA / Phys.org / マックス・プランク協会(2026-11-12)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 天文</span><h3>重力波で「見えない惑星」を探す — NASAの研究者がLISAでの新手法</h3><p>NASAの研究者らは、ESAとNASAが2030年代の打ち上げを目指す宇宙重力波望遠鏡LISAを使い、2つの白色矮星(燃え尽きた星)が回り合う連星の周りの惑星を見つける手法を、アストロフィジカル・ジャーナル誌の2本の論文で発表した(11/10)。惑星があると連星が出す重力波の信号にわずかなずれが生じることを利用するもので、光では見つけにくい天の川銀河の遠くの惑星も探せる可能性がある。宇宙重力波の分野では中国科学院も11/10、宇宙での重力波検出に向けた新しい位相読み出しの手法を発表している(詳細は要確認)。</p><div class="src">SOURCE：<a href="https://starlust.org/new-way-to-hunt-exoplanets-esa-nasas-lisa-could-detect-hidden-worlds-through-gravitational-waves/">Starlust / 中国科学院(2026-11-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 医学</span><h3>やせ薬で落ちる筋肉を守る — マイオスタチン抗体の第2相がLancetに</h3><p>米リジェネロンの第2相試験COURAGEが11/11、ランセット誌にオンライン掲載された。肥満症の人(BMI30以上、糖尿病なし)605人で、やせ薬セマグルチドに筋肉の成長を抑えるたんぱく質マイオスタチンを阻害する抗体トレボグルマブを併用すると、26週時点の除脂肪量(主に筋肉)の減少は、セマグルチド単独の6.5%に対し200mg併用で3.3%、400mg併用で3.8%と約半分に抑えられた。ガレトスマブを加えた3剤併用は2.0%だったが、副作用による中止が多く死亡が2例あった。マイオスタチン経路は、SMAの新薬ISEMBYLD(アピテグロマブ)と同じ『筋肉を狙う』考え方でもある。</p><div class="src">SOURCE：<a href="https://www.thelancet.com/journals/lancet/onlinefirst">The Lancet / Medscape / Regeneron(2026-11-11)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>Euclidのデータは世界中の研究者が使えるため、暗黒物質の地図や珍しい重力レンズの発見が今後相次ぎそう。医学では『やせても筋肉は守る』併用療法の安全性が次の論点。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human History</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-13/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 考古学</span><h3>北京で隋代の長城跡を初確認 — コインと青磁が物語る再利用の跡</h3><p>北京市昌平区の大陵溝(ダーリンゴウ)遺跡で、隋代(581〜618年)の長城区間が北京で初めて確認されたと、北京市文物研究所が11月初めの『京津冀考古学術交流会』で発表した。約800平方メートルを8〜10月にかけて発掘したところ、全国調査では北斉(550〜577年)の城壁と分類されていた遺構から、隋代の軍事拠点が見つかった。研究者は、隣接する河北省・山西省に残る北斉時代の城壁の線上に似た手がかりがあることから、隋が北斉の城壁の大部分を再利用した可能性があるとみている。同じ発表では、豊台区で約1,800年前(漢・晋代)の木造船3隻の遺構も報告された。</p><div class="src">SOURCE：<a href="https://www.chinadailyhk.com/hk/article/642089">China Daily HK / Ancient Origins / Medievalists(2026-11-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-13/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 考古学</span><h3>カブールのバラ・ヒッサール要塞、仏教僧院とムガル宮殿の浴場跡を発見</h3><p>AP通信の報道によると、アフガニスタン・カブールの崩れかけた要塞バラ・ヒッサールで修復作業を進める考古学者らが、仏教僧院の遺構とムガル帝国時代の宮殿にあった豪華な浴場の跡を発見した。5つの発掘区で、古代のコイン、仏像の破片、彩釉のイスラム陶器、オイルランプ、陶器などが見つかっている。考古学者のババク・ラフィエイ=アラヴィ氏は『バラ・ヒッサールはどこを掘っても何かが出てくる、2,000年以上人が住み続けてきた場所だから』と述べた。アフガニスタン情報文化省は、同遺跡で歴史的な遺物648点を回収したと報告している。計画はバラ・ヒッサール全体をカブール最大の公共の緑地・初の指定『遺跡公園』として再生することも目指している。</p><div class="src">SOURCE：<a href="https://www.thestar.com.my/aseanplus/2026/11/09/painstaking-rescue-of-kabuls-crumbling-bala-hissar-fortress-reveals-2000-years-of-afghan-history">AP(The Star / Daily Beast経由、2026-11-09〜10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>北京とカブールでは、長く別の時代と分類されていた遺構が、発掘の積み重ねで書き換えられつつある。歴史は一度確定した後も、掘るたびに姿を変える。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号の軸は『長く待たれていたものが、ようやく動いた日』だった。Euclidの宇宙地図は二度の延期を経て公開され、ケニアのエボラは最後の1人の退院でカウントダウンに入った。北京とカブールの遺跡では、何十年も別の時代だと思われていた土の下から、新しい物語が姿を見せた。</p><p class="night">数字が動くたびに、まだ見えていないものの輪郭も浮かび上がる。おやすみなさい、また明日。</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.137 · 2026.11.13 (金)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
