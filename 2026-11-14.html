@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.14 (土) · No.138</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-c">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-14/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>インフルエンザ、<br>北から迫る3週連続の増加</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.138 · 2026.11.14 (SAT)</div>
+    <p class="lead">全国の報告数は11.00、学級閉鎖933校。流行はこれから本格化する。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.138</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.14 SAT</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>24</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-14/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>日本のインフルエンザ、全国平均11.00で3週連続の増加 — 23道県で注意報レベル超え</h2><p>厚生労働省は11/13、第45週(11/2〜11/8)のインフルエンザ発生状況を公表した。全国の定点医療機関1か所あたりの報告数は11.00で、前週の10.26から増加し、第43週から3週連続で増えた。報告数は4万1,071人で前週より7.5%多い。都道府県別では北海道が28.32で最も多く、注意報レベルの目安(10)を超えたのは23道県とされる(報道ベース、厚労省資料の原本は未確認)。北日本・東日本で増加が目立つ一方、西日本や九州・沖縄では減少に転じた自治体もある。学校では休校28校、学年閉鎖364校、学級閉鎖933校が報告された。全体の水準は前年同期の約半分だが、これから本格的な流行期に入る。同日公表の新型コロナの定点当たり報告数は0.76で、減少が続いている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-14/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 新規</span><h3>Scholar Rock、優先審査バウチャーを2億500万ドルでBioNTechへ売却</h3><p>ISEMBYLD(アピテグロマブ)の9月承認時に得た「小児希少疾患の優先審査バウチャー」(他の薬の審査を早められる権利)について、Scholar Rockは11/9、BioNTechの米国法人と現金2億500万ドルで売る資産購入契約を結んだと11/10のSEC提出書類で明らかにした。契約はハート・スコット・ロディノ法の独占禁止法審査を経て成立する見込み。成立すれば手元資金は9月末時点の4億1,360万ドルに売却額を加えた約6億1,800万ドル超になる。ISEMBYLDは筋肉を狙う初のSMA治療薬として承認され、10月に最初の患者への点滴が始まった。</p><div class="src">SOURCE：<a href="https://www.sec.gov/Archives/edgar/data/0001727196/000119312526454423/srrk-20261110.htm">SEC 8-K(2026-11-10) / Panabee / Motley Fool(決算説明会)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 決算</span><h3>ISEMBYLD初の四半期売上は60万ドル — 日本は年内の承認申請を計画</h3><p>Scholar Rockが11/10に発表した2026年第3四半期(7〜9月)決算によると、ISEMBYLDの同四半期の製品売上は60万ドルだった。10月の最初の点滴分が中心で、当面は「買い切り型」の請求と暫定的な保険コードに頼る必要があり、正式なJコードの運用開始は2027年4月の見込み。研究開発費5,410万ドル・販売管理費5,250万ドルを含む四半期の純損失は1億720万ドル、現金等は9月末時点で4億1,360万ドル。日本では8/21にPMDAが「日本人患者を対象にした追加の臨床試験は不要」と判断したことを踏まえ、年内の新薬承認申請(JNDA)提出を計画している。欧州は充填工場の変更を経て申請を再提出済みで、CHMPの見解は2027年前半の見込み。</p><div class="src">SOURCE：<a href="https://www.panabee.com/news/scholar-rock-holding-earnings-q3-2026">Scholar Rock 2026年Q3決算(Panabee要約) / investors.scholarrock.com(2026-08-21)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ISEMBYLDは資金と販売の両面で地歩を固めつつある。優先審査バウチャーの売却で手元資金を厚くし、日本でも年内申請という次の節目が見えてきた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-14/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規</span><h3>中国、BCIの業界標準9項目を一斉に立項 — 市場は2030年に150億元超の予測も</h3><p>中国の工業情報化部(MIIT)が公表した最新の業界標準計画で、同部のBCI標準化技術委員会が所管する9項目の標準づくりが承認(立項)された。製品の等級・分類、リスク管理、操作画面(インターフェース)などを対象とする。報道では、ある調査機関が国内のBCI市場は2030年に150億元を超える可能性があると予測しているという。これまで伝えてきた「承認→保険→症例数」という積み上げに、ルールの土台が加わる形になる。</p><div class="src">SOURCE：<a href="https://21jingji.com/article/20261113/herald/e7a1218f8367fe2db75d8fc6a5affc20.html">21世紀経済報道(2026-11-13) / FX168</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 続報</span><h3>上海のBCI企業120社超、3社が上場準備 — 深圳には一般向け体験センター</h3><div class="upd">🔁 続報 — 11/13号: 同じ『2026脳機接口大会』で紹介された患者121例・NEO植込み12例を既報、今回は企業数120社超・IPO準備3社・深圳の体験センターという別角度の新情報</div><p>上海市科学技術委員会の副主任は「2026脳機接口大会」の記者説明会で、市内にBCI企業が120社以上集まり、3社が相次いで新規株式公開(IPO)の準備に入ったと説明した。深圳の電気街・華強北には「全球脳機接口産業応用示範中心」が開設され、脳波で絵を描くなど、頭を切らない(非侵襲)BCI製品を誰でも体験できるという。前号で伝えた同大会の別の記者会見(国内でBCIの恩恵を受けた患者121例・NEOの保険適用)とは別角度の数字で、企業名や開設日は報道のまとめに基づき要確認。</p><div class="src">SOURCE：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001908upg4.html">新浪新聞 BCIホットニュース(2026-11-13・11-14)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>中国は規格づくりと企業・資本市場の両面で量産・普及の地盤を固めている。視線入力など米欧勢の新しい発表は今号でも確認できなかった。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-14/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 今日の一本</span><h3>日本のインフル、全国11.00 — 北海道28.32、学級閉鎖933校</h3><p>第45週の全国の定点当たり報告数は11.00(前週10.26)。報告数は4万1,071人(前週3万8,205人)で7.5%増えた。北海道の28.32が最多で、23道県が注意報レベルの目安10を超えたとされる(報道ベース、厚労省資料の原本は未確認)。東日本中心に増え、西日本では減少傾向が見え始めたとの分析もある。新型コロナは0.76で減少が続く。</p><div class="src">SOURCE：<a href="https://resemom.jp/article/2026/11/13/88307.html">リセモム(2026-11-13) / 医療介護CBニュース(Yahoo!ニュース) / 日経メディカル</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 続報</span><h3>エボラ確定1万1,114例 — 機関ごとに数字は異なるが増加続く</h3><div class="upd">🔁 続報 — 11/13号のDRC政府発表(11,042例)から、ECDC集計で11,114例・死者5,433人に。CDCは11,145例と別の数字を示し、機関による差が続く</div><p>欧州疾病予防管理センター(ECDC)によると、コンゴ民主共和国(DRC)の確定例は11/11時点で11,114例、死者5,433人(致死率約49%)。米CDCの11/12更新では11/10時点で確定11,145例・死者5,437人とし、疑い例は一時的に集計から外しているとする(機関で集計日・定義が異なる)。流行はイトゥリ州など8州に及び、CDCは「過去のエボラより大幅に速く広がり、記録上2番目の規模」と説明。ウガンダの流行は終息し、ナイジェリアは10/20に初の症例を報告した。原因のブンディブギョ型に承認済みのワクチン・治療薬はなく、第2/3相の治験が進む。</p><div class="src">SOURCE：<a href="https://www.ecdc.europa.eu/en/public-health-events/2026-eip-00026/2026-11-10">ECDC(2026-11-10週) / ECDC多国間流行ページ / CDC状況まとめ</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 続報</span><h3>米国の麻疹排除、PAHOの審査会合が終了 — 結果は来週の見込み</h3><div class="upd">🔁 続報 — 11/13号『審査待ち』から、審査会合そのものが終了。結果公表は来週、ウィスコンシン・ニューヨーク州の初の麻疹関連死(いずれも乳児)が新情報</div><p>汎米保健機構(PAHO)の専門委員会は11/10〜13に非公開で会合を開き、米国とメキシコの「麻疹排除」の地位を審査した。同じウイルス系統が1年以上続けて広がったかを遺伝子データで判断するもので、結果の公表は来週の予定と報じられている。直前の11/9には、ウィスコンシン州とニューヨーク州でそれぞれ30年以上ぶりとなる麻疹関連の死亡(いずれも乳児)が報告された。米国の2026年の確定例は5,182例で1991年以来最多。CDCのシュワルツ所長は「地位を失っても対策は変わらない」としている。</p><div class="src">SOURCE：<a href="https://www.paho.org/en/news/2-3-2026-update-review-measles-elimination-status">ABC News(AP) / Healio(2026-11-09) / PAHO</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>日本は北から流行が広がる典型的な形。来週の第46週で全国が増え続けるか、北海道が警報レベルの目安(30)に届くかに注目。米国の麻疹は来週にも『排除国』の地位を失う可能性が高い。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-14/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 天文</span><h3>ボイジャー1号、11/18ごろ地球から『1光日』に</h3><p>1977年に打ち上げられたNASAの探査機ボイジャー1号が、11/18ごろ地球から光で丸1日かかる距離「1光日」(約259億km、約173天文単位)に達する見込み。人工物として初めて。到達時刻は報道で数分の差があり、米東部時間18日午前5時16分ごろ(日本時間18日19時16分ごろ)とする報道が多い。地球から送った指令が届くのに1日、返事が戻るのにさらに1日かかる。観測装置の多くはすでに止まっているが、交信は続いている。双子のボイジャー2号が1光日に届くのは2035年11月の見込み。</p><div class="src">SOURCE：<a href="https://sciencenews.org/article/voyager-1-light-day-exploration">Science News / EarthSky / BBC Sky at Night</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 量子</span><h3>光が『固体と液体』を兼ねる — 室温の超固体を実現</h3><p>ワルシャワ大学、ポーランド軍事工科大学、IBMチューリッヒ研究所、仏CNRSなどのチームは、光と物質が混ざり合った粒子(励起子ポラリトン)を使い、結晶のような規則正しい並びと、摩擦なく流れる性質を同時に持つ「超固体」を室温でつくったとScience Advancesに発表した。液晶を使った微小な光の共振器の中で生まれ、約60℃に近い温度でも動作するという。超固体はこれまで主に極低温の原子で実現されてきたもので、高速な光デバイスやセンサーへの応用が期待される。</p><div class="src">SOURCE：<a href="https://www.sciencedaily.com/releases/2026/11/261105224536.htm">ScienceDaily(2026-11) / EurekAlert!(ワルシャワ大学) / Interesting Engineering</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 医学</span><h3>IgA腎症にラブリズマブ — たんぱく尿を43.4%減らす(NEJM)</h3><p>腎臓の病気・IgA腎症の成人352人を対象にした第3相試験「I CAN」の中間解析がNEJMに掲載された(オンライン公開は10/23との情報、要確認)。補体という免疫のしくみを抑える点滴薬ラブリズマブ(ユルトミリス)を8週ごとに投与すると、34週時点のたんぱく尿は偽薬に比べ43.4%多く減った。血尿が消えた人も42.4%(偽薬11.1%)と多く、重い有害事象は4.6%(偽薬9%)で死亡はなかった。腎機能(eGFR)への効果は106週の最終解析で判定する。FDAが10/21に迅速承認したとの報道もある(要確認)。</p><div class="src">SOURCE：<a href="https://www.healio.com/news/nephrology/20261105/ravulizumabcwvz-lowers-proteinuria-vs-placebo-in-iga-nephropathy">Healio(2026-11-05) / HCPLive / AstraZeneca</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ボイジャー1号の1光日到達は来週火曜の夜(日本時間)。量子では『室温』がキーワードになりつつある。中国科学院は天宮での9.7ピコケルビン(既報)以降、今号で新しい大型発表を確認できず、CERNのLHCは高輝度化の長期停止が続く。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Origins &amp; Digital Minds</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-14/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 調査</span><h3>脳波ヘッドバンドの利用者データでAIを学習 — Science誌の調査</h3><p>Science誌が11/4に公表した調査で、瞑想・睡眠用の脳波ヘッドバンド「Muse」を作るカナダのInteraxonが、利用者の脳波約5万時間分で「脳の基盤モデル」を学習させていたと同誌に認めた。プライバシー方針にはこの用途が明記されておらず、記者の指摘を受けて更新したという。会社は名前やメールアドレスを除いてから使ったとするが、何人分のデータかは示していない。一度モデルに取り込まれたデータを後から取り除くのはほぼ不可能だと同誌は指摘。脳の基盤モデルを作っていると公表している消費者向け脳波企業は少なくとも9社あった。</p><div class="src">SOURCE：<a href="https://betanews.com/article/brain-ai-training-eeg-data-privacy-muse">BetaNews / TechSpot / IAPP(2026-11-04)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-14/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 考古学</span><h3>モンゴルの匈奴の大型墓からローマのガラス器 — 2000年前の東西交易の跡</h3><p>韓国国立博物館・モンゴル科学アカデミー・モンゴル国立博物館の共同調査隊が、モンゴル東部ドゥールリグ・ナルス古墳群で全長約73メートルの大型墓を発掘した。遊牧国家・匈奴の墓とみられ、漆塗りの馬車が中心の埋葬の上に置かれ、9層・深さ14メートル超の石で覆われていた。木棺の中からは透明な把手付きガラス容器(ローマ製とみられる)、漢代の祭祀用の玉璧に似るが形や装飾が異なる玉製品15点、朝鮮半島の古墳にも似た例がある瓢箪形の銀製馬具飾り、匈奴の墓から初めて見つかったとされる金の装飾品が出土した。ローマ・朝鮮半島・中国の品が一つの墓に揃うことから、草原の道を介した東西交易の広がりがうかがえる。</p><div class="src">SOURCE：<a href="https://archaeology.org/news/2026/11/12/monumental-mongolian-tomb-excavated/">Archaeology magazine(2026-11-12) / La Brújula Verde</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>脳波データが同意の外でAIの材料になりうるという懸念の一方、2000年前の匈奴の墓からはローマのガラス器が見つかった。人の記録を『残す』営みは、形を変えながら続いている。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号の軸は『北から迫る増加』だった。日本のインフルエンザは3週連続で増え、エボラの確定例も機関ごとに数字は違えど増え続けている。一方でScholar Rockは資金を厚くし、2000年前のモンゴルの草原からはローマのガラス器が姿を見せた――増える数字の隣で、積み重ねも続いている。</p><p class="night">おやすみなさい、また明日。</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.138 · 2026.11.14 (土)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
