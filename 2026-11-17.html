@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.17 (火) · No.141</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-b">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-17/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>『要確認』が、<br>『確認済み』に変わる日</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.141 · 2026.11.17 (TUE)</div>
+    <p class="lead">米国はPAHOの書簡で麻疹排除国の地位を失う運びに、正式発表は11/17見込み。SMAの優先審査は会社発表で確定し、エボラには新ワクチン治験という一歩が加わった。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.141</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.17 TUE</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>19</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-17/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>米国、麻疹『排除国』の地位を失う — PAHOが書簡で通知、正式発表は11/17見込み</h2><p>汎米保健機構(PAHO)は米国政府に書簡を送り、『米国はもはや麻疹排除国とみなされない』と伝えたと、ロイターが11/16に報じた(政権高官の話)。正式発表は現地時間11/17の見込み。決め手は2025年6月に始まったユタ州の流行で、同じ系統のウイルスが12か月以上続いて広がったと判断された。米国は2000年に排除を達成し、26年間その地位を保ってきた。2026年の確定例はHealioが11/9時点で伝えた数字で5,100例超・47州にのぼる。カナダは2025年11月にすでに同じ理由で地位を失っている。同じ審査会合ではメキシコも審査されたが、結果は本号の時点で報じられていない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-17/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 確認</span><h3>アピテグロマブ、日本の優先審査を会社発表で確認 — 複数号の『要確認』を解消</h3><div class="upd">⚠️ 確認 — 11/10号以前は報道段階で『要確認』としていた日本の優先審査指定を、Scholar Rockの2026年第3四半期決算発表(11/10)で公式に確認</div><p>SMAの筋肉に働く追加治療薬アピテグロマブ(米国名ISEMBYLD)について、Scholar Rockは11/10の第3四半期決算発表で『日本でのJNDA(医薬品製造販売承認申請)を提出し、優先審査の対象として受理された』と公式に述べた。これまで報道段階では確認できなかった優先審査指定が、会社自身の発表で確定した。日本人患者の臨床データなしでの申請をPMDAが認めた形で、優先審査は通常の審査期間の目安を約9か月に短縮する。欧州では10/8に再申請済みで、CHMP(欧州医薬品委員会)の意見は2027年前半の見込み。</p><div class="src">SOURCE：<a href="https://finviz.com/news/419880/scholar-rock-reports-third-quarter-2026-financial-results-and-recent-business-highlights">Scholar Rock Q3 2026決算発表 / finviz(2026-11-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 続報</span><h3>【続報】ゾルゲンスマ・Itvismaの腫瘍調査 — 9件の報告中3件がGLI1関連と判明</h3><div class="upd">🔁 続報 — 11/16号(GLI1近くへの挿入を確認)に続き、報告件数の内訳が判明: 9件中3件がGLI1遺伝子関連、うち2件でベクターのゲノム組み込みを確認</div><p>FDAが継続しているゾルゲンスマとその髄注製剤Itvismaの腫瘍調査について、ノバルティスは2019年の承認以降、腫瘍の報告が9件あったと説明している。このうち3件でがん関連遺伝子GLI1に関わる腫瘍が確認され、さらにそのうち2件で遺伝子治療ベクターがゲノムに組み込まれたことが確認された。Itvismaでは腫瘍の報告はまだない。FDAは11/16時点で新たな規制措置を発表していないが、承認された使い方では利益がリスクを上回るとの立場を維持し、腫瘍の経過観察を求めている。</p><div class="src">SOURCE：<a href="https://contemporarypediatrics.com/view/fda-investigates-malignancy-risk-sma-gene-therapy-zolgensma">Contemporary Pediatrics(2026-11-09)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>日本の優先審査は『要確認』から『確認済み』へ進み、治療が届く範囲は少しずつ広がる。一方でFDAは腫瘍報告の内訳を遺伝子レベルまで特定し始めており、治療の普及と長期安全性の確認は、まだ同じ速さで進んでいない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-17/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規</span><h3>Precision Neuroscience、ALS支援団体Team Gleasonと提携 — 当事者の声を開発に</h3><p>BCIを手がけるPrecision Neuroscienceは11/16、ALS(筋萎縮性側索硬化症)の当事者を支援する非営利団体Team Gleasonとの提携を発表した。ALSの人たちやその家族・介護者が、脳表面に置く低侵襲なデバイス『Layer 7』の開発に直接意見を出せる仕組みを作り、臨床医向けの共同教育も進める。Layer 7は2025年4月に米FDAの510(k)クリアランスを取得済みだが、用途は手術中などの最長30日の記録に限られている。Team GleasonのCEOブレア・ケイシー氏は『Precisionは私たちのコミュニティのためだけでなく、共に作っている』と述べた。</p><div class="src">SOURCE：<a href="https://biospace.com/press-releases/precision-neuroscience-and-team-gleason-partner-to-give-the-als-community-a-voice-in-brain-computer-interface-development">BioSpace / Precision Neuroscience発表(2026-11-16)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>BCIの当事者参加は、Layer 7がまだ短期記録にとどまる段階から始まった。ALSは運動・発話の機能を失っても認知は保たれることが多く、開発の初期から当事者の実感を取り込む動きが広がっている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-17/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 今日の一本</span><h3>米国の麻疹排除喪失 — PAHOが書簡で通知、正式発表は11/17見込み</h3><div class="upd">🔁 続報 — 11/14号(決め手はユタ州の流行)に続き、PAHOが書簡で正式に通知、発表は11/17見込み</div><p>汎米保健機構(PAHO)は米国政府に書簡を送り、『米国はもはや麻疹排除国とみなされない』と伝えたとロイターが11/16に報じた。正式発表は11/17の見込み。決め手は2025年6月開始のユタ州の流行で、同じ系統が12か月以上続いて広がったと判断された。2000年から26年間保ってきた地位で、2026年の確定例は5,100例超・47州(Healio、11/9時点)。カナダは2025年11月に同じ理由で地位を失っている。詳しくは本号の今日の一本を参照。</p><div class="src">SOURCE：<a href="https://www.usnews.com/news/top-news/articles/2026-11-16/us-loses-measles-free-status-after-26-year-run-source-says">ロイター/US News(2026-11-16) / Healio(2026-11-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 続報</span><h3>【続報】エボラ、確定11,376例・死者5,568人 — WHOが新ワクチン2種の治験を承認</h3><div class="upd">🔁 続報 — 11/16号(半年たっても制御できず)に続き、WHOが新しいエボラワクチン2種の治験を承認(結果は2027年前半見込み)、資金の実拠出額も判明</div><p>アルジャジーラは11/15、DRCのエボラ(ブンディブギョ株)流行について、11/14時点で確定11,376例・死者5,568人、8州68保健区域に広がっていると報じた(アフリカCDCの集計はやや少なく、集計元で差がある)。アフリカCDCのカセヤ事務局長は、拠出が約束された29億ドルのうち実際に出たのは13億ドルだけだと指摘した。WHOは新しいエボラワクチン2種の治験を承認し、結果は2027年前半の見込み。国連は、武装勢力ADFによる住民・医療従事者への攻撃が対応を妨げていると警告している。米CDCは、米国内に確定例はなく国内リスクは低いとしている。</p><div class="src">SOURCE：<a href="https://www.aljazeera.com/amp/news/2026/11/15/africa-cdc-says-ebola-outbreak-in-dr-congo-still-not-under-control">アルジャジーラ(2026-11-15) / UNニュース / 米CDC</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 続報</span><h3>【続報】DRCのコレラ、キンシャサ郊外で新たに3例</h3><div class="upd">🔁 続報 — 11/16号(WHOがキンシャサ拡大を警告・200万人にワクチン接種)に続き、キンシャサ郊外キンガブワなどで実際に新規3例を確認</div><p>DRCでは今年に入りコレラが6万例超・死者1,800人となり、WHOのテドロス事務局長は『数十年で最悪』と表現していた。DWは11/10、首都キンシャサ東部のキンガブワなど郊外で新たに3例を確認したと報じた。雨季に入り、エボラとの二重の流行への警戒が強まっている。</p><div class="src">SOURCE：<a href="https://allafrica.com/stories/202611110252.html">allAfrica(2026-11-11) / Medical Xpress(2026-11) / DW(2026-11-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>米国の麻疹排除喪失は書簡という具体的な手続きの段階に入り、正式発表を待つだけになった。エボラは新ワクチンの治験という前向きな一歩と、資金の半分以下しか届いていないという足どりの重さが同時に進む。コレラはついに首都の郊外へ実際に到達した。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-17/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 天文</span><h3>宇宙の夜明けで最古のコンパクトなクエーサー対を発見</h3><p>NOIRLabのシルビア・オノラート氏らの研究チームが、最も遠く古いコンパクトなクエーサーの対『Nāpōwawāʻenakaulua』(J1602+4228AB)を報告した(The Astrophysical Journal Letters)。赤方偏移は約6.08で、ビッグバンから約9億年後の姿にあたる。宇宙の夜明け期に見つかったクエーサー対としては3例目。2つの巨大ブラックホールの間隔は約1万8,100光年と報じられているが、この数値は二次情報で要確認。</p><div class="src">SOURCE：<a href="https://mauinow.com/2026/11/14/astronomers-discover-napowawa%CA%BBenakaulua-the-oldest-compact-quasar-pair-in-universe">Maui Now(2026-11-14) / NOIRLab</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 量子・中国</span><h3>中国、中性原子量子コンピューターを相互接続する試作機『乾真』</h3><p>中国・安徽省合肥で11/8、複数の中性原子量子計算ユニットをつなぐ試作機『乾真(Qianzhen)』が公開された。量子コンピューターを大規模化する際の壁を越える道になりうるとされているが、量子ビット数などの性能や独立した検証はまだ公表されていない。</p><div class="src">SOURCE：<a href="https://www.ecns.cn/cns-wire/2026-11-09/detail-ihfmuiku4871306.shtml">中国新聞社 ECNS(2026-11-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 医学</span><h3>高齢者のスタチン中止、2年では『非劣性』だが長期は注意 — NEJM・STREAM試験</h3><p>心血管病のない70歳以上で慢性疾患を2つ以上持つ約1,900人を対象に、予防目的のスタチンを中止する群と続ける群を比較したSTREAM試験の結果がNEJMに掲載された。2年時点の心筋梗塞・脳梗塞・死亡では中止群は継続群に劣らなかったが、4年時点では中止群の心血管イベントがやや増えた。生活の質や転倒のリスクに差はなく、研究者は年齢や全身状態を踏まえて患者と話し合って決めるよう勧めている。</p><div class="src">SOURCE：<a href="https://www.healio.com/news/cardiology/20261108/new-study-informs-statin-discontinuation-in-older-adults-without-cvd">Healio(2026-11-08)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>宇宙の夜明けには最古のクエーサー対が見つかり、中国の量子は『つなぐ』方向で大規模化を目指す。高齢者のスタチン中止は、短期の安心と長期の注意が同じ結果の中に共存することを示した。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Origins &amp; Digital Minds</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-17/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · AI倫理</span><h3>Anthropic、Claudeへの『残酷な扱い』を禁じる規約を施行</h3><p>Anthropicが10/8に発表した利用規約の改定が11/12に施行された。Claudeに対する『持続的で不必要な虐待・残酷な行為』を禁じる内容で、主な対応は会話の終了。会社はClaudeの道徳的地位は『非常に不確か』だとし、苦しむ能力を認めたわけではなく予防的な措置だと説明している。通常の批判やテストはこの規約の対象外。</p><div class="src">SOURCE：<a href="https://www.techrepublic.com/article/news-anthropic-claude-abuse-policy/">TechRepublic(2026-11)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · AI倫理</span><h3>『意識がなくてもAIの福祉は成り立つか』— NYUの講演</h3><p>NYUでの講演(11/9)をもとにした論考が、AIに意識がない場合でも『福祉』を考える意味はあるのかを問うた。一方で、意識こそが道徳的に重要な福祉の必要条件だとする哲学論文もあり、議論は割れている。</p><div class="src">SOURCE：<a href="https://www.lesswrong.com/posts/D3WYRopEnodnM5CzF/what-can-ai-welfare-buy-without-consciousness">LessWrong(2026-11-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 · 考古学</span><h3>粘土の小像、農耕より前の15,000年前から — ナトゥーフ文化の子どもも制作に関与</h3><p>エルサレム・ヘブライ大学のローラン・ダヴァン氏らが、イスラエル国内3遺跡で出土した粘土製の小像を分析し、学術誌PLOS ONEに発表した。像は鳥・哺乳類・人間を表し、約15,000年前から11,500年前のナトゥーフ文化のもの。赤やオレンジの着色が確認された像もあり、指紋の分析から子どもが制作に関わっていたことも分かった。従来は、粘土による造形が一般化したのは約11,500年前に農耕が始まってからと考えられていたが、今回の結果はその通説より大幅に早い時期から粘土での造形が行われていたことを示す。</p><div class="src">SOURCE：<a href="https://archaeology.org/news/2026/11/16/natufian-clay-figurines-dated-to-15000-years-ago/">Archaeology Magazine(2026-11-16) / PLOS ONE</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-17/05_4.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.4 · 考古学</span><h3>記念品を集める習慣は50万年前から? — イスラエルの洞窟で見つかった『特別な石』</h3><p>テルアビブ大学のラン・バルカイ氏とエラ・アサフ氏らが、イスラエルのケセム洞窟で出土した小さく色鮮やかな小石や、サフニン渓谷で見つかった化石・珍しい地質模様を含むフリント製ハンドアックスを分析し、学術誌Evolutionary Anthropologyに発表した。レヴァディムやジャルジュリアなどの遺跡でも、再加工を重ねながら長く使われた道具が見つかっている。古く風化した外見にもかかわらず大切に保管された形跡があり、研究者らは、現代の記念品と同じように、ある場所や体験の記憶を呼び起こすために残された可能性があるとみる。世代を超えてこうした物を使い続けたことが、記憶や自己認識に関わる脳の仕組みへの進化的な圧力になったとも論じている。</p><div class="src">SOURCE：<a href="https://archaeology.org/news/2026/11/16/souvenir-collection-may-have-begun-500000-years-ago/">Archaeology Magazine(2026-11-16) / Evolutionary Anthropology</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>AIの道徳的地位は企業の規約という実務に入り始めたが、意識の有無を巡る議論はまだ割れている。15,000年前の粘土像と50万年前の『特別な石』は、記録に残らない昔から、人が物に記憶や意味を込めてきたことを静かに語る。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号の軸は『不確かだったものが、確かになった日』だった。米国の麻疹排除喪失は報道段階からPAHOの正式な書簡に進み、発表を待つだけになった。アピテグロマブの日本優先審査も、会社自身の発表で『要確認』から確定した。BCIではALS当事者の声が開発の初期段階に正式に組み込まれ、エボラには新ワクチン2種の治験という具体的な一歩が加わった。15,000年前の粘土像と50万年前の『特別な石』は、記録に残らない時代から、人が物事を大切に確かめ、留めてきたことを静かに語る。</p><p class="night">おやすみなさい、また明日。</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.141 · 2026.11.17 (火)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
