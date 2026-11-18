@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.19 (木) · No.143</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-d">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-19/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>最速の数字にも、<br>届き始めた備えがある</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.143 · 2026.11.19 (THU)</div>
+    <p class="lead">DRCのエボラは記録に残るどの流行よりも速く広がり、確定1万1千人を超えた。隣国の南スーダンは一件の確定例も出ていない段階から備えを固め、BCIは脳卒中への対象拡大と大型資金調達という、次の段階に進んでいる。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.143</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.19 THU</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>22</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-19/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>エボラ、確定11,432例・死者5,593人に — 拡大ペースは『記録上最速』</h2><p>11/18号の続報 — 米CDCによると、コンゴ民主共和国(DRC)のエボラ流行は11/15時点で確定11,432例・確定死者5,593人となった(11/18号で報じたECDCの11/14時点集計は11,376例・5,568人)。ロイター(11/17)は、今回の流行が記録に残るどの流行よりも速く広がり、すでに2018〜20年の流行を大きく上回っていると伝えている。WHOのテドロス事務局長は症例が3か月で2倍以上になったと述べた(国連ニュース、11/17)。原因のブンディブギョ型には承認されたワクチンも治療薬もなく、武装勢力の襲撃などで1,000人を超える接触者が追跡できなくなっている。一方で隣国の南スーダンは、一件の確定例も出ていない段階から準備を進めており、記録的な速さの拡大と、先回りした備えが同時に進む構図が見えてきた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-19/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 続報</span><h3>【続報】ゾルゲンスマ・Itvisma、FDAが安全性通知 — 『利益はなおリスクを上回る』</h3><div class="upd">🔁 続報 — 11/17号(9件の報告中3件がGLI1関連と判明)に続き、FDAが11/6付の安全性通知で公式な結論を提示。規制措置の要否は評価継続中</div><p>FDAは11/6、SMAの遺伝子治療薬ゾルゲンスマ(オナセムノゲン・アベパルボベク)について、市販後に報告された悪性腫瘍の中に、ベクターのDNAがGLI1遺伝子の近くや内部に組み込まれた『insertional oncogenesis(挿入変異原性)』が確認された例があると発表した。ノバルティスは2019年の承認以来、治療を受けた患者で計9件の腫瘍報告があったと説明している。同じベクターと構造を使うItvismaについては、これまでに腫瘍の報告はないという。FDAは『両製品の承認用途における利益は、現時点で確認されているリスクを上回っている』としつつ、腫瘍発生のリスクについて調査を続け、規制上の対応が必要かどうかを評価するとしている。</p><div class="src">SOURCE：<a href="https://www.beckershospitalreview.com/pharmacy/fda-investigates-cancer-risk-tied-to-novartis-gene-therapy/">FDA Safety Communication(2026-11-06) / Beckers Hospital Review</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 続報</span><h3>【続報】アピテグロマブ(ISEMBYLD)、米国発売後の初期需要は『強い』— Scholar Rock決算説明</h3><div class="upd">🔁 続報 — 11/14号(四半期売上60万ドル)・11/17号(日本の優先審査を確認)に続き、処方患者の98%が支援プログラムに登録と判明</div><p>Scholar Rockは11/10の第3四半期決算説明で、ISEMBYLDの処方を受けた患者の98%が保険手続きを支える患者支援プログラムに登録し、対象となる主要140施設のうち3分の1以上が10月までに最初の患者を登録したと説明した。7〜9月期の売上は0.6百万ドルで、10月までに登録した患者の多くは2027年に入ってから初回投与を受ける見込みだという。11/16のUBS、11/17のJefferiesの投資家向けカンファレンスでも、経営陣は初期需要が強いと述べた。日本では優先審査の対象として受理されている。</p><div class="src">SOURCE：<a href="https://www.webull.com/news/15901142630330368">Scholar Rock 第3四半期決算説明(Webull) / Investing.com 日本版(2026-11-16)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>遺伝子治療の安全性は、FDA自身が『利益はリスクを上回る』と判断しつつ調査を続ける段階に入った。一方で承認済みの新薬は、患者への浸透という次の課題を着実に進めている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-19/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 新規(要確認)</span><h3>Neuralink、新試験『PRIME2』を登録 — 脳卒中の人も対象に(単独報道・要確認)</h3><p>Tesla North(11/10)によると、NeuralinkはClinicalTrials.govに新しい試験『PRIME2』を登録した。最大10人の成人を米国内の最大5施設で募集し、従来の脊髄損傷・ALSに加え、発症から12か月以上たち元の利き腕に麻痺が残る慢性の虚血性脳卒中の人を対象に加える。目的は安全性と初期の有効性の確認で、約2年間の追跡が見込まれている。この報道は単独の二次報道で、登録番号(NCT番号)は確認できておらず、ClinicalTrials.govの原簿での裏付けが必要。</p><div class="src">SOURCE：<a href="https://teslanorth.com/2026/11/10/neuralink-prime2-brain-implant-trial-stroke">Tesla North(2026-11-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 新規</span><h3>中国NeuroXess、約7億元を調達 — 植込み型ワイヤレスBCIが治験段階へ</h3><p>上海発のBCIスタートアップNeuroXess(2021年設立)は10/28、シリーズBで約7億元(報道により換算9,800万〜1億500万ドル)を調達したと発表した。資金は完全植込み型・ワイヤレスの脳インプラントシステムの治験、規制対応、量産体制の整備に使われる。同社はこのシステムが正式な治験(registration trial)の段階に入ったとしており、2年以内に医療市場へ本格投入することを目指している。中国ではBCI分野への投資が続いており、上海を拠点とするBCI企業は120社を超えるとされる。</p><div class="src">SOURCE：<a href="https://technode.com/2026/10/28/brain-computer-interface-startup-neuroxess-raises-rmb-700-million-in-series-b-funding/">TechNode(2026-10-28)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>BCIは『病院の外で毎日使えるか』という臨床の問いと、『量産にこぎつけられるか』という産業の問いが同時に進んでいる。脳卒中への対象拡大と大型資金調達は、どちらもその次の段階を見ている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-19/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 今日の一本</span><h3>エボラ、確定11,432例・死者5,593人に — 拡大ペースは『記録上最速』</h3><div class="upd">🔁 続報 — 11/18号(確定11,376例・死者5,568人)に続き、11/15時点で11,432例・5,593人に更新</div><p>米CDCの集計では、DRCの累計は11/15時点で確定11,432例・確定死者5,593人。ロイター(11/17)は、援助不足・治安悪化・連携の弱さが封じ込めを遅らせていると分析し、記録に残るどの流行よりも速く広がっていると伝えている。WHO事務局長は11/11の加盟国向け説明で、約3,000人が回復し一部地域では感染が鈍化する兆しもある一方、民間人66人が殺害された襲撃などで1,000人超の接触者を見失ったと述べた。国連ニュース(11/17)では、症例が3か月で2倍を超え、8州67保健区域に広がっていると伝えている。詳しくは本号の今日の一本を参照。</p><div class="src">SOURCE：<a href="https://www.cdc.gov/ebola/situation-summary/index.html">米CDC 状況概要(2026-11-15) / ロイター配信(2026-11-17)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 新規</span><h3>米ワシントン州で鳥インフルH5N1の死者 — 酪農場の作業者に感染</h3><p>ECDCのまとめによると、ワシントン州ヤキマ郡は11/1、H5N1に感染した2例目の患者が死亡し、3例目も確定したと発表した。1例目は10/15に報告された軽症例で、亡くなった患者には基礎疾患があった。米CDCの11/6の更新では、直近の2例はいずれも商業酪農場の作業者である。Healio(11/2)は、これが米国で今年初めての鳥インフルによる死亡だと報じている。</p><div class="src">SOURCE：<a href="https://www.ecdc.europa.eu/en/public-health-events/2024-irv-00003/2026-11-09">ECDC(2026-11-09) / Healio(2026-11-02)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/03_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.3 · 新規</span><h3>WHO、南スーダンで『症例発生前』からエボラ(ブンディブギョ型)に備え — 準備度72.5%</h3><p>WHOアフリカ地域事務局は11/12、南スーダンで確定例が一件も出ていない段階からエボラ(ブンディブギョ型)への備えを強化していると発表した。保健省と共同で策定した国家準備・対応計画のもと、10月末時点の準備度は11分野の平均で72.5%。DRC・ウガンダと国境を接するため輸入リスクは高いとされ、ジュバ・ニムレ・イェイ・ヤンビオに感染症隔離ユニットを設置済み。ECHOやFCDOなどの支援機関も協力している。</p><div class="src">SOURCE：<a href="https://africa.com/apo/before-the-first-case-world-health-organization-who-helps-south-sudan-prepare-for-ebola-bundibugyo-virus-disease">WHOアフリカ地域事務局(2026-11-12、africa.com配信)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>エボラは記録上最速のペースで広がり続け、隣接する南スーダンは一件の確定例も出ていない段階から備えを固めている。足もとではH5N1が酪農場という日常の現場でも命を奪っている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-19/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 医学</span><h3>普通の胸部X線から骨折リスクを予測するAI(NEJM AI)</h3><p>NEJM AIは11/16、日常の検査で撮る胸部X線写真に深層学習を使い、将来の骨粗しょう症による骨折のリスクが高い人を見つける原著論文を掲載した。追加の検査なしで骨の弱い人を早く見つけられる可能性がある(性能の数値などの詳細は要確認)。</p><div class="src">SOURCE：<a href="https://ai.nejm.org/">NEJM AI(2026-11-16)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 天文</span><h3>『消えた太陽系外惑星』— TOI-2535bのトランジットが初めて見えなくなった</h3><p>サミュエル・イー氏らの研究チームが11/9、Astrophysical Journal Lettersに『TOI-2535b』という木星サイズの太陽系外惑星をめぐる論文を発表した。NASAの系外惑星探査衛星TESSが2019年4月〜2026年3月に観測した画像では恒星の手前を通る『トランジット』が見えていたが、2026年初めのデータでは見えなくなった。研究チームは、同じ星系にある別の惑星の重力がTOI-2535bの軌道を傾けていることが原因と結論づけた。軌道の傾き方の変化は年あたり約0.16で、単独の恒星を回る系外惑星としてはこれまでで最も速い変化という。惑星自体が消えたわけではないが、トランジットが観測できなくなった初めての確認例とされている。</p><div class="src">SOURCE：<a href="https://www.sci.news/astronomy/vanishing-transits-toi-2535b-15188.html">The Astrophysical Journal Letters(2026-11-09) / Sci.News</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/04_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.3 · 量子・物理</span><h3>CERN、42年探した『極めて稀な崩壊』の証拠を発見 — 標準模型と一致</h3><p>CERNのLHCb実験チームは11/3のセミナーで、B⁰(Bd)中間子がミュー粒子の対に崩壊するという、10億分の1という極めて稀な現象の証拠を発表した。1984年から続いてきた探索で、単一の実験のデータだけでこの崩壊の証拠を示したのは初めてという。これまでに見つかっていた関連現象Bs→μ⁺μ⁻に比べ、今回のBd→μ⁺μ⁻は理論上さらに30倍ほど稀だとされる。測定された崩壊の起こりやすさは標準模型の予測と一致し、新しい物理の証拠には至っていない(発見と呼ぶには統計的な確からしさがまだ足りず、査読も済んでいない)。</p><div class="src">SOURCE：<a href="https://www.sci.news/physics/cern-ultra-rare-particle-decay-15171.html">CERN LHCb(2026-11-03) / Sci.News</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>骨の弱さは胸部X線という日常の検査から見えるようになり、見えていた惑星はトランジットが消えるという形で新しい姿を見せた。CERNでは42年続いた探索が、理論を裏付ける稀な崩壊の証拠にたどり着いた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Origins &amp; Digital Minds</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-19/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 考古学</span><h3>スーダン、ヌビア最大級の中世大聖堂 — 初めてオリジナルの床が姿を見せる</h3><p>ポーランド・スーダン合同の発掘隊が、旧ドンゴラの『イエスの大聖堂』で、高さ11mの階段を掘り進め、これまで埋もれていたオリジナルの床を今季初めて露出させた。大聖堂は推定で幅47m・長さ57mとされ、ホワイトハウスより大きいとも紹介される規模で、ドンゴラ司教座があった最も壮大な建物のひとつと考えられている。隣接する建物の2階でも別の小さな教会が見つかり、壁は高さ約1mしか残っていないものの、彩色装飾の痕跡が瓦礫の中に残っていた。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62434">Archaeology Magazine(2026-11-09)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 考古学</span><h3>フランスで5世紀の首長の墓と軍馬2頭 — ローマ崩壊期の『傭兵』の痕跡か</h3><p>フランスの発掘機関INRAPが、アルザス地方オルブール=ヴィールの遺跡で、紀元450〜500年ごろの墓地を発掘した。成人11人・子ども3人の人骨に加え、馬具をつけた馬2頭も一緒に埋葬されていた。男性の墓からは剣・盾・投げ槍に加え、金と柘榴石で装飾された短剣が見つかり、ゲルマン系の首長やローマ軍に仕えた『フォエデラティ(同盟部族)』の兵士と結びつく副葬品とされる。治癒の跡がない刺し傷が2人の男性に残り、急な暴力で命を落としたことをうかがわせる。女性の墓には銀製の鳥形ブローチやガラス玉の首飾り、骨製の櫂が収められていた。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62497">Archaeology Magazine(2026-11-10) / INRAP</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-19/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 · 考古学</span><h3>シベリアのスキタイ王墓から、最古級の大麻使用の痕跡</h3><p>国際研究チームが、南シベリア・トゥバ共和国のトゥンヌグ1号遺跡(紀元前8世紀初め、約2,800年前)の大型墓から、1,000〜1,400個ほどの大麻の種子を見つけ、学術誌Scienceに発表した。中央の埋葬室にいた複数の人物の毛髪からはTHCやCBNに一致する化学的な痕跡も検出された。種子は意図的に置かれたとみられ、研究チームは、人身供犠を伴っていた可能性のある埋葬にまつわる緊張を和らげる役割を大麻が担っていたのではないかと推測している。吸煙と摂取のどちらだったかは、今回の分析だけでは特定できていない。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62499">Science誌(2026-11) / Archaeology Magazine(2026-11-10)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>ヌビアでは埋もれていた大聖堂の床が千年ぶりに姿を見せ、フランスではローマ崩壊期の首長が軍馬とともに眠っていた。シベリアの王墓では、埋葬の緊張を和らげたかもしれない大麻の種が2,800年の時を超えて見つかった。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号の軸は『記録の更新』と『先回りの備え』だった。エボラは記録上最速のペースで広がり続け、南スーダンは一件の確定例も出ていない段階から備えを固めている。FDAは遺伝子治療の利益がリスクを上回ると判断しつつ調査を続け、BCIは脳卒中への対象拡大と大型資金調達という次の段階に進んだ。骨の弱さは胸部X線から見えるようになり、42年続いたCERNの探索は稀な崩壊の証拠にたどり着いた。ヌビアの大聖堂の床、フランスの首長と軍馬、シベリアの大麻の種は、それぞれ違う時代の人々の営みを静かに語っている。</p><p class="night">おやすみなさい、また明日。</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.143 · 2026.11.19 (木)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
