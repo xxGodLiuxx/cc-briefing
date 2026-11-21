@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DAILY SIGNAL — 2026.11.22 (日) · No.146</title>
+<meta name="author" content="JaH">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" sizes="32x32" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!--
+  THE DAILY SIGNAL : fixed magazine template (refined SF / Detroit: Become Human / CyberLife).
+  CSS and structure are fixed every day = one consistent brand. Only photos and content change per issue.
+  Placeholders filled by build_html.py: DATE_TITLE, NO, COVER_H1, COVER_DATE, COVER_LEAD, ALERT,
+  SOURCES, STATUS_DATE, COLO_LINE, plus the main-content marker just before the colophon.
+  Visibility first (min 16px, high contrast). Cover image = covers/(DATE)/cover.png.
+  NOTE: keep this comment free of curly-brace tokens and html-comment markers so string-replace never collides.
+-->
+<style>
+:root{
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Roboto Mono","Noto Sans Mono",monospace;
+  --bg:#070b10; --bg2:#0a1119; --paper:#0e1620; --paper2:#121d28;
+  --ink:#eaf2f8; --soft:#a8bac8; --muted:#6c8092; --line:#192937; --line2:#243748;
+  --ng:#3fc9e6; --ng2:#63d8f0; --warm:#e6a85a; --alert:#ff5e6c;
+  --fs-body:18px; --fs-small:16px; --fs-h3:23px; --fs-h2:31px; --lh:1.85;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-size:var(--fs-body); line-height:var(--lh);
+  background:
+    radial-gradient(1100px 540px at 82% -6%, rgba(63,201,230,.06), transparent 60%),
+    radial-gradient(820px 560px at 4% 8%, rgba(63,201,230,.035), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--ng); text-decoration:none; border-bottom:1px solid rgba(63,201,230,.28);}
+a:hover{border-bottom-color:var(--ng);}
+img{display:block;}
+.cover{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:var(--bg);}
+.cover .ph{position:absolute; inset:0; z-index:0;}
+.cover .ph img{width:100%; height:100%; object-fit:cover; opacity:.55; filter:saturate(1.02) contrast(1.03);}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,11,16,.5) 0%, rgba(7,11,16,.25) 40%, rgba(7,11,16,.95) 100%);}
+.cover .ph.empty{background:radial-gradient(900px 620px at 50% 28%, #10202c, #070b10 72%);}
+.cover .frame{position:absolute; inset:22px; border:1px solid rgba(63,201,230,.16); z-index:2; pointer-events:none;}
+.cover .frame::before{content:""; position:absolute; top:-1px; left:-1px; width:46px; height:46px; border-top:2px solid var(--ng); border-left:2px solid var(--ng);}
+.cover .frame::after{content:""; position:absolute; bottom:-1px; right:-1px; width:46px; height:46px; border-bottom:2px solid var(--ng); border-right:2px solid var(--ng);}
+.cover .inner{position:relative; z-index:3; padding:0 6vw 12vh; max-width:1200px; margin:0 auto; width:100%;}
+.cover .flag{display:inline-flex; align-items:center; gap:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.32em; text-transform:uppercase; color:var(--ng); margin-bottom:26px;}
+.cover .flag::before{content:""; width:32px; height:2px; background:var(--ng); box-shadow:0 0 10px rgba(63,201,230,.6);}
+.cover h1{font-family:var(--serif); font-weight:600; font-size:clamp(40px,5.6vw,72px); line-height:1.18; margin:0; letter-spacing:.01em; max-width:15em; text-shadow:0 2px 34px rgba(0,0,0,.55);}
+.cover .date{margin-top:24px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; color:var(--soft);}
+.cover .lead{margin-top:22px; max-width:33em; color:#d4e1ea; font-size:20px; line-height:1.82;}
+.statusbar{position:relative; z-index:3; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:11px 28px;
+  border-top:2px solid var(--ng); border-bottom:1px solid var(--line); padding:13px 6vw; background:linear-gradient(180deg, rgba(63,201,230,.05), rgba(14,22,32,.5));}
+.statusbar .seg{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.13em; color:var(--soft); white-space:nowrap;}
+.statusbar .seg b{color:var(--ink); font-weight:600;}
+.statusbar .seg .c{color:var(--ng);}
+.statusbar .dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px rgba(63,201,230,.7); margin-right:9px; vertical-align:middle;}
+.statusbar .sep{width:1px; height:16px; background:var(--line2);}
+.wrap{max-width:1200px; margin:0 auto; padding:0 6vw;}
+.hero{display:grid; grid-template-columns:1.12fr 1fr; gap:40px; align-items:center; padding:76px 0 66px; border-bottom:1px solid var(--line);}
+.hero .art{aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.hero .art img{width:100%; height:100%; object-fit:cover;}
+.hero .art.empty{background:linear-gradient(135deg,#13242f,#0a141c);}
+.hero .art::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--ng),transparent); z-index:1;}
+.hero .kick{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.24em; text-transform:uppercase; color:var(--ng);}
+.hero h2{font-family:var(--serif); font-weight:600; font-size:clamp(27px,3.2vw,40px); line-height:1.34; margin:16px 0 0;}
+.hero p{color:var(--soft); font-size:19px; line-height:1.8; margin:18px 0 0;}
+.chapter{padding:62px 0 16px; border-bottom:1px solid var(--line);}
+.ch-head{display:flex; align-items:center; gap:18px;}
+.ch-no{font-family:var(--mono); font-weight:700; font-size:16px; letter-spacing:.04em; color:var(--ng);
+  width:42px; height:42px; border:1px solid var(--ng); border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 0 14px rgba(63,201,230,.18) inset;}
+.ch-name{font-family:var(--serif); font-weight:600; font-size:32px; letter-spacing:.02em;}
+.ch-en{font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-left:auto;}
+.ch-bar{height:1px; background:linear-gradient(90deg, var(--ng), rgba(63,201,230,0) 60%); margin:20px 0 36px;}
+.article{display:grid; grid-template-columns:320px 1fr; gap:32px; padding:28px 0; border-bottom:1px dashed var(--line2);}
+.article:last-of-type{border-bottom:none;}
+.article .art{aspect-ratio:5/4; overflow:hidden; border:1px solid var(--line2); background:var(--paper); position:relative;}
+.article .art img{width:100%; height:100%; object-fit:cover;}
+.article .art.empty{background:linear-gradient(135deg,#12222d,#0a141c);}
+.article .art::before{content:""; position:absolute; top:0; left:0; width:34px; height:2px; background:var(--ng); z-index:1;}
+.article .txt .etag{display:inline-block; margin-bottom:11px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.16em; text-transform:uppercase; color:var(--ng);}
+.article .txt h3{font-family:var(--serif); font-weight:600; font-size:var(--fs-h3); line-height:1.5; margin:0 0 12px;}
+.article .txt .upd{display:inline-block; margin:0 0 12px; padding:3px 12px; border:1px solid rgba(230,168,90,.4); border-left:2px solid var(--warm);
+  font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.05em; color:var(--warm);
+  background:linear-gradient(90deg, rgba(230,168,90,.08), transparent);}
+.article .txt p{margin:0; color:var(--ink); opacity:.96;}
+.article .src{margin-top:13px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.04em; color:var(--muted);}
+.article .src a{color:var(--soft);}
+.pull{margin:24px 0 8px; padding:6px 0 6px 22px; border-left:2px solid var(--ng); background:linear-gradient(90deg, rgba(63,201,230,.05), transparent);}
+.pull .lbl{display:block; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.2em; text-transform:uppercase; color:var(--ng); margin-bottom:8px;}
+.pull p{margin:0; font-family:var(--serif); font-size:19px; line-height:1.72; color:#dbe6ee;}
+.closing{padding:76px 0; border-bottom:1px solid var(--line);}
+.closing .mk{font-family:var(--serif); font-size:26px; color:var(--ng); margin-bottom:22px; text-shadow:0 0 18px rgba(63,201,230,.3);}
+.closing p{max-width:36em; color:var(--soft); line-height:1.95; margin:0 0 16px;}
+.closing .night{font-family:var(--serif); font-size:21px; color:var(--ink); margin-top:24px;}
+.colophon{max-width:1200px; margin:0 auto; padding:34px 6vw 72px; font-family:var(--mono); font-size:var(--fs-small); letter-spacing:.14em; color:var(--muted); line-height:2.3;}
+.colophon .c{color:var(--ng);}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr; gap:24px;}
+  .article{grid-template-columns:1fr; gap:16px;}
+  .article .art{aspect-ratio:16/9;}
+  .ch-en{display:none;}
+}
+/* ===== レイアウト変種: ベースデザイン(色/書体/部品)は統一、配置だけ号ごとに変える =====
+   build_html.py が日付から body class(lay-a/b/c/d)を選び、毎号レイアウトが変わる。 */
+body.lay-b .hero{grid-template-columns:1fr 1.12fr;}
+body.lay-b .hero>.art{order:2;}
+body.lay-b .article{grid-template-columns:1fr 320px;}
+body.lay-b .article>.art{order:2;}
+body.lay-b .article .art::before{left:auto; right:0;}
+body.lay-c .hero{grid-template-columns:1fr 1.2fr;}
+body.lay-c .hero>.art{order:2; aspect-ratio:16/9;}
+body.lay-c .article:nth-of-type(even){grid-template-columns:1fr 320px;}
+body.lay-c .article:nth-of-type(even)>.art{order:2;}
+body.lay-d .hero{grid-template-columns:1fr; gap:26px;}
+body.lay-d .hero>.art{aspect-ratio:21/9;}
+body.lay-d .article{grid-template-columns:1fr; gap:18px;}
+body.lay-d .article>.art{aspect-ratio:16/9;}
+body.lay-d .pull{border-left:none; border-top:2px solid var(--ng); padding:14px 0 0;}
+</style>
+</head>
+<body class="lay-c">
+
+<section class="cover">
+  <div class="ph empty"><img src="covers/2026-11-22/cover.png" alt="" onerror="this.style.display='none'"></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <span class="flag">The Daily Signal</span>
+    <h1>見えない敵に薬が効かなくなる日 —<br>国連機関が鳴らした警鐘</h1>
+    <div class="date">DAILY INTELLIGENCE BRIEFING · NO.146 · 2026.11.22 (SUN)</div>
+    <p class="lead">WHOは薬剤耐性(AMR)がこのままなら今後25年で世界で3900万人の命を奪うと警告した。対策計画を持つ国は79から173に増えたが、実行できているのはまだ少数派だ。足もとではBCIの会議が北京で開き、ハッブル望遠鏡の行く末を米国が産業界に問い、望遠鏡の『デジタルツイン』が隠れた系外惑星を暴き出した。遠い過去からは、巫女の埴輪と元寇の沈没船、400年閉じたままの錠が姿を見せた。</p>
+  </div>
+</section>
+
+<div class="statusbar">
+  <span class="seg"><span class="dot"></span>EDITION <b>No.146</b></span><span class="sep"></span>
+  <span class="seg">DATE <b>2026.11.22 SUN</b></span><span class="sep"></span>
+  <span class="seg">ALERT <b class="c">🟡注目</b></span><span class="sep"></span>
+  <span class="seg">SOURCES <b>14</b></span><span class="sep"></span>
+  <span class="seg">EDITOR <b class="c">JaH</b></span>
+</div>
+
+<div class="wrap">
+<section class="hero"><div class="art"><img src="covers/2026-11-22/hero.png" alt="" onerror="this.style.display='none'"></div><div><div class="kick">▍ 今日の一本 — Lead Story</div><h2>薬剤耐性(AMR)、このままなら25年で3900万人死亡 — WHOが警鐘、国の対策計画は79→173か国に拡大も実行はまだ少数派</h2><p>WHOは11月16〜17日、抗菌薬が効かなくなる薬剤耐性(AMR)について、2021年には直接の死因として100万人超が死亡し、現在の傾向が続けば今後25年で世界で3900万人が死亡するとの見通しを示した。183か国を対象にした調査では、AMR対策の国家行動計画を持つ国は2017年の79か国から173か国へ大きく増えたが、資金と実施体制の両方が整っている国はわずか42か国にとどまる。計画を『作る』段階から『実行する』段階への移行が進んでいないことが、今回の警告の核心にある。基盤となる統計は、血流感染・尿路感染・消化管感染・淋菌感染など2300万件超の確定検査結果を集めた2025年10月のWHO世界サーベイランス報告書に基づく。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">01</span><span class="ch-name">命</span><span class="ch-en">Life &middot; SMA &amp; Neuromuscular</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-22/01_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.1 · 新規</span><h3>アピテグロマブ、皮下注射版の規制協議が進展 — SMA以外に『FSHD』でも第2相治験</h3><p>Scholar Rockは11月10日の第3四半期決算発表で、SMA治療薬アピテグロマブ(米国商品名ISEMBYLD、9月11日FDA承認・現行は点滴静注のみ)について、皮下注射版の規制当局との協議が前進していると明らかにした。同時に、SMAとは別の神経筋疾患である顔面肩甲上腕型筋ジストロフィー(FSHD)を対象にした第2相試験『FORGE』でも参加者登録と投薬が進行中であることを報告した。FSHDは筋力低下が顔・肩・上腕に強く出る遺伝性疾患で、SMAとは原因遺伝子も病態も異なるが、同じ抗ミオスタチン機序の薬が試されている。欧州ではCHMP意見が2027年前半、日本では優先審査での申請受理が既に進んでいる。</p><div class="src">SOURCE：<a href="https://finviz.com/news/419880/scholar-rock-reports-third-quarter-2026-financial-results-and-recent-business-highlights">Scholar Rock 第3四半期決算発表(2026-11-10)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/01_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">01.2 · 国際アクセス</span><h3>低中所得国向けの低価格SMA遺伝子治療、2歳未満15人が12か月の追跡を完了</h3><p>ゾルゲンスマ(onasemnogene abeparvovec、1回約2.13億円)は高額なため低中所得国では入手が極めて難しい。これに代わる低中所得国向けのAAV遺伝子治療『vesemnogene lantuparvovec』の治験では、2026年3月時点のデータカットで、生後24か月未満の患者16人中15人が投与後12か月以上の追跡を完了したことが2026年の中間報告で示された。対象が小さく査読論文としての確定評価はまだだが、同種治療の長期安全性・有効性を低中所得国の実情に合わせて確認しようとする試みとして位置づけられている。既存の人道的無償提供プログラムが対象国を縮小する中、価格そのものを下げる方向の取り組みとして注目される。</p><div class="src">SOURCE：<a href="https://www.medrxiv.org/content/10.1101/2025.04.13.25325764.full.pdf">medRxiv 中間報告(2025年8月・2026年更新)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>SMA領域の話題は薬そのものの効き目だけでなく、『誰に届くか』という軸に移ってきている。別の病気への展開と、低中所得国への価格面での接近は、同じ薬の射程をそれぞれ違う方向に広げている。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">02</span><span class="ch-name">自由</span><span class="ch-en">Freedom &middot; BCI</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-22/02_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.1 · 産業動向</span><h3>北京で『2026中国脳機接口大会』— 国レベルの脳機接口発展報告書も発表へ</h3><p>北京市昌平区で11月19日に開幕した『2026中国脳機接口大会』が本日22日まで開かれている。メインフォーラムでは『脳機接口イノベーション発展研究報告(2026)』が発表される予定で、企業単位の治験・資金調達の話題とは別に、国レベルでの産業育成・標準化の動きが続いていることを示す。上海でも12月4〜6日に別の『蒲江イノベーションフォーラム2026脳機接口大会』が予定されており、北京・上海の両都市が脳機接口(BCI)の完全な価値連鎖の誘致を競っている構図が浮かぶ。</p><div class="src">SOURCE：<a href="https://english.beijing.gov.cn/latest/news/202611/t20261111_4941292.html">北京市人民政府(英語版、2026-11-11)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/02_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">02.2 · 企業デモ</span><h3>Neuralink、N1インプラント単独でゲーム内の複数操作を同時制御</h3><p>Neuralinkは11月20日、X(旧ツイッター)に約2分の動画を公開した。臨床試験参加者がN1インプラントのみを使い、コントローラーなしで『GTA VI』内の高速艇を操縦する様子を映したもので、思考だけで旋回・加速・視点変更を同時にこなしている。会社は投稿に『装置は研究段階で、FDA等の承認は得ていない』という定型の注意書きを添えている。査読を経たデータや独立機関による検証はまだなく、企業の宣伝用デモである点は踏まえておく必要があるが、複数の操作軸を同時に制御できる能力を示した点では、これまでの単純なカーソル操作のデモから一歩進んでいる。</p><div class="src">SOURCE：<a href="https://tech4gamers.com/neuralink-plays-gta-6-thoughts">Neuralink公式X投稿(2026-11-20)系報道</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>国家レベルの報告書づくりと、一企業のゲーム内デモ。規模も性質も違う2つの動きが、同じ週のBCI業界で同時に進んでいる。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">03</span><span class="ch-name">基盤</span><span class="ch-en">Foundation &middot; Public Health</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-22/03_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.1 · 今日の一本</span><h3>薬剤耐性(AMR)、このままなら25年で3900万人死亡 — WHOが警鐘</h3><div class="upd">🔁 本号の今日の一本 — 詳しくはリード文を参照</div><p>WHOは抗菌薬が効かなくなる薬剤耐性(AMR)について、2021年の直接死因が100万人超、現在の傾向が続けば今後25年で世界3900万人が死亡するとの見通しを示した。183か国調査では対策計画を持つ国が79から173に増えたが、資金と実施体制が整うのは42か国のみ。詳しくは本号の今日の一本を参照。</p><div class="src">SOURCE：<a href="https://www.aljazeera.com/news/2026/11/16/un-health-agency-sounds-alarm-on-antimicrobial-resistance-threat">WHO発表(2026-11-16〜17)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/03_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">03.2 · 地域データ</span><h3>米大陸で抗菌薬耐性が進行 — 肺炎桿菌の耐性率、10年で15%から26%に</h3><p>米州機構(PAHO)は11月18日、米大陸全体で『最後の手段』とされる抗菌薬への耐性が強まっていると警告した。地域の監視網データによると、肺炎桿菌(Klebsiella pneumoniae)の耐性率は2015年の約15%から2024年には約26%まで上昇している。WHOが同じ週に出した世界全体への警告(3900万人死亡見通し)と重なる内容で、個々の病院・国だけの問題ではなく大陸規模で進む傾向であることを裏づけている。</p><div class="src">SOURCE：<a href="https://www.paho.org/en/news/18-11-2026-paho-warns-increasing-resistance-antibiotics-used-treat-serious-infections-americas">PAHO発表(2026-11-18)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>個別の流行の数字を追う週が続いた後に、薬そのものが効かなくなっていくという、もっと根の深い警告が重なった。対策計画はできても、実行はまだ追いついていない。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">04</span><span class="ch-name">畏敬</span><span class="ch-en">Wonder &middot; Cosmos &amp; Quantum</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-22/04_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.1 · 宇宙</span><h3>NASA、ハッブル望遠鏡の『引き上げか延命か処分か』を産業界に問う</h3><p>NASAは10月29日、ハッブル望遠鏡の今後について産業界から情報を募るRFI(情報提供依頼)を出し、回答期限は11月30日午後3時(米東部時間)。問いは3択で、軌道を約600kmまで引き上げる『再ブースト』、軌道上での保守・延命サービス、そして安全な制御落下による処分。あくまで市場調査段階で、NASAは特定企業の選定や予算の確約はしていない。2032年までに何らかの対応が必要との見立てだが、天文学者の分析では落下はもっと早まる可能性も指摘されている。NASAは2022年にも同種の提案を募り8件の回答を得たが、2024年には再ブーストを見送る判断をしていた経緯があり、今回は改めてその判断を問い直す形になる。</p><div class="src">SOURCE：<a href="https://newspaceeconomy.ca/2026/10/31/nasa-seeks-commercial-options-for-hubble-servicing-and-reboost/">NewSpace Economy(2026-10-31) / NASA RFI</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/04_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">04.2 · 天文</span><h3>望遠鏡の『デジタルツイン』で隠れた系外惑星をあぶり出す新手法、感度最大15倍に</h3><p>ノースウェスタン大学のロドリゴ・フェラー=チャベス氏らの研究チームが、望遠鏡の光学系そのものを仮想的に再現する『デジタルツイン』を使い、恒星の光を物理モデルに基づいて取り除く新手法『FLIP』をNature誌11月4日号に発表した。AIで惑星そのものを探すのではなく、望遠鏡の既知の物理特性と最適化計算を組み合わせている点が特徴。既存のジェイムズ・ウェッブ宇宙望遠鏡(JWST)のデータに適用したところ、感度が最大15倍向上し、これまで埋もれていた巨大系外惑星を新たに検出できた。研究チームは、この手法がナンシー・グレース・ローマン宇宙望遠鏡や将来の『ハビタブル・ワールズ・オブザーバトリー』にも応用でき、極端な安定性要求を緩和できる可能性があるとしている。</p><div class="src">SOURCE：<a href="https://www.eurekalert.org/news-releases/1150080">Nature誌(2026-11-04) / EurekAlert</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>老いた望遠鏡の行く末を人間が思案する一方で、別の望遠鏡は自分自身の『分身』を作ることで、隠れていたものを見つける力を手に入れた。</p></div></section><section class="chapter"><div class="ch-head"><span class="ch-no">05</span><span class="ch-name">美</span><span class="ch-en">Beauty &middot; Human Origins &amp; Digital Minds</span></div><div class="ch-bar"></div><div class="article"><div class="art"><img src="covers/2026-11-22/05_1.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.1 · 考古学</span><h3>群馬の5世紀古墳の周溝から『巫女』を模した埴輪 — 全長40cm超</h3><p>群馬県の西下宮(にししたのみや)遺跡で、5世紀後半の古墳の周囲を囲む溝から、頭部と胴体が残る埴輪が出土した。髪型・赤い帯・粘土製の腕輪・棒状の持ち物といった特徴から、巫女(みこ)を表した人物埴輪とみられている。現存部分は約40cmで、遺跡には全長45〜49m前後の主丘を含め約11基の古墳が集まる。埴輪はもともと古墳の突出部に立てられ、その後周溝に転落したと考えられている。群馬県立埋蔵文化財調査センターで保管・展示される予定。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62336">Archaeology Magazine(2026-11-03)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/05_2.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.2 · 考古学</span><h3>元寇の沈没船からトランプ状の『小牌』と賽 — 高島沖で3隻目を確認</h3><p>國學院大學の池田榮史教授が長崎県松浦市と進める調査で、高島沖の海底から13世紀の沈没船が新たに見つかった。2011年・2015年の発見に続く3隻目で、1281年の弘安の役(元寇)で沈んだ船とみられている。船体からは賽(さい)5個と、小型の遊戯札『小牌(こはい)』29枚が回収された。池田教授は、これらは乗組員の娯楽に使われたとみている。この船が侵攻軍の『母船』だった可能性を指摘する報道もあり、さらなる発掘は2027年に予定されている。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62397">Archaeology Magazine(2026-11-06)</a></div></div></div><div class="article"><div class="art"><img src="covers/2026-11-22/05_3.png" alt="" onerror="this.style.display='none'"></div><div class="txt"><span class="etag">05.3 · 考古学</span><h3>400年閉じたままだった難破船の真鍮錠、CTスキャンで暗号『ANCE』を解読</h3><p>英国ウェールズ国立博物館とカーディフ大学の研究チームは、1583年12月28日にスペインからの帰路で沈んだ商船『アン・フランシス』号の真鍮製ダイヤル錠について、骨の撮影に使う微細CTスキャンで内部機構を調べ、無理に壊すことなく4文字の暗号『ANCE』を特定した。この錠は1996〜2017年にかけて金属探知家ヒューズ氏が発見した遺物の一つ。汚れを取り除いたのち、ダイヤルは400年以上ぶりにカチリと開いた。錠が何を守っていたのか、この単語に特別な意味があったのかは今も分かっていない。錠は現在、スウォンジーの国立海事博物館での企画展『Tides of Treasure』で展示されている。</p><div class="src">SOURCE：<a href="https://archaeology.org/?p=62383">Archaeology Magazine(2026-11-05)</a></div></div></div><div class="pull"><span class="lbl">▶ 注目ポイント</span><p>巫女の埴輪、元寇の船上の遊び、400年閉じていた錠。いずれも名もなき誰かの日常や意志が、思いがけない形で今に残っていた。</p></div></section><section class="closing"><div class="mk">✦</div><p>今号の軸は『積み重なってきたものが、一気に姿を見せる』だった。薬剤耐性は一つの流行ではなく、静かに進む構造的な警告としてWHOから示され、ハッブル望遠鏡は老いの果てにどう終えるかを問われ、別の望遠鏡は自分の分身を作ることで隠れた惑星を見つけた。BCIは国家の報告書と一企業のゲーム内デモという、まったく違う規模の動きを同じ週に見せている。群馬の巫女、元寇の船上の遊び、400年閉じていた錠は、どれも遠い時代の誰かの生きた跡を静かに今へ差し出していた。</p><p class="night">おやすみなさい、また明日。</p></section>
+</div>
+
+<div class="colophon">
+  THE DAILY SIGNAL　·　DAILY INTELLIGENCE BRIEFING　·　No.146 · 2026.11.22 (日)<br>
+  EDITED BY <span class="c">JaH</span>　·　SOURCES PRIORITIZE PRIMARY / OFFICIAL　·　FIGURES AS OF PUBLICATION
+</div>
+
+</body>
+</html>
